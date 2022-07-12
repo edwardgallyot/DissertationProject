@@ -5,9 +5,16 @@
   <MAINGROUP id="lJT0k0" name="FractalExploration">
     <GROUP id="{916C1354-8B8E-8E53-EF74-E1CDB1A20715}" name="Source">
       <FILE id="q2Hefh" name="Main.cpp" compile="1" resource="0" file="Source/Main.cpp"/>
-      <FILE id="QIobVd" name="MainComponent.h" compile="0" resource="0" file="Source/MainComponent.h"/>
-      <FILE id="eoOQ6q" name="MainComponent.cpp" compile="1" resource="0"
-            file="Source/MainComponent.cpp"/>
+      <FILE id="QIobVd" name="FractalExplorationComponent.h" compile="0"
+            resource="0" file="Source/FractalExplorationComponent.h"/>
+      <FILE id="eoOQ6q" name="FractalExplorationComponent.cpp" compile="1"
+            resource="0" file="Source/FractalExplorationComponent.cpp"/>
+    </GROUP>
+    <GROUP id="{787F9AD3-6DE6-87DA-5263-6173945992B2}" name="GUIComponents">
+      <FILE id="wgnk8P" name="DrawableComponent.cpp" compile="1" resource="0"
+            file="Source/GUIComponents/DrawableComponent.cpp"/>
+      <FILE id="EjpRUi" name="DrawableComponent.h" compile="0" resource="0"
+            file="Source/GUIComponents/DrawableComponent.h"/>
     </GROUP>
   </MAINGROUP>
   <JUCEOPTIONS JUCE_STRICT_REFCOUNTEDPOINTER="1"/>
