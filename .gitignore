@@ -30,4 +30,7 @@
 *.exe
 *.out
 *.app
-/.vs
+
+# Visual Studio Files
+/.vs/*
+/.vs/
