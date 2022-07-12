@@ -5,6 +5,9 @@
     <Filter Include="FractalExploration\Source">
       <UniqueIdentifier>{F785A3CD-BEB9-0898-FE68-A1DD60ACD54E}</UniqueIdentifier>
     </Filter>
+    <Filter Include="FractalExploration\GUIComponents">
+      <UniqueIdentifier>{F2DA81F8-763B-4C86-CD8A-7C83E7554C2C}</UniqueIdentifier>
+    </Filter>
     <Filter Include="FractalExploration">
       <UniqueIdentifier>{608BEFFB-932D-3040-5E01-E5B40053802A}</UniqueIdentifier>
     </Filter>
@@ -571,8 +574,11 @@
     <ClCompile Include="..\..\Source\Main.cpp">
       <Filter>FractalExploration\Source</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Source\MainComponent.cpp">
+    <ClCompile Include="..\..\Source\FractalExplorationComponent.cpp">
       <Filter>FractalExploration\Source</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\GUIComponents\DrawableComponent.cpp">
+      <Filter>FractalExploration\GUIComponents</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\..\JUCE\modules\juce_audio_basics\buffers\juce_AudioChannelSet.cpp">
       <Filter>JUCE Modules\juce_audio_basics\buffers</Filter>
@@ -2856,8 +2862,11 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\Source\MainComponent.h">
+    <ClInclude Include="..\..\Source\FractalExplorationComponent.h">
       <Filter>FractalExploration\Source</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\GUIComponents\DrawableComponent.h">
+      <Filter>FractalExploration\GUIComponents</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\..\JUCE\modules\juce_audio_basics\audio_play_head\juce_AudioPlayHead.h">
       <Filter>JUCE Modules\juce_audio_basics\audio_play_head</Filter>
