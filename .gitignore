@@ -36,8 +36,8 @@
 /.vs/
 
 #JUCE Build and Project Folders
-*/.vs/*
-*/Debug/*
-*/Release/*
+**/.vs/*
+**/Debug/*
+**/Release/*
 
 /Projects/FractalExploration/Builds/VisualStudio2022/.vs/FractalExploration
