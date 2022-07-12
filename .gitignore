@@ -30,4 +30,14 @@
 *.exe
 *.out
 *.app
-/.vs
+
+# Visual Studio Files
+/.vs/*
+/.vs/
+
+#JUCE Build and Project Folders
+**/.vs/*
+**/Debug/*
+**/Release/*
+
+/Projects/FractalExploration/Builds/VisualStudio2022/.vs/FractalExploration
