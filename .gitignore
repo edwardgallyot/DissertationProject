@@ -34,3 +34,9 @@
 # Visual Studio Files
 /.vs/*
 /.vs/
+
+#JUCE Build and Project Folders
+*/.vs/
+*/Debug/
+*/Release/
+
