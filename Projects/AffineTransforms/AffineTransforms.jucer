@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<JUCERPROJECT id="Fg0kkc" name="AffineTransforms" projectType="guiapp" useAppConfig="0"
+              addUsingNamespaceToJuceHeader="1" displaySplashScreen="1" jucerFormatVersion="1">
+  <MAINGROUP id="kWLxT7" name="AffineTransforms">
+    <GROUP id="{3F5DDC5A-8138-7CB1-B321-8C3D8FD43F29}" name="GUI">
+      <FILE id="VfXRxq" name="AffineTransformConstants.h" compile="0" resource="0"
+            file="Source/AffineTransformConstants.h"/>
+      <FILE id="fTpfjs" name="AffineTransformDisplay.cpp" compile="1" resource="0"
+            file="Source/AffineTransformDisplay.cpp"/>
+      <FILE id="T2Jy9G" name="AffineTransformDisplay.h" compile="0" resource="0"
+            file="Source/AffineTransformDisplay.h"/>
+    </GROUP>
+    <GROUP id="{A2514BA5-077E-D74A-F83C-4489E6C2BF90}" name="Source">
+      <FILE id="dMFLmR" name="Main.cpp" compile="1" resource="0" file="Source/Main.cpp"/>
+      <FILE id="bSYZkZ" name="AffineTransformsComponent.h" compile="0" resource="0"
+            file="Source/AffineTransformsComponent.h"/>
+      <FILE id="HpIE81" name="AffineTransformsComponent.cpp" compile="1"
+            resource="0" file="Source/AffineTransformsComponent.cpp"/>
+    </GROUP>
+  </MAINGROUP>
+  <JUCEOPTIONS JUCE_STRICT_REFCOUNTEDPOINTER="1"/>
+  <EXPORTFORMATS>
+    <VS2022 targetFolder="Builds/VisualStudio2022">
+      <CONFIGURATIONS>
+        <CONFIGURATION isDebug="1" name="Debug" targetName="AffineTransforms"/>
+        <CONFIGURATION isDebug="0" name="Release" targetName="AffineTransforms"/>
+      </CONFIGURATIONS>
+      <MODULEPATHS>
+        <MODULEPATH id="juce_core" path="../../../../JUCE/modules"/>
+        <MODULEPATH id="juce_data_structures" path="../../../../JUCE/modules"/>
+        <MODULEPATH id="juce_events" path="../../../../JUCE/modules"/>
+        <MODULEPATH id="juce_graphics" path="../../../../JUCE/modules"/>
+        <MODULEPATH id="juce_gui_basics" path="../../../../JUCE/modules"/>
+      </MODULEPATHS>
+    </VS2022>
+  </EXPORTFORMATS>
+  <MODULES>
+    <MODULE id="juce_core" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="juce_data_structures" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="juce_events" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="juce_graphics" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="juce_gui_basics" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+  </MODULES>
+</JUCERPROJECT>
