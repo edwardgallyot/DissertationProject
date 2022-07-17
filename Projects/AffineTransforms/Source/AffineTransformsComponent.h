@@ -13,7 +13,7 @@ public:
     ~AffineTransformsComponent() override;
 
     //==============================================================================
-    void paint (juce::Graphics&) override;
+    void paint(juce::Graphics&) override;
     void resized() override;
 
     void CreateProperties();
@@ -25,5 +25,6 @@ private:
 
     AffineTransformsDisplay m_affineTransformsDisplay;
 
-    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (AffineTransformsComponent)
+    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(AffineTransformsComponent)
 };
+

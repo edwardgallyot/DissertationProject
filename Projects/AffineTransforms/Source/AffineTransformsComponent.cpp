@@ -1,5 +1,6 @@
 #include "AffineTransformsComponent.h"
 
+
 //==============================================================================
 AffineTransformsComponent::AffineTransformsComponent() 
     :
@@ -40,18 +41,11 @@ void AffineTransformsComponent::resized()
         auto leftScale = static_cast<float>(slider) / static_cast<float>(AffineTransformConstants::NumParams);
         auto rightScale = 1.0f - static_cast<float>(slider + 1) / static_cast<float>(AffineTransformConstants::NumParams);
 
-        DBG(leftScale);
-        DBG(rightScale);
-
         area.removeFromLeft(static_cast<int>(static_cast<float>(getWidth()) * leftScale));
         area.removeFromRight(static_cast<int>(static_cast<float>(getWidth()) * rightScale));
         area.removeFromTop(getHeight() - AffineTransformConstants::sliderBankHeight);
 
         m_sliders[slider].setBounds(area);
-
-
-        DBG(m_sliders[slider].getWidth());
-        DBG(m_sliders[slider].getHeight());
         addAndMakeVisible(m_sliders[slider]);
     }
 }
@@ -68,7 +62,7 @@ void AffineTransformsComponent::CreateProperties()
         m_sliders[slider].setValue(1.0f);
         // Store the properties in a tree so they're easily referable to
         m_valueTree.setProperty(AffineTransformConstants::ParameterIDS[slider], m_sliders[slider].getValueObject(), nullptr);
-        // Make them refer to the slider values
+        // Make the sliders refer to the propertys underlying value objects within the tree
         m_sliders[slider].getValueObject().referTo(m_valueTree.getPropertyAsValue(AffineTransformConstants::ParameterIDS[slider], nullptr));
         
     }

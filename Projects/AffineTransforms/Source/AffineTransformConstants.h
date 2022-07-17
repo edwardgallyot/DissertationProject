@@ -11,6 +11,7 @@
 #ifndef AFFINE_TRANSFORM_CONSTANTS_H
 #define AFFINE_TRANSFORM_CONSTANTS_H
 
+
 namespace AffineTransformConstants
 {
     const juce::String valueTreeID = "TREE";

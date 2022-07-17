@@ -11,16 +11,19 @@
 #include "AffineTransformDisplay.h"
  
 
+
 AffineTransformsDisplay::AffineTransformsDisplay(ValueTree& treeToReferTo)
-    : 
+    :
     m_valueTree(treeToReferTo)
-{   
-    
+{
+    if (!AssertResizeBounds())
+    {
+        m_screenData.resize(getWidth(), std::vector<Point<float>>(getHeight(), Point<float>(0.0f, 0.0f)));
+    }
 }
 
 AffineTransformsDisplay::~AffineTransformsDisplay()
 {
-
 }
 
 void AffineTransformsDisplay::valueChanged(Value& value)
@@ -28,8 +31,52 @@ void AffineTransformsDisplay::valueChanged(Value& value)
     repaint();
 }
 
+void AffineTransformsDisplay::resized()
+{   
+}
+
+void AffineTransformsDisplay::StoreScreenData()
+{
+    if (!AssertResizeBounds())
+    {
+        m_screenData.resize(getWidth(), std::vector<Point<float>>(getHeight(), Point<float>(0.0f, 0.0f)));
+    }
+    for (auto y = 0; y < getHeight(); ++y)
+    {
+        for (auto x = 0; x < getWidth(); ++x)
+        {
+            m_screenData[x][y] = getLocalPoint(this, Point<float>(static_cast<float>(x), static_cast<float>(y)));
+        }
+    }
+}
+
+bool AffineTransformsDisplay::AssertResizeBounds()
+{
+    if (getWidth() != m_screenData.size())
+    {
+        return false;
+    }
+    
+    if (m_screenData.size() > 0)
+    {
+        if (getHeight() != m_screenData[0].size())
+        {
+            return false;
+        }
+    }
+    else
+    {
+        return false;
+    }
+    return true;
+}
+
 void AffineTransformsDisplay::paint(juce::Graphics& g)
 {
+    if (AssertResizeBounds())
+    {
+        StoreScreenData();
+    }
     // We create blocks so we can seperate out the processes
     {
         Path path;
@@ -44,12 +91,9 @@ void AffineTransformsDisplay::paint(juce::Graphics& g)
     {
         using namespace AffineTransformConstants;
         Path path;
-        auto  area = getLocalFloatBounds();
-        DBG(getLocalFloatBounds().getWidth());
+        auto  area = GetLocalFloatBounds();
         area.reduce(100, 100);
         path.addEllipse(area);
-
-        DBG(m_valueTree.toXmlString());
 
         auto transform = AffineTransform
         (
@@ -75,7 +119,7 @@ void AffineTransformsDisplay::paint(juce::Graphics& g)
     }
 }
 
-Rectangle<float> AffineTransformsDisplay::getLocalFloatBounds()
+Rectangle<float> AffineTransformsDisplay::GetLocalFloatBounds()
 {
     return
     {

@@ -14,6 +14,7 @@
 #include <JuceHeader.h>
 #include "AffineTransformConstants.h"
 
+
 class AffineTransformsDisplay : public juce::Component,
                                 public juce::Value::Listener
 {
@@ -25,10 +26,18 @@ public:
 
     void paint(juce::Graphics& g) override;
 
-    Rectangle<float> getLocalFloatBounds();
+    void resized() override;
+
+    Rectangle<float> GetLocalFloatBounds();
 
 private:
+    void StoreScreenData();
+    bool AssertResizeBounds();
+
     ValueTree& m_valueTree;
+
+    // This vector must be resized within the resize function!!
+    std::vector<std::vector<Point<float>>> m_screenData;
 };
 
 #endif //!AFFINE_TRANSFORM_DISPLAY_H
