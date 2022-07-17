@@ -9,17 +9,19 @@
 */
 
 #include "AffineTransformDisplay.h"
- 
+
 
 
 AffineTransformsDisplay::AffineTransformsDisplay(ValueTree& treeToReferTo)
     :
-    m_valueTree(treeToReferTo)
+    m_valueTree(treeToReferTo),
+    m_serpinskiBounds(3),
+    m_numChaosGamePoints(10000),
+    m_serpinskiPoints(m_numChaosGamePoints)
 {
-    if (!AssertResizeBounds())
-    {
-        m_screenData.resize(getWidth(), std::vector<Point<float>>(getHeight(), Point<float>(0.0f, 0.0f)));
-    }
+    InitialiseSerpinkskiBounds();
+    startTimer(33);
+    
 }
 
 AffineTransformsDisplay::~AffineTransformsDisplay()
@@ -28,11 +30,20 @@ AffineTransformsDisplay::~AffineTransformsDisplay()
 
 void AffineTransformsDisplay::valueChanged(Value& value)
 {
-    repaint();
 }
 
 void AffineTransformsDisplay::resized()
-{   
+{
+    if (!AssertResizeBounds())
+    {
+        m_screenData.resize(getWidth(), std::vector<Point<float>>(getHeight(), Point<float>(0.0f, 0.0f)));
+    }
+    InitialiseSerpinkskiBounds();
+}
+
+void AffineTransformsDisplay::timerCallback()
+{
+    repaint();
 }
 
 void AffineTransformsDisplay::StoreScreenData()
@@ -69,6 +80,34 @@ bool AffineTransformsDisplay::AssertResizeBounds()
         return false;
     }
     return true;
+}
+
+void AffineTransformsDisplay::InitialiseSerpinkskiBounds()
+{
+    m_serpinskiBounds.clear();
+    m_serpinskiBounds.push_back({ 0.0f, static_cast<float>(getHeight()) });
+    m_serpinskiBounds.push_back({ static_cast<float>(getWidth()) / 2.0f, 0.0f});
+    m_serpinskiBounds.push_back({ static_cast<float>(getWidth()), static_cast<float>(getHeight()) });
+}
+
+void AffineTransformsDisplay::ChaosGame()
+{
+    Random random;
+
+    auto tmpPoint = Point<float> 
+    (
+        fmod(random.nextFloat(), static_cast<float>(getWidth())), 
+        fmod(random.nextFloat(),static_cast<float>( getHeight()))
+    );
+    for (int i = 0; i < m_numChaosGamePoints; ++i) 
+    {
+        m_serpinskiPoints[i] = tmpPoint;
+        auto randomInt = random.nextInt({ 0,3 });
+
+        //DBG(randomInt);
+        tmpPoint = 0.5f * (tmpPoint + m_serpinskiBounds[randomInt]);
+        
+    }
 }
 
 void AffineTransformsDisplay::paint(juce::Graphics& g)
@@ -116,6 +155,16 @@ void AffineTransformsDisplay::paint(juce::Graphics& g)
         path.applyTransform(transform);
         g.setColour(juce::Colours::aliceblue);
         g.fillPath(path);
+    }
+
+    {
+        g.setColour(juce::Colours::aqua);
+        ChaosGame();
+
+        for (auto i = 0; i < m_serpinskiPoints.size(); ++i)
+        {
+            g.fillRect(m_serpinskiPoints[i].getX(), m_serpinskiPoints[i].getY(), 2.0f, 2.0f);
+        }
     }
 }
 
