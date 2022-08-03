@@ -11,7 +11,6 @@
 #include "AffineTransformDisplay.h"
 
 
-
 AffineTransformsDisplay::AffineTransformsDisplay(ValueTree& treeToReferTo)
     :
     m_valueTree(treeToReferTo),
@@ -85,9 +84,9 @@ bool AffineTransformsDisplay::AssertResizeBounds()
 void AffineTransformsDisplay::InitialiseSerpinkskiBounds()
 {
     m_serpinskiBounds.clear();
-    m_serpinskiBounds.push_back({ 0.0f, static_cast<float>(getHeight()) });
+    m_serpinskiBounds.push_back({ 0.0f, static_cast<float>(getHeight()) - 10 });
     m_serpinskiBounds.push_back({ static_cast<float>(getWidth()) / 2.0f, 0.0f});
-    m_serpinskiBounds.push_back({ static_cast<float>(getWidth()), static_cast<float>(getHeight()) });
+    m_serpinskiBounds.push_back({ static_cast<float>(getWidth()) - 100, static_cast<float>(getHeight()) });
 }
 
 void AffineTransformsDisplay::ChaosGame()
