@@ -1,0 +1,39 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio Version 17
+
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "FractalGranulator - Standalone Plugin", "FractalGranulator_StandalonePlugin.vcxproj", "{5A41973E-2A87-38C6-517E-F858FC7EC783}"
+	ProjectSection(ProjectDependencies) = postProject
+		{29E9611A-9CD7-71CF-B91D-565BB52ACB4A} = {29E9611A-9CD7-71CF-B91D-565BB52ACB4A}
+	EndProjectSection
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "FractalGranulator - VST3", "FractalGranulator_VST3.vcxproj", "{CBC406A7-B895-6F1B-FAC3-3BF8E48959E6}"
+	ProjectSection(ProjectDependencies) = postProject
+		{29E9611A-9CD7-71CF-B91D-565BB52ACB4A} = {29E9611A-9CD7-71CF-B91D-565BB52ACB4A}
+	EndProjectSection
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "FractalGranulator - Shared Code", "FractalGranulator_SharedCode.vcxproj", "{29E9611A-9CD7-71CF-B91D-565BB52ACB4A}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x64 = Debug|x64
+		Release|x64 = Release|x64
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{CBC406A7-B895-6F1B-FAC3-3BF8E48959E6}.Debug|x64.ActiveCfg = Debug|x64
+		{CBC406A7-B895-6F1B-FAC3-3BF8E48959E6}.Debug|x64.Build.0 = Debug|x64
+		{CBC406A7-B895-6F1B-FAC3-3BF8E48959E6}.Release|x64.ActiveCfg = Release|x64
+		{CBC406A7-B895-6F1B-FAC3-3BF8E48959E6}.Release|x64.Build.0 = Release|x64
+		{5A41973E-2A87-38C6-517E-F858FC7EC783}.Debug|x64.ActiveCfg = Debug|x64
+		{5A41973E-2A87-38C6-517E-F858FC7EC783}.Debug|x64.Build.0 = Debug|x64
+		{5A41973E-2A87-38C6-517E-F858FC7EC783}.Release|x64.ActiveCfg = Release|x64
+		{5A41973E-2A87-38C6-517E-F858FC7EC783}.Release|x64.Build.0 = Release|x64
+		{29E9611A-9CD7-71CF-B91D-565BB52ACB4A}.Debug|x64.ActiveCfg = Debug|x64
+		{29E9611A-9CD7-71CF-B91D-565BB52ACB4A}.Debug|x64.Build.0 = Debug|x64
+		{29E9611A-9CD7-71CF-B91D-565BB52ACB4A}.Release|x64.ActiveCfg = Release|x64
+		{29E9611A-9CD7-71CF-B91D-565BB52ACB4A}.Release|x64.Build.0 = Release|x64
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
