@@ -1,0 +1,102 @@
+NEXT TODOs:
+
+1. Create a Generic GUI
+2. Create a Base Processor to Inherit from ✓
+3. Create a Generic Delay Line class
+
+
+Fractal Granulator TODOs:
+
+DSP:
+
+* Create a Base for the Processor to Inherit from:
+	* Inherit from the JUCE Audio Processor ✓
+	* Part of the Ed Plugin Framework ✓
+	* Any Extra Functions on the Plugin Processor will be added here.
+	* This will also abstract away the Value State Tree and the create parameters function.
+	* That way we can get parameters based on the common IDs without affecting the main processor.
+
+* Create the FractalGranulatorAudioProcessor class
+	* This is going to look after the delay line and the granulator that holds a reference to said delay line.
+	* It will also look after what the granulator does at the start of each block.
+	* This processor will set the parameters and then process the block.
+
+* Create a Generic Delay Line class:
+	* Circular Buffer
+	* This will be the source data that the granulator reads from
+	* This simply writes to the buffer
+	* It doesn't concern its self with reading.
+	* Try and copy the buffer with the FloatVectorOperations Library.
+	
+* Create and Add to the EdPF::DSP namespace:
+	* Interpolation Algorithm - needs to know the size to wrap around from.
+	* There are definitely algorithms from UNI that can exist here.
+	* Maybe think about making smoothed values as a part of this.
+	* We will add more here as generic DSP algorithms come about.
+
+* Create a Top Level Granulator Class:
+	* This should be able to take some values in prepare to play.
+	* It should also hold a reference to the FIFO object that it's going to push to the GUI.
+	* This should hold everything that's in the processor and control how it affects the DSP.
+	* This includes the smoothed values.
+	* When the Granulator uses process block this is probably the best time to push the current.
+      grain pool to the GUI.
+	
+* Create a Generic Sequency Strategy Interface:
+	* We can create a generic interface for the Granulator.Scheduler to interact with.
+	* This way we can test simpler stochastic methods before we implement the fractal functionality.
+	* This can then be a SequencyStrategyType in the Scheduler to avoid rewriting code.
+	
+* Create a Scheduler:
+	* The Scheduler is going to hold a reference to a pool of grains owned by the granulator.
+	* We can experiment with the efficiency of this pool but it'll probs start as a vector.
+	* The scheduler can then use the SequencyStrategyType without knowing the specifics in a template.
+
+* Create a Grain class:
+	* All the grain will do is know it's activation and phase.
+	* We want the grain to be pretty modular so it can use it's phase to determine
+	  how it's going to interact with the source and envelope essence.
+	* Each Grain is going to hold an essence and the essence will be copied across to the
+      newly activated grain.
+	* We probably want to create a copy constructor so we can control how the data is copied
+	  between essences.
+
+* Create the Essence Classes:
+	* Ultimately the Essence will be an abstract type.
+	* This way we can create diffent Essences if we want to expand the granulator in the
+	  future.
+	  
+	  
+* ^^^ Once we have the basics of all this ^^^
+	* We're then going to look at moving the fractal morpohology as a generic SequencyStrategyType
+	* This will mean that we can use it in the same way as the dummy stochastic synthesis works.
+	* The same functions will be overriden they will just do different things based on the rules of the ChaosGame.
+	* This way the grain generation should lock into the attractors.
+
+GUI:
+
+* Create a test class that can print Affine Transforms of Fractals:
+	* Based on the serpinski plot from before.
+	* But uses affine transforms.
+	* If we can make a barnsley fern with GUI control over the shape then we are golden.
+	* We still have some work to do before allowing the complexity of the DSP to hit in.
+
+* Create some generic Sliders that can be attatched to parameters:
+	* I don't want to have to keep writing boiler plate code for these sliders to work.
+	* This means creating some generic rotarys that have the right look and feel.
+	* The look and feel isn't top priority but we should try do this instead of relying on
+	  overriding the paint method all the time.
+
+* Create the Layout of the GUI so all the components are included and ready to use from the DSP:
+	* Draw out how the GUI will look.
+	* Set the bounds of all these components.
+	* Think about what each component will do with regards to the DPS and try assign the parameters.
+	* This would be useful to think about extra processor functionality with regards to Values.
+	
+* Focus on the Fractal Plot first:
+	* We want to focus on this component first and leave the other components generic if needs be
+	* This will mean that we have a functional component with generic buttons and sliders.
+
+* Then worry about the look and feel of the individual components	
+	* We can basically make everything look pretty if we have time but it's more important
+      that the plotting of grain data exists within the GUI first.
