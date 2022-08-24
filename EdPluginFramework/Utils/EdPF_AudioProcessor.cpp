@@ -11,8 +11,8 @@
 #include "EdPF_AudioProcessor.h"
 
 
-EdPF::AudioProcessor::AudioProcessor()
-#ifndef JucePlugin_PreferredChannelConfigurations
+
+EdPF::AudioProcessor::AudioProcessor(juce::AudioProcessorValueTreeState::ParameterLayout& parameterLayout)
     : juce::AudioProcessor(BusesProperties()
 #if ! JucePlugin_IsMidiEffect
 #if ! JucePlugin_IsSynth
@@ -20,10 +20,12 @@ EdPF::AudioProcessor::AudioProcessor()
 #endif
         .withOutput("Output", juce::AudioChannelSet::stereo(), true)
 #endif
-    )
-#endif
+    ),
+    m_apvts(*this, nullptr, "PARAMETERS", std::move(parameterLayout))
 {
 }
+
+
 
 EdPF::AudioProcessor::~AudioProcessor()
 {
@@ -167,7 +169,7 @@ bool EdPF::AudioProcessor::hasEditor() const
 
 juce::AudioProcessorEditor* EdPF::AudioProcessor::createEditor()
 {
-    return new juce ::AudioProcessorEditor(*this);
+    return new juce::AudioProcessorEditor(*this);
 }
 
 //==============================================================================
@@ -182,4 +184,20 @@ void EdPF::AudioProcessor::setStateInformation(const void* data, int sizeInBytes
 {
     // You should use this method to restore your parameters from this memory block,
     // whose contents will have been created by the getStateInformation() call.
+}
+
+juce::Value EdPF::AudioProcessor::GetParameterAsValue(juce::StringRef ID)
+{
+    // TODO: Add some checks in here to tell if we're using this responsibly
+
+    // TODO: We should probably be able to tell the difference between automated and non-automated parameters
+    return m_apvts.getParameterAsValue(ID);
+}
+
+juce::RangedAudioParameter* EdPF::AudioProcessor::GetParameter(juce::StringRef ID)
+{
+    // TODO: Add some checks in here to tell if we're using this responsibly
+
+    // TODO: We should probably be able to tell the difference between automated and non-automated parameters
+    return m_apvts.getParameter(ID);
 }

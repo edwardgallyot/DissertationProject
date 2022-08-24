@@ -1,12 +1,16 @@
 /*
   ==============================================================================
 
-    EdPF_DelayLine.cpp
-    Created: 3 Aug 2022 2:54:28pm
+    FractalGranulatorCommon.cpp
+    Created: 7 Aug 2022 4:52:50pm
     Author:  Edward Gallyot
 
   ==============================================================================
 */
 
-#include "EdPF_DelayLine.h"
+#include "FractalGranulatorCommon.h"
 
+juce::StringRef FGConst::GetParameterID(Params param)
+{
+    return FGConst::ParamIds[param];
+}

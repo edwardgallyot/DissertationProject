@@ -19,11 +19,9 @@ namespace EdPF
                            
     {
     public: 
-        //==============================================================================
-        AudioProcessor();
+        AudioProcessor(juce::AudioProcessorValueTreeState::ParameterLayout&);
         ~AudioProcessor() override;
         
-
         //==============================================================================
         void prepareToPlay(double sampleRate, int samplesPerBlock) override;
         void releaseResources() override;
@@ -56,8 +54,22 @@ namespace EdPF
         //==============================================================================
         void getStateInformation(juce::MemoryBlock& destData) override;
         void setStateInformation(const void* data, int sizeInBytes) override;
-
-        //juce::AudioProcessorValueTreeState m_apvts;
+        
+        // EdPF namespace additions to abstract away the JUCE stuff.
+        // =============================================================================
+        
+        // We probably want to override this when creating parameters in the derived editor 
+        virtual juce::AudioProcessorValueTreeState::ParameterLayout CreateParameterLayout() { return juce::AudioProcessorValueTreeState::ParameterLayout(); }
+        
+        // This will get a Value object directly from the state tree
+        juce::Value GetParameterAsValue(juce::StringRef ID);
+        
+        // This will get a ranged audio parameter directly from the state tree
+        juce::RangedAudioParameter* GetParameter(juce::StringRef ID);
+        
+    private:
+        // We will keep the state tree private so the other classes only interact through the methods we write
+        juce::AudioProcessorValueTreeState m_apvts;
     };
 }
 

@@ -140,12 +140,18 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="..\..\..\..\EdPluginFramework\DSP\EdPF_DelayLine.cpp"/>
+    <ClCompile Include="..\..\..\..\EdPluginFramework\DSP\EdPF_Grain.cpp"/>
+    <ClCompile Include="..\..\..\..\EdPluginFramework\DSP\EdPF_GrainScheduler.cpp"/>
+    <ClCompile Include="..\..\..\..\EdPluginFramework\DSP\EdPF_Granulator.cpp"/>
     <ClCompile Include="..\..\..\..\EdPluginFramework\DSP\EdPF_WaveTableInterpolation.cpp"/>
     <ClCompile Include="..\..\..\..\EdPluginFramework\GUI\EdPF_AttatchedRotarySlider.cpp"/>
+    <ClCompile Include="..\..\..\..\EdPluginFramework\GUI\EdPF_AudioVisualiser.cpp"/>
     <ClCompile Include="..\..\..\..\EdPluginFramework\Utils\EdPF_AudioProcessor.cpp"/>
     <ClCompile Include="..\..\..\..\EdPluginFramework\Utils\EdPF_AudioProcessorEditor.cpp"/>
     <ClCompile Include="..\..\..\..\EdPluginFramework\Utils\EdPF_Fifo.cpp"/>
     <ClCompile Include="..\..\Source\GUI\FractalDisplayComponent.cpp"/>
+    <ClCompile Include="..\..\Source\GUI\FractalInputComponent.cpp"/>
+    <ClCompile Include="..\..\Source\FractalGranulatorCommon.cpp"/>
     <ClCompile Include="..\..\Source\FractalGranulatorProcessor.cpp"/>
     <ClCompile Include="..\..\Source\FractalGranulatorEditor.cpp"/>
     <ClCompile Include="..\..\..\..\JUCE\modules\juce_audio_basics\buffers\juce_AudioChannelSet.cpp">
@@ -2300,12 +2306,17 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\..\EdPluginFramework\DSP\EdPF_DelayLine.h"/>
+    <ClInclude Include="..\..\..\..\EdPluginFramework\DSP\EdPF_Grain.h"/>
+    <ClInclude Include="..\..\..\..\EdPluginFramework\DSP\EdPF_GrainScheduler.h"/>
+    <ClInclude Include="..\..\..\..\EdPluginFramework\DSP\EdPF_Granulator.h"/>
     <ClInclude Include="..\..\..\..\EdPluginFramework\DSP\EdPF_WaveTableInterpolation.h"/>
     <ClInclude Include="..\..\..\..\EdPluginFramework\GUI\EdPF_AttatchedRotarySlider.h"/>
+    <ClInclude Include="..\..\..\..\EdPluginFramework\GUI\EdPF_AudioVisualiser.h"/>
     <ClInclude Include="..\..\..\..\EdPluginFramework\Utils\EdPF_AudioProcessor.h"/>
     <ClInclude Include="..\..\..\..\EdPluginFramework\Utils\EdPF_AudioProcessorEditor.h"/>
     <ClInclude Include="..\..\..\..\EdPluginFramework\Utils\EdPF_Fifo.h"/>
     <ClInclude Include="..\..\Source\GUI\FractalDisplayComponent.h"/>
+    <ClInclude Include="..\..\Source\GUI\FractalInputComponent.h"/>
     <ClInclude Include="..\..\Source\FractalGranulatorCommon.h"/>
     <ClInclude Include="..\..\Source\FractalGranulatorProcessor.h"/>
     <ClInclude Include="..\..\Source\FractalGranulatorEditor.h"/>

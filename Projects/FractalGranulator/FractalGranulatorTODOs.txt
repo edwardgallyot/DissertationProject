@@ -1,38 +1,39 @@
 NEXT TODOs:
 
-1. Create a Generic GUI
-2. Create a Base Processor to Inherit from ✓
-3. Create a Generic Delay Line class
+1. Create a Generic GUI ✓sss
+2. Create a Base Processor to Inherit from ✓ 
+3. Create a Generic Delay Line class ✓ 
 
 
 Fractal Granulator TODOs:
 
 DSP:
 
+*** DONE ***
 * Create a Base for the Processor to Inherit from:
 	* Inherit from the JUCE Audio Processor ✓
 	* Part of the Ed Plugin Framework ✓
-	* Any Extra Functions on the Plugin Processor will be added here.
-	* This will also abstract away the Value State Tree and the create parameters function.
-	* That way we can get parameters based on the common IDs without affecting the main processor.
+	* Any Extra Functions on the Plugin Processor will be added here. ✓
+	* This will also abstract away the Value State Tree and the create parameters function. ✓
+	* That way we can get parameters based on the common IDs without affecting the main processor. ✓
 
 * Create the FractalGranulatorAudioProcessor class
-	* This is going to look after the delay line and the granulator that holds a reference to said delay line.
+	* This is going to look after the delay line and the granulator that holds a reference to said delay line. ✓
 	* It will also look after what the granulator does at the start of each block.
 	* This processor will set the parameters and then process the block.
 
 * Create a Generic Delay Line class:
-	* Circular Buffer
-	* This will be the source data that the granulator reads from
-	* This simply writes to the buffer
-	* It doesn't concern its self with reading.
-	* Try and copy the buffer with the FloatVectorOperations Library.
+	* Circular Buffer ✓ 
+	* This will be the source data that the granulator reads from ✓ 
+	* This simply writes to the buffer ✓ 
+	* It doesn't concern its self with reading. ✓ 
+	* Try and copy the buffer with the FloatVectorOperations Library. ✓ 
 	
-* Create and Add to the EdPF::DSP namespace:
-	* Interpolation Algorithm - needs to know the size to wrap around from.
-	* There are definitely algorithms from UNI that can exist here.
-	* Maybe think about making smoothed values as a part of this.
-	* We will add more here as generic DSP algorithms come about.
+* Create and Add to the EdPF::DSP namespace: ✓ 
+	* Interpolation Algorithm - needs to know the size to wrap around from. ✓ 
+	* There are definitely algorithms from UNI that can exist here. ✓ 
+	* Maybe think about making smoothed values as a part of this. ✓ 
+	* We will add more here as generic DSP algorithms come about. ✓ 
 
 * Create a Top Level Granulator Class:
 	* This should be able to take some values in prepare to play.
@@ -81,17 +82,18 @@ GUI:
 	* If we can make a barnsley fern with GUI control over the shape then we are golden.
 	* We still have some work to do before allowing the complexity of the DSP to hit in.
 
-* Create some generic Sliders that can be attatched to parameters:
-	* I don't want to have to keep writing boiler plate code for these sliders to work.
+* Create some generic Sliders that can be attatched to parameters: ✓ 
+	* I don't want to have to keep writing boiler plate code for these sliders to work. ✓ 
 	* This means creating some generic rotarys that have the right look and feel.
 	* The look and feel isn't top priority but we should try do this instead of relying on
 	  overriding the paint method all the time.
 
+*** DONE ***
 * Create the Layout of the GUI so all the components are included and ready to use from the DSP:
-	* Draw out how the GUI will look.
-	* Set the bounds of all these components.
-	* Think about what each component will do with regards to the DPS and try assign the parameters.
-	* This would be useful to think about extra processor functionality with regards to Values.
+	* Draw out how the GUI will look. ✓
+	* Set the bounds of all these components. ✓
+	* Think about what each component will do with regards to the DPS and try assign the parameters. ✓
+	* This would be useful to think about extra processor functionality with regards to Values. ✓
 	
 * Focus on the Fractal Plot first:
 	* We want to focus on this component first and leave the other components generic if needs be

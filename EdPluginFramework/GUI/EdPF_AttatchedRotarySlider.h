@@ -8,4 +8,28 @@
   ==============================================================================
 */
 
-#pragma once
+#ifndef EDPF_ATTACHED_ROTARY_SLIDER
+#define EDPF_ATTACHED_ROTARY_SLIDER
+
+#include <JuceHeader.h>
+#include "../Utils/EdPF_AudioProcessor.h"
+
+namespace EdPF
+{
+    class AttachedRotarySlider : public juce::Slider
+    {
+    public:
+        AttachedRotarySlider
+        (
+            EdPF::AudioProcessor& p,
+            juce::StringRef sliderID,
+            juce::LookAndFeel* lookAndFeel
+        );
+        ~AttachedRotarySlider();
+    
+    private:
+        std::unique_ptr<juce::SliderParameterAttachment> m_attachment;
+    };
+}
+
+#endif //! EDPF_ATTATCHED_ROTARY_SLIDER
