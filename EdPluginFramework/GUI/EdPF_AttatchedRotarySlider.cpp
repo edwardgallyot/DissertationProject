@@ -9,3 +9,21 @@
 */
 
 #include "EdPF_AttatchedRotarySlider.h"
+
+EdPF::AttachedRotarySlider::AttachedRotarySlider
+    (
+        EdPF::AudioProcessor& p,
+        juce::StringRef sliderID,
+        juce::LookAndFeel* lookAndFeel
+    ) 
+    :
+    m_attachment(std::make_unique<juce::SliderParameterAttachment>(*p.GetParameter(sliderID), *this, nullptr))   
+{
+    setTextBoxStyle(NoTextBox, false, 1, 1);
+    setSliderStyle(SliderStyle::RotaryHorizontalVerticalDrag);
+    setLookAndFeel(lookAndFeel);
+}
+
+EdPF::AttachedRotarySlider::~AttachedRotarySlider()
+{
+}

@@ -595,10 +595,22 @@
     <ClCompile Include="..\..\..\..\EdPluginFramework\DSP\EdPF_DelayLine.cpp">
       <Filter>FractalGranulator\EdPluginFramework\DSP</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\..\..\EdPluginFramework\DSP\EdPF_Grain.cpp">
+      <Filter>FractalGranulator\EdPluginFramework\DSP</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\EdPluginFramework\DSP\EdPF_GrainScheduler.cpp">
+      <Filter>FractalGranulator\EdPluginFramework\DSP</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\EdPluginFramework\DSP\EdPF_Granulator.cpp">
+      <Filter>FractalGranulator\EdPluginFramework\DSP</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\..\..\EdPluginFramework\DSP\EdPF_WaveTableInterpolation.cpp">
       <Filter>FractalGranulator\EdPluginFramework\DSP</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\..\EdPluginFramework\GUI\EdPF_AttatchedRotarySlider.cpp">
+      <Filter>FractalGranulator\EdPluginFramework\GUI</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\EdPluginFramework\GUI\EdPF_AudioVisualiser.cpp">
       <Filter>FractalGranulator\EdPluginFramework\GUI</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\..\EdPluginFramework\Utils\EdPF_AudioProcessor.cpp">
@@ -612,6 +624,12 @@
     </ClCompile>
     <ClCompile Include="..\..\Source\GUI\FractalDisplayComponent.cpp">
       <Filter>FractalGranulator\Source\GUI</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\GUI\FractalInputComponent.cpp">
+      <Filter>FractalGranulator\Source\GUI</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\FractalGranulatorCommon.cpp">
+      <Filter>FractalGranulator\Source</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Source\FractalGranulatorProcessor.cpp">
       <Filter>FractalGranulator\Source</Filter>
@@ -2925,10 +2943,22 @@
     <ClInclude Include="..\..\..\..\EdPluginFramework\DSP\EdPF_DelayLine.h">
       <Filter>FractalGranulator\EdPluginFramework\DSP</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\..\..\EdPluginFramework\DSP\EdPF_Grain.h">
+      <Filter>FractalGranulator\EdPluginFramework\DSP</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\EdPluginFramework\DSP\EdPF_GrainScheduler.h">
+      <Filter>FractalGranulator\EdPluginFramework\DSP</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\EdPluginFramework\DSP\EdPF_Granulator.h">
+      <Filter>FractalGranulator\EdPluginFramework\DSP</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\..\..\EdPluginFramework\DSP\EdPF_WaveTableInterpolation.h">
       <Filter>FractalGranulator\EdPluginFramework\DSP</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\..\EdPluginFramework\GUI\EdPF_AttatchedRotarySlider.h">
+      <Filter>FractalGranulator\EdPluginFramework\GUI</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\EdPluginFramework\GUI\EdPF_AudioVisualiser.h">
       <Filter>FractalGranulator\EdPluginFramework\GUI</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\..\EdPluginFramework\Utils\EdPF_AudioProcessor.h">
@@ -2941,6 +2971,9 @@
       <Filter>FractalGranulator\EdPluginFramework\Utils</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\GUI\FractalDisplayComponent.h">
+      <Filter>FractalGranulator\Source\GUI</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\GUI\FractalInputComponent.h">
       <Filter>FractalGranulator\Source\GUI</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\FractalGranulatorCommon.h">

@@ -20,7 +20,9 @@ namespace EdPF
     {
     public:
         AudioProcessorEditor(EdPF::AudioProcessor& p);
-        ~AudioProcessorEditor();   
+        ~AudioProcessorEditor();
+
+    private:
     };
 }
 

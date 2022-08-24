@@ -9,3 +9,9 @@
 */
 
 #include "FractalDisplayComponent.h"
+
+void FGGUI::FractalDisplay::paint(juce::Graphics& g)
+{
+    g.fillAll(juce::Colours::palegreen);
+    g.drawText("Fractal Display", getLocalBounds(), juce::Justification::centred);
+}

@@ -10,16 +10,30 @@
               file="../../EdPluginFramework/DSP/EdPF_DelayLine.cpp"/>
         <FILE id="j8k7U1" name="EdPF_DelayLine.h" compile="0" resource="0"
               file="../../EdPluginFramework/DSP/EdPF_DelayLine.h"/>
+        <FILE id="XqGHdW" name="EdPF_Grain.cpp" compile="1" resource="0" file="../../EdPluginFramework/DSP/EdPF_Grain.cpp"/>
+        <FILE id="Yg64jM" name="EdPF_Grain.h" compile="0" resource="0" file="../../EdPluginFramework/DSP/EdPF_Grain.h"/>
+        <FILE id="kJrNLP" name="EdPF_GrainScheduler.cpp" compile="1" resource="0"
+              file="../../EdPluginFramework/DSP/EdPF_GrainScheduler.cpp"/>
+        <FILE id="s9rhgy" name="EdPF_GrainScheduler.h" compile="0" resource="0"
+              file="../../EdPluginFramework/DSP/EdPF_GrainScheduler.h"/>
+        <FILE id="Cah6W2" name="EdPF_Granulator.cpp" compile="1" resource="0"
+              file="../../EdPluginFramework/DSP/EdPF_Granulator.cpp"/>
+        <FILE id="Zm4SPe" name="EdPF_Granulator.h" compile="0" resource="0"
+              file="../../EdPluginFramework/DSP/EdPF_Granulator.h"/>
         <FILE id="D6BngR" name="EdPF_WaveTableInterpolation.cpp" compile="1"
               resource="0" file="../../EdPluginFramework/DSP/EdPF_WaveTableInterpolation.cpp"/>
         <FILE id="nvkNfe" name="EdPF_WaveTableInterpolation.h" compile="0"
               resource="0" file="../../EdPluginFramework/DSP/EdPF_WaveTableInterpolation.h"/>
       </GROUP>
       <GROUP id="{74A2110F-F7B7-66DD-269F-0AB74AF26F1A}" name="GUI">
-        <FILE id="gZOvYu" name="EdPF_AttatchedRotarySlider.cpp" compile="1"
+        <FILE id="ncJST9" name="EdPF_AttatchedRotarySlider.cpp" compile="1"
               resource="0" file="../../EdPluginFramework/GUI/EdPF_AttatchedRotarySlider.cpp"/>
-        <FILE id="FtF2Q5" name="EdPF_AttatchedRotarySlider.h" compile="0" resource="0"
+        <FILE id="YTXWfL" name="EdPF_AttatchedRotarySlider.h" compile="0" resource="0"
               file="../../EdPluginFramework/GUI/EdPF_AttatchedRotarySlider.h"/>
+        <FILE id="g3xj4g" name="EdPF_AudioVisualiser.cpp" compile="1" resource="0"
+              file="../../EdPluginFramework/GUI/EdPF_AudioVisualiser.cpp"/>
+        <FILE id="ypUwR4" name="EdPF_AudioVisualiser.h" compile="0" resource="0"
+              file="../../EdPluginFramework/GUI/EdPF_AudioVisualiser.h"/>
       </GROUP>
       <GROUP id="{4E15B6B1-BA0F-54FA-CBF3-0A741071C8BC}" name="Utils">
         <FILE id="wsYVjm" name="EdPF_AudioProcessor.cpp" compile="1" resource="0"
@@ -40,9 +54,15 @@
               file="Source/GUI/FractalDisplayComponent.cpp"/>
         <FILE id="oQxVE6" name="FractalDisplayComponent.h" compile="0" resource="0"
               file="Source/GUI/FractalDisplayComponent.h"/>
+        <FILE id="E560pN" name="FractalInputComponent.cpp" compile="1" resource="0"
+              file="Source/GUI/FractalInputComponent.cpp"/>
+        <FILE id="KRExcx" name="FractalInputComponent.h" compile="0" resource="0"
+              file="Source/GUI/FractalInputComponent.h"/>
       </GROUP>
       <FILE id="QZ3ILm" name="FractalGranulatorCommon.h" compile="0" resource="0"
             file="Source/FractalGranulatorCommon.h"/>
+      <FILE id="Sdm6H8" name="FractalGranulatorCommon.cpp" compile="1" resource="0"
+            file="Source/FractalGranulatorCommon.cpp"/>
       <FILE id="QEvfkE" name="FractalGranulatorProcessor.cpp" compile="1"
             resource="0" file="Source/FractalGranulatorProcessor.cpp"/>
       <FILE id="tAy9ol" name="FractalGranulatorProcessor.h" compile="0" resource="0"
