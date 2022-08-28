@@ -141,14 +141,24 @@
   <ItemGroup>
     <ClCompile Include="..\..\..\..\EdPluginFramework\DSP\EdPF_DelayLine.cpp"/>
     <ClCompile Include="..\..\..\..\EdPluginFramework\DSP\EdPF_Grain.cpp"/>
+    <ClCompile Include="..\..\..\..\EdPluginFramework\DSP\EdPF_GrainEnvelope.cpp"/>
+    <ClCompile Include="..\..\..\..\EdPluginFramework\DSP\EdPF_GrainPool.cpp"/>
     <ClCompile Include="..\..\..\..\EdPluginFramework\DSP\EdPF_GrainScheduler.cpp"/>
-    <ClCompile Include="..\..\..\..\EdPluginFramework\DSP\EdPF_Granulator.cpp"/>
+    <ClCompile Include="..\..\..\..\EdPluginFramework\DSP\EdPF_GrainSource.cpp"/>
+    <ClCompile Include="..\..\..\..\EdPluginFramework\DSP\EdPF_SequenceStrategy.cpp"/>
+    <ClCompile Include="..\..\..\..\EdPluginFramework\DSP\EdPF_Utils.cpp"/>
     <ClCompile Include="..\..\..\..\EdPluginFramework\DSP\EdPF_WaveTableInterpolation.cpp"/>
     <ClCompile Include="..\..\..\..\EdPluginFramework\GUI\EdPF_AttatchedRotarySlider.cpp"/>
     <ClCompile Include="..\..\..\..\EdPluginFramework\GUI\EdPF_AudioVisualiser.cpp"/>
     <ClCompile Include="..\..\..\..\EdPluginFramework\Utils\EdPF_AudioProcessor.cpp"/>
     <ClCompile Include="..\..\..\..\EdPluginFramework\Utils\EdPF_AudioProcessorEditor.cpp"/>
     <ClCompile Include="..\..\..\..\EdPluginFramework\Utils\EdPF_Fifo.cpp"/>
+    <ClCompile Include="..\..\Source\DSP\DelayLineSource.cpp"/>
+    <ClCompile Include="..\..\Source\DSP\Grain.cpp"/>
+    <ClCompile Include="..\..\Source\DSP\GrainScheduler.cpp"/>
+    <ClCompile Include="..\..\Source\DSP\Granulator.cpp"/>
+    <ClCompile Include="..\..\Source\DSP\ParabolicEnvelope.cpp"/>
+    <ClCompile Include="..\..\Source\DSP\StochasticSequenceStrategy.cpp"/>
     <ClCompile Include="..\..\Source\GUI\FractalDisplayComponent.cpp"/>
     <ClCompile Include="..\..\Source\GUI\FractalInputComponent.cpp"/>
     <ClCompile Include="..\..\Source\FractalGranulatorCommon.cpp"/>
@@ -2284,6 +2294,7 @@
     <ClCompile Include="..\..\..\..\JUCE\modules\juce_gui_extra\juce_gui_extra.cpp">
       <ExcludedFromBuild>true</ExcludedFromBuild>
     </ClCompile>
+    <ClCompile Include="..\..\JuceLibraryCode\BinaryData.cpp"/>
     <ClCompile Include="..\..\JuceLibraryCode\include_juce_audio_basics.cpp"/>
     <ClCompile Include="..\..\JuceLibraryCode\include_juce_audio_devices.cpp"/>
     <ClCompile Include="..\..\JuceLibraryCode\include_juce_audio_formats.cpp"/>
@@ -2307,14 +2318,24 @@
   <ItemGroup>
     <ClInclude Include="..\..\..\..\EdPluginFramework\DSP\EdPF_DelayLine.h"/>
     <ClInclude Include="..\..\..\..\EdPluginFramework\DSP\EdPF_Grain.h"/>
+    <ClInclude Include="..\..\..\..\EdPluginFramework\DSP\EdPF_GrainEnvelope.h"/>
+    <ClInclude Include="..\..\..\..\EdPluginFramework\DSP\EdPF_GrainPool.h"/>
     <ClInclude Include="..\..\..\..\EdPluginFramework\DSP\EdPF_GrainScheduler.h"/>
-    <ClInclude Include="..\..\..\..\EdPluginFramework\DSP\EdPF_Granulator.h"/>
+    <ClInclude Include="..\..\..\..\EdPluginFramework\DSP\EdPF_GrainSource.h"/>
+    <ClInclude Include="..\..\..\..\EdPluginFramework\DSP\EdPF_SequenceStrategy.h"/>
+    <ClInclude Include="..\..\..\..\EdPluginFramework\DSP\EdPF_Utils.h"/>
     <ClInclude Include="..\..\..\..\EdPluginFramework\DSP\EdPF_WaveTableInterpolation.h"/>
     <ClInclude Include="..\..\..\..\EdPluginFramework\GUI\EdPF_AttatchedRotarySlider.h"/>
     <ClInclude Include="..\..\..\..\EdPluginFramework\GUI\EdPF_AudioVisualiser.h"/>
     <ClInclude Include="..\..\..\..\EdPluginFramework\Utils\EdPF_AudioProcessor.h"/>
     <ClInclude Include="..\..\..\..\EdPluginFramework\Utils\EdPF_AudioProcessorEditor.h"/>
     <ClInclude Include="..\..\..\..\EdPluginFramework\Utils\EdPF_Fifo.h"/>
+    <ClInclude Include="..\..\Source\DSP\DelayLineSource.h"/>
+    <ClInclude Include="..\..\Source\DSP\Grain.h"/>
+    <ClInclude Include="..\..\Source\DSP\GrainScheduler.h"/>
+    <ClInclude Include="..\..\Source\DSP\Granulator.h"/>
+    <ClInclude Include="..\..\Source\DSP\ParabolicEnvelope.h"/>
+    <ClInclude Include="..\..\Source\DSP\StochasticSequenceStrategy.h"/>
     <ClInclude Include="..\..\Source\GUI\FractalDisplayComponent.h"/>
     <ClInclude Include="..\..\Source\GUI\FractalInputComponent.h"/>
     <ClInclude Include="..\..\Source\FractalGranulatorCommon.h"/>
@@ -3213,6 +3234,7 @@
     <ClInclude Include="..\..\..\..\JUCE\modules\juce_gui_extra\misc\juce_WebBrowserComponent.h"/>
     <ClInclude Include="..\..\..\..\JUCE\modules\juce_gui_extra\native\juce_mac_NSViewFrameWatcher.h"/>
     <ClInclude Include="..\..\..\..\JUCE\modules\juce_gui_extra\juce_gui_extra.h"/>
+    <ClInclude Include="..\..\JuceLibraryCode\BinaryData.h"/>
     <ClInclude Include="..\..\JuceLibraryCode\JuceHeader.h"/>
     <ClInclude Include="..\..\JuceLibraryCode\JucePluginDefines.h"/>
   </ItemGroup>

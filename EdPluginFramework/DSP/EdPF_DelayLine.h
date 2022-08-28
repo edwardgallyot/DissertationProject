@@ -33,6 +33,7 @@ namespace EdPF
             }
             void WriteBlock(int blockSize, juce::AudioBuffer<FloatType>& data)
             {
+                m_blockSize = blockSize;
                 // We can copy a normal block if we aren't wrapping around
                 if (m_writeIndex + blockSize < m_data.getNumSamples())
                 {
@@ -75,6 +76,7 @@ namespace EdPF
 
             inline int GetSize() { return m_size; };
             inline int GetWriteIndex() { return m_writeIndex; };
+            inline int GetBlockSize() { return m_blockSize; }
 
             void SetSize(int size)
             {
@@ -86,10 +88,13 @@ namespace EdPF
         private:
             int m_size;
             int m_writeIndex;
+            int m_blockSize;
             juce::AudioBuffer<FloatType> m_data;
             InterpolationType m_interpolator;
         };
     }
 }
+
+using LinearDelayLine = EdPF::DSP::DelayLine<float, EdPF::DSP::LinearInterpolation>;
 
 #endif //!EDPF_DELAY_LINE_H
