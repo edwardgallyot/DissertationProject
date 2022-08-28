@@ -19,7 +19,7 @@ namespace EdPF
                            
     {
     public: 
-        AudioProcessor(juce::AudioProcessorValueTreeState::ParameterLayout&);
+        AudioProcessor(juce::AudioProcessorValueTreeState::ParameterLayout, int numOfParams);
         ~AudioProcessor() override;
         
         //==============================================================================
@@ -66,10 +66,22 @@ namespace EdPF
         
         // This will get a ranged audio parameter directly from the state tree
         juce::RangedAudioParameter* GetParameter(juce::StringRef ID);
-        
+
+        void PrepareSmoothedValues(double sampleRate, int numSamplesPerBlock);
+        void CopySmoothedValuesToBuffers();
+
+        std::vector<juce::AudioBuffer<float>>& GetSmoothedValuesBuffer() { return m_smoothedValuesBuffers; }
+
+        _NODISCARD void UpdateSmoothedValues(int index, float valueAtStartOfBlock);
+
+
+
     private:
         // We will keep the state tree private so the other classes only interact through the methods we write
         juce::AudioProcessorValueTreeState m_apvts;
+        std::vector<juce::SmoothedValue<float>> m_smoothedValues;
+        std::vector<juce::AudioBuffer<float>> m_smoothedValuesBuffers;
+        int m_numOfParams;
     };
 }
 

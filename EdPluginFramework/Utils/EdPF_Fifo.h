@@ -8,8 +8,8 @@
   ==============================================================================
 */
 
-#ifndef EDPF_FIFO_H
-#define EDPF_FIFO_H
+#ifndef EDPF_FIFO_H_INCLUDED
+#define EDPF_FIFO_H_INCLUDED
 
 #include <JuceHeader.h>
 
@@ -86,4 +86,4 @@ namespace EdPF
     };
 }
 
-#endif //!EDPF_FIFO_H
+#endif //!EDPF_FIFO_H_INCLUDED

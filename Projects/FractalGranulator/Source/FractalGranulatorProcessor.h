@@ -12,6 +12,9 @@
 #include <JuceHeader.h>
 #include "../../EdPluginFramework/Utils/EdPF_AudioProcessorEditor.h"
 #include "../../EdPluginFramework/DSP/EdPF_DelayLine.h"
+#include "../../EdPluginFramework/DSP/EdPF_Utils.h"
+#include "DSP/Granulator.h"
+
 
 class FractalGranulatorAudioProcessor  : public EdPF::AudioProcessor               
 {
@@ -27,11 +30,13 @@ public:
 
     juce::AudioProcessorEditor* createEditor() override;
 
+    LinearDelayLine& GetDelayLine() { return m_delayLine; };
+
 private:
     juce::AudioBuffer<float> m_copyBuffer1;
 
-    using LinearDelayLine = EdPF::DSP::DelayLine<float, EdPF::DSP::LinearInterpolation>;
     LinearDelayLine m_delayLine;
+    FGDSP::Granulator m_granulator;
 
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (FractalGranulatorAudioProcessor)
 };

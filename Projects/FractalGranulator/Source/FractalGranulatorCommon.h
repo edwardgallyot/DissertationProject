@@ -9,7 +9,7 @@
 */
 
 #ifndef FRACTAL_GRANULATOR_COMMON_H
-#define FRACTAL_GRANULATOR_COMMON_Hs
+#define FRACTAL_GRANULATOR_COMMON_H
 
 #include "JuceHeader.h"
 
@@ -53,9 +53,14 @@ namespace FGConst
 
     juce::StringRef GetParameterID(Params param);
 
+    const float DelayTimeMax = 4000.0f;
+    const float DelayTimeMin = 100.0f;
+
     const float MiniSliderReduction = 15.0f;
 
     const float GUIElementPadding = 5.0f;
+
+    const int MaxGrains = 1000;
 }
 
 #endif // !FRACTAL_GRANULATOR_COMMON_H

@@ -12,8 +12,9 @@
 //==============================================================================
 FractalGranulatorAudioProcessor::FractalGranulatorAudioProcessor()
     :
-    EdPF::AudioProcessor(CreateParameterLayout()),
-    m_delayLine(88213)
+    EdPF::AudioProcessor(CreateParameterLayout(), FGConst::NumOfParams),
+    m_delayLine(0),
+    m_granulator(m_delayLine, GetSmoothedValuesBuffer())
 {
 }
 
@@ -26,47 +27,37 @@ void FractalGranulatorAudioProcessor::prepareToPlay(double sampleRate, int expec
     // Reset the Copy Buffer
     m_copyBuffer1.setSize(1, expectedNumSamples);
     m_copyBuffer1.clear();
-    
+
+    PrepareSmoothedValues(sampleRate, expectedNumSamples);
+    m_granulator.PrepareToPlay(sampleRate, expectedNumSamples);
+    m_delayLine.SetSize
+    (
+        4 * static_cast<int>(EdPF::DSP::Utils::MsToSamples(FGConst::DelayTimeMax, static_cast<float>(sampleRate)))
+    );
 }
 
 void FractalGranulatorAudioProcessor::processBlock(juce::AudioBuffer<float>& buffer, juce::MidiBuffer&)
 {
+    //================================================================
+    // UPDATE SMOOTHED SAMPLES
+    for (int i = 0; i < FGConst::NumOfParams; ++i)
+    {
+        UpdateSmoothedValues
+        (
+            i,
+            static_cast<float>(GetParameterAsValue(FGConst::GetParameterID(static_cast<FGConst::Params>(i))).getValue())
+        );
+    }
+    CopySmoothedValuesToBuffers();
+    
+    // ================================================================
+    // WRITE TO OUR DELAY LINE
 
     m_delayLine.WriteBlock(buffer.getNumSamples(), buffer);
 
-    for (int sample = 0; sample < buffer.getNumSamples(); ++sample)
-    {
-        int delayTime = 44100;
-        // Find the current phase according to the sample and writeIndex
-        int index = m_delayLine.GetWriteIndex() - buffer.getNumSamples() + sample;
-        // Subtract the Delay Time.
-        index -= delayTime;
-        if (index < 0)
-        {
-            // We don't want undefined behaviour from the modulo so we'll check it isn't negative
-            index = m_delayLine.GetSize() + index;
-        }
-        else
-        {
-            // The index can be wrapped around the size so long as it is is positive.
-            index = index % m_delayLine.GetSize();
-        }
-        // This can then be used to find a sample from the delay line.
-        float newValue = m_delayLine.ReadSample(static_cast<float>(index));
-        // We will add the samples to a copy buffer
-        m_copyBuffer1.setSample(0, sample, newValue);
-    }
-
-    
-    // The float vector operations will then add this to the current buffer.
-    juce::FloatVectorOperations::add
-    (
-        buffer.getWritePointer(0, 0), 
-        m_copyBuffer1.getReadPointer(0, 0), 
-        buffer.getNumSamples()
-    );
-
-    buffer.clear(1, 0, buffer.getNumSamples());
+    // ================================================================
+    // PROCESS THE GRANULATOR
+    m_granulator.ProcessSamples(buffer);
 }
 
 juce::AudioProcessorValueTreeState::ParameterLayout FractalGranulatorAudioProcessor::CreateParameterLayout()
@@ -99,7 +90,7 @@ juce::AudioProcessorValueTreeState::ParameterLayout FractalGranulatorAudioProces
         (
             FGConst::GetParameterID(FGConst::Param_DelayTime),
             "Delay Time",
-            juce::NormalisableRange<float>(0.1f, 4000.0f),
+            juce::NormalisableRange<float>(FGConst::DelayTimeMin, FGConst::DelayTimeMax),
             0.0f
             )
     );
@@ -201,7 +192,8 @@ juce::AudioProcessorValueTreeState::ParameterLayout FractalGranulatorAudioProces
             0.0f,
             1.0f,
             0.0f
-            )
+            // Attributes
+        )
     );
 
     // Non-Automatable Parameters can be like 

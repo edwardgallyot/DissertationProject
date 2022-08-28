@@ -10,9 +10,7 @@
 
 #include "EdPF_AudioProcessor.h"
 
-
-
-EdPF::AudioProcessor::AudioProcessor(juce::AudioProcessorValueTreeState::ParameterLayout& parameterLayout)
+EdPF::AudioProcessor::AudioProcessor(juce::AudioProcessorValueTreeState::ParameterLayout parameterLayout, int numOfParams)
     : juce::AudioProcessor(BusesProperties()
 #if ! JucePlugin_IsMidiEffect
 #if ! JucePlugin_IsSynth
@@ -21,7 +19,9 @@ EdPF::AudioProcessor::AudioProcessor(juce::AudioProcessorValueTreeState::Paramet
         .withOutput("Output", juce::AudioChannelSet::stereo(), true)
 #endif
     ),
-    m_apvts(*this, nullptr, "PARAMETERS", std::move(parameterLayout))
+    m_apvts(*this, nullptr, "PARAMETERS", std::move(parameterLayout)),
+    m_smoothedValues(numOfParams),
+    m_smoothedValuesBuffers(numOfParams)
 {
 }
 
@@ -201,3 +201,31 @@ juce::RangedAudioParameter* EdPF::AudioProcessor::GetParameter(juce::StringRef I
     // TODO: We should probably be able to tell the difference between automated and non-automated parameters
     return m_apvts.getParameter(ID);
 }
+
+void EdPF::AudioProcessor::PrepareSmoothedValues(double sampleRate, int numSamplesExpectedPerBlock)
+{
+    for (int i = 0; i < m_smoothedValues.size(); ++i)
+    {
+        m_smoothedValues[i].reset(sampleRate, 0.1);
+        m_smoothedValuesBuffers[i].setSize(1, numSamplesExpectedPerBlock);
+    }
+}
+
+void EdPF::AudioProcessor::CopySmoothedValuesToBuffers()
+{
+    for (int i = 0; i < m_smoothedValues.size(); ++i)
+    {
+        for (int j = 0; j < m_smoothedValuesBuffers[i].getNumSamples(); ++j)
+        {
+            m_smoothedValuesBuffers[i].setSample(0, j, m_smoothedValues[i].getNextValue());
+        }
+    }
+}
+
+void EdPF::AudioProcessor::UpdateSmoothedValues(int index, float valueAtStartOfBlock)
+{
+    m_smoothedValues[index].setTargetValue(valueAtStartOfBlock);
+}
+
+
+

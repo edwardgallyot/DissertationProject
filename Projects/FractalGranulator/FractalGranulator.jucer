@@ -12,14 +12,28 @@
               file="../../EdPluginFramework/DSP/EdPF_DelayLine.h"/>
         <FILE id="XqGHdW" name="EdPF_Grain.cpp" compile="1" resource="0" file="../../EdPluginFramework/DSP/EdPF_Grain.cpp"/>
         <FILE id="Yg64jM" name="EdPF_Grain.h" compile="0" resource="0" file="../../EdPluginFramework/DSP/EdPF_Grain.h"/>
+        <FILE id="QEw9iu" name="EdPF_GrainEnvelope.cpp" compile="1" resource="0"
+              file="../../EdPluginFramework/DSP/EdPF_GrainEnvelope.cpp"/>
+        <FILE id="GbaadS" name="EdPF_GrainEnvelope.h" compile="0" resource="0"
+              file="../../EdPluginFramework/DSP/EdPF_GrainEnvelope.h"/>
+        <FILE id="nXiQ6k" name="EdPF_GrainPool.cpp" compile="1" resource="0"
+              file="../../EdPluginFramework/DSP/EdPF_GrainPool.cpp"/>
+        <FILE id="tUfmPU" name="EdPF_GrainPool.h" compile="0" resource="0"
+              file="../../EdPluginFramework/DSP/EdPF_GrainPool.h"/>
         <FILE id="kJrNLP" name="EdPF_GrainScheduler.cpp" compile="1" resource="0"
               file="../../EdPluginFramework/DSP/EdPF_GrainScheduler.cpp"/>
         <FILE id="s9rhgy" name="EdPF_GrainScheduler.h" compile="0" resource="0"
               file="../../EdPluginFramework/DSP/EdPF_GrainScheduler.h"/>
-        <FILE id="Cah6W2" name="EdPF_Granulator.cpp" compile="1" resource="0"
-              file="../../EdPluginFramework/DSP/EdPF_Granulator.cpp"/>
-        <FILE id="Zm4SPe" name="EdPF_Granulator.h" compile="0" resource="0"
-              file="../../EdPluginFramework/DSP/EdPF_Granulator.h"/>
+        <FILE id="VMdlSo" name="EdPF_GrainSource.cpp" compile="1" resource="0"
+              file="../../EdPluginFramework/DSP/EdPF_GrainSource.cpp"/>
+        <FILE id="lMjZra" name="EdPF_GrainSource.h" compile="0" resource="0"
+              file="../../EdPluginFramework/DSP/EdPF_GrainSource.h"/>
+        <FILE id="HPg2Tx" name="EdPF_SequenceStrategy.cpp" compile="1" resource="0"
+              file="../../EdPluginFramework/DSP/EdPF_SequenceStrategy.cpp"/>
+        <FILE id="J41VgT" name="EdPF_SequenceStrategy.h" compile="0" resource="1"
+              file="../../EdPluginFramework/DSP/EdPF_SequenceStrategy.h"/>
+        <FILE id="xlYllM" name="EdPF_Utils.cpp" compile="1" resource="0" file="../../EdPluginFramework/DSP/EdPF_Utils.cpp"/>
+        <FILE id="vD74Yh" name="EdPF_Utils.h" compile="0" resource="0" file="../../EdPluginFramework/DSP/EdPF_Utils.h"/>
         <FILE id="D6BngR" name="EdPF_WaveTableInterpolation.cpp" compile="1"
               resource="0" file="../../EdPluginFramework/DSP/EdPF_WaveTableInterpolation.cpp"/>
         <FILE id="nvkNfe" name="EdPF_WaveTableInterpolation.h" compile="0"
@@ -49,6 +63,28 @@
       </GROUP>
     </GROUP>
     <GROUP id="{E2AAD40D-B786-8910-406C-222C3582AA4E}" name="Source">
+      <GROUP id="{9DCDF003-A464-B588-2918-AB1C7CA344AD}" name="DSP">
+        <FILE id="rFUJ6L" name="DelayLineSource.cpp" compile="1" resource="0"
+              file="Source/DSP/DelayLineSource.cpp"/>
+        <FILE id="tAPZwA" name="DelayLineSource.h" compile="0" resource="0"
+              file="Source/DSP/DelayLineSource.h"/>
+        <FILE id="czYDop" name="Grain.cpp" compile="1" resource="0" file="Source/DSP/Grain.cpp"/>
+        <FILE id="N1oRqF" name="Grain.h" compile="0" resource="0" file="Source/DSP/Grain.h"/>
+        <FILE id="lCWPsX" name="GrainScheduler.cpp" compile="1" resource="0"
+              file="Source/DSP/GrainScheduler.cpp"/>
+        <FILE id="XMNWyP" name="GrainScheduler.h" compile="0" resource="0"
+              file="Source/DSP/GrainScheduler.h"/>
+        <FILE id="J61Xdv" name="Granulator.cpp" compile="1" resource="0" file="Source/DSP/Granulator.cpp"/>
+        <FILE id="CD2xfQ" name="Granulator.h" compile="0" resource="0" file="Source/DSP/Granulator.h"/>
+        <FILE id="R2pEk7" name="ParabolicEnvelope.cpp" compile="1" resource="0"
+              file="Source/DSP/ParabolicEnvelope.cpp"/>
+        <FILE id="rSyutX" name="ParabolicEnvelope.h" compile="0" resource="0"
+              file="Source/DSP/ParabolicEnvelope.h"/>
+        <FILE id="JZPWLS" name="StochasticSequenceStrategy.cpp" compile="1"
+              resource="0" file="Source/DSP/StochasticSequenceStrategy.cpp"/>
+        <FILE id="IqJhxl" name="StochasticSequenceStrategy.h" compile="0" resource="0"
+              file="Source/DSP/StochasticSequenceStrategy.h"/>
+      </GROUP>
       <GROUP id="{3DB2CAAB-3CAC-C2D9-1997-593577B264CB}" name="GUI">
         <FILE id="Dg5pW7" name="FractalDisplayComponent.cpp" compile="1" resource="0"
               file="Source/GUI/FractalDisplayComponent.cpp"/>
