@@ -19,6 +19,7 @@ namespace EdPF
         namespace Utils
         {
             float MsToSamples(float ms, float sampleRate);
+            float SamplesToMs(float ms, float sampleRate);
         }
     }
 }

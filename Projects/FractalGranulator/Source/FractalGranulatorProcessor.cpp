@@ -14,7 +14,8 @@ FractalGranulatorAudioProcessor::FractalGranulatorAudioProcessor()
     :
     EdPF::AudioProcessor(CreateParameterLayout(), FGConst::NumOfParams),
     m_delayLine(0),
-    m_granulator(m_delayLine, GetSmoothedValuesBuffer())
+    m_granulator(m_delayLine, GetSmoothedValuesBuffer(), m_currentPositionInfo),
+    m_currentOutputMeter(0.0f)
 {
 }
 
@@ -38,6 +39,12 @@ void FractalGranulatorAudioProcessor::prepareToPlay(double sampleRate, int expec
 
 void FractalGranulatorAudioProcessor::processBlock(juce::AudioBuffer<float>& buffer, juce::MidiBuffer&)
 {
+    // UPDATE PLAYHEAD INFO
+    //==============================================================
+    // The scheduler will use this to determine whether to schedule more grains
+    getPlayHead()->getCurrentPosition(m_currentPositionInfo);
+    
+    
     //================================================================
     // UPDATE SMOOTHED SAMPLES
     for (int i = 0; i < FGConst::NumOfParams; ++i)
@@ -52,12 +59,17 @@ void FractalGranulatorAudioProcessor::processBlock(juce::AudioBuffer<float>& buf
     
     // ================================================================
     // WRITE TO OUR DELAY LINE
-
     m_delayLine.WriteBlock(buffer.getNumSamples(), buffer);
 
     // ================================================================
     // PROCESS THE GRANULATOR
     m_granulator.ProcessSamples(buffer);
+
+    // UPDATE OUTPUT METER FOR GUI
+    // ================================================================
+    UpdateOutputValueMeter(buffer);
+
+    
 }
 
 juce::AudioProcessorValueTreeState::ParameterLayout FractalGranulatorAudioProcessor::CreateParameterLayout()
@@ -204,6 +216,21 @@ juce::AudioProcessorValueTreeState::ParameterLayout FractalGranulatorAudioProces
 juce::AudioProcessorEditor* FractalGranulatorAudioProcessor::createEditor()
 {
     return new FractalGranulatorAudioProcessorEditor(*this);
+}
+
+void FractalGranulatorAudioProcessor::UpdateOutputValueMeter(juce::AudioBuffer<float>& buffer)
+{
+    float max = 0.0f;
+    for (int channel = 0; channel < buffer.getNumChannels(); ++channel)
+    {
+        for (int sample = 0; sample < buffer.getNumSamples(); ++sample)
+        {
+            float currentSample = buffer.getSample(channel, sample);
+            currentSample = std::abs(currentSample);
+            max = std::max(max, currentSample);
+        }
+    }
+    m_currentOutputMeter.setValue(max);
 }
 
 //==============================================================================

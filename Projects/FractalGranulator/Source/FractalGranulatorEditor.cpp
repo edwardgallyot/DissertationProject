@@ -25,7 +25,8 @@ FractalGranulatorAudioProcessorEditor::FractalGranulatorAudioProcessorEditor (Fr
     m_shape4Slider(p, FGConst::GetParameterID(FGConst::Param_Shape4), nullptr),
     m_pitch1Slider(p, FGConst::GetParameterID(FGConst::Param_Pitch1), nullptr),
     m_pitch2Slider(p, FGConst::GetParameterID(FGConst::Param_Pitch2), nullptr),
-    m_pitch3Slider(p, FGConst::GetParameterID(FGConst::Param_Pitch3), nullptr)
+    m_pitch3Slider(p, FGConst::GetParameterID(FGConst::Param_Pitch3), nullptr),
+    m_fractalDisplay(p)
 {
     setSize (1200, 640);
 

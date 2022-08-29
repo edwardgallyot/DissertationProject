@@ -640,6 +640,9 @@
     <ClCompile Include="..\..\Source\DSP\DelayLineSource.cpp">
       <Filter>FractalGranulator\Source\DSP</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\Source\DSP\FractalSequenceStrategy.cpp">
+      <Filter>FractalGranulator\Source\DSP</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\Source\DSP\Grain.cpp">
       <Filter>FractalGranulator\Source\DSP</Filter>
     </ClCompile>
@@ -652,6 +655,9 @@
     <ClCompile Include="..\..\Source\DSP\ParabolicEnvelope.cpp">
       <Filter>FractalGranulator\Source\DSP</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\Source\DSP\PitchQuantiser.cpp">
+      <Filter>FractalGranulator\Source\DSP</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\Source\DSP\StochasticSequenceStrategy.cpp">
       <Filter>FractalGranulator\Source\DSP</Filter>
     </ClCompile>
@@ -659,6 +665,9 @@
       <Filter>FractalGranulator\Source\GUI</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Source\GUI\FractalInputComponent.cpp">
+      <Filter>FractalGranulator\Source\GUI</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\GUI\GrainPlotData.cpp">
       <Filter>FractalGranulator\Source\GUI</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Source\FractalGranulatorCommon.cpp">
@@ -3021,6 +3030,9 @@
     <ClInclude Include="..\..\Source\DSP\DelayLineSource.h">
       <Filter>FractalGranulator\Source\DSP</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\Source\DSP\FractalSequenceStrategy.h">
+      <Filter>FractalGranulator\Source\DSP</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\Source\DSP\Grain.h">
       <Filter>FractalGranulator\Source\DSP</Filter>
     </ClInclude>
@@ -3033,6 +3045,9 @@
     <ClInclude Include="..\..\Source\DSP\ParabolicEnvelope.h">
       <Filter>FractalGranulator\Source\DSP</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\Source\DSP\PitchQuantiser.h">
+      <Filter>FractalGranulator\Source\DSP</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\Source\DSP\StochasticSequenceStrategy.h">
       <Filter>FractalGranulator\Source\DSP</Filter>
     </ClInclude>
@@ -3040,6 +3055,9 @@
       <Filter>FractalGranulator\Source\GUI</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\GUI\FractalInputComponent.h">
+      <Filter>FractalGranulator\Source\GUI</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\GUI\GrainPlotData.h">
       <Filter>FractalGranulator\Source\GUI</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\FractalGranulatorCommon.h">

@@ -10,8 +10,63 @@
 
 #include "FractalDisplayComponent.h"
 
+FGGUI::FractalDisplay::FractalDisplay(FractalGranulatorAudioProcessor& p) :
+    m_processor(p),
+    m_fifo(p.GetGranulator().GetSchedulerFifo()),
+    m_plotData(FGConst::NumGrainPlotPoints),
+    m_writeIndex(0)
+{
+    m_processor.GetGranulator().RegisterFifoReader(this);
+    startTimerHz(FGConst::GUITimerHz);
+    m_outputMeter.referTo(p.GetCurrentOutputMeterValueObject());
+}
+
+FGGUI::FractalDisplay::~FractalDisplay()
+{
+    m_processor.GetGranulator().DeregisterFifoReader();
+}
+
 void FGGUI::FractalDisplay::paint(juce::Graphics& g)
 {
-    g.fillAll(juce::Colours::palegreen);
-    g.drawText("Fractal Display", getLocalBounds(), juce::Justification::centred);
+    g.setColour(juce::Colours::aquamarine.withAlpha(0.2f + (0.8f * static_cast<float>(m_outputMeter.getValue()))));
+
+
+    for (int i = 0; i < FGConst::NumGrainPlotPoints; ++i)
+    {
+        // PLOT THE GRAIN DATA AS IT COMES FROM THE GUI
+        // The plot data can mange it's own lifetime within the GUI
+        // This way it doesn't need a constant stream of data from the DSP
+        m_plotData[i].IncrementDisplayLifeTime();
+
+        // We will only plot alive grains
+        if (m_plotData[i].GetIsAlive())
+        {
+            float xPos = static_cast<float>(getWidth()) * ((m_plotData[i].GetDistanceFromOriginScalar()
+                - FGConst::MinDistanceFromOriginScalar));
+            float yPos = static_cast<float>(getHeight()) -
+                (m_plotData[i].GetPitch() / FGConst::MaximumPitch) * static_cast<float>(getHeight());
+            float thickness = 1.0f + (10.0f * m_plotData[i].GetCurrentLifeTimePosition0to1());
+            g.drawEllipse
+            (
+                xPos,
+                yPos,
+                2.0f,
+                2.0f,
+                thickness
+            );
+        }
+       
+    }
+}
+
+void FGGUI::FractalDisplay::timerCallback()
+{
+    int numRead = m_fifo->ReadFromFifo(m_readBuffer.data(), 2000);
+    for (int i = 0; i < numRead; ++i)
+    {
+        m_plotData[m_writeIndex] = m_readBuffer[i];
+        ++m_writeIndex;
+        m_writeIndex = m_writeIndex % FGConst::NumGrainPlotPoints;
+    }
+    repaint();
 }

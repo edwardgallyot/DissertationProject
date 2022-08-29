@@ -68,6 +68,10 @@
               file="Source/DSP/DelayLineSource.cpp"/>
         <FILE id="tAPZwA" name="DelayLineSource.h" compile="0" resource="0"
               file="Source/DSP/DelayLineSource.h"/>
+        <FILE id="cqEZSH" name="FractalSequenceStrategy.cpp" compile="1" resource="0"
+              file="Source/DSP/FractalSequenceStrategy.cpp"/>
+        <FILE id="iFQJ1Z" name="FractalSequenceStrategy.h" compile="0" resource="0"
+              file="Source/DSP/FractalSequenceStrategy.h"/>
         <FILE id="czYDop" name="Grain.cpp" compile="1" resource="0" file="Source/DSP/Grain.cpp"/>
         <FILE id="N1oRqF" name="Grain.h" compile="0" resource="0" file="Source/DSP/Grain.h"/>
         <FILE id="lCWPsX" name="GrainScheduler.cpp" compile="1" resource="0"
@@ -80,6 +84,10 @@
               file="Source/DSP/ParabolicEnvelope.cpp"/>
         <FILE id="rSyutX" name="ParabolicEnvelope.h" compile="0" resource="0"
               file="Source/DSP/ParabolicEnvelope.h"/>
+        <FILE id="XjNkLF" name="PitchQuantiser.cpp" compile="1" resource="0"
+              file="Source/DSP/PitchQuantiser.cpp"/>
+        <FILE id="R148cI" name="PitchQuantiser.h" compile="0" resource="0"
+              file="Source/DSP/PitchQuantiser.h"/>
         <FILE id="JZPWLS" name="StochasticSequenceStrategy.cpp" compile="1"
               resource="0" file="Source/DSP/StochasticSequenceStrategy.cpp"/>
         <FILE id="IqJhxl" name="StochasticSequenceStrategy.h" compile="0" resource="0"
@@ -94,6 +102,9 @@
               file="Source/GUI/FractalInputComponent.cpp"/>
         <FILE id="KRExcx" name="FractalInputComponent.h" compile="0" resource="0"
               file="Source/GUI/FractalInputComponent.h"/>
+        <FILE id="PD1XrF" name="GrainPlotData.cpp" compile="1" resource="0"
+              file="Source/GUI/GrainPlotData.cpp"/>
+        <FILE id="YiFkC4" name="GrainPlotData.h" compile="0" resource="0" file="Source/GUI/GrainPlotData.h"/>
       </GROUP>
       <FILE id="QZ3ILm" name="FractalGranulatorCommon.h" compile="0" resource="0"
             file="Source/FractalGranulatorCommon.h"/>

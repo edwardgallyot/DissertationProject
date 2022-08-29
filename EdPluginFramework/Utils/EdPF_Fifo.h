@@ -32,18 +32,16 @@ namespace EdPF
 
         };
 
-        void AddToFifo(std::vector<ValueType>& someData)
+        int AddToFifo(ValueType* someData, int numSamples)
         {
-            const auto scope = m_abstractFifo.write(someData.size());
+            const auto scope = m_abstractFifo.write(numSamples);
             int j = 0;
             if (scope.blockSize1 > 0)
             {
                 for (int i = 0; i < scope.blockSize1; ++i, j++)
                 {
-                    m_myBuffer[scope.startIndex1 + i] = someData[j];   
+                    m_myBuffer[scope.startIndex1 + i] = someData[j]; 
                 }
-
-                //copySomeData(myBuffer + scope.startIndex1, someData, scope.blockSize1
             }
             
             if (scope.blockSize2 > 0)
@@ -52,13 +50,14 @@ namespace EdPF
                 {
                     m_myBuffer[scope.startIndex2 + i] = someData[j];
                 }
-                //copySomeData(someData + scope.blockSize1, myBuffer + scope.startIndex2, scope.blockSize2);
             }
+
+            return j;
         };
 
-        void ReadFromFifo(std::vector<ValueType>& someData)
+        int ReadFromFifo(ValueType* someData, int numSamples)
         {
-            const auto scope = m_abstractFifo.read(someData.size());
+            const auto scope = m_abstractFifo.read(numSamples);
             int j = 0;
             if (scope.blockSize1 > 0)
             {
@@ -66,7 +65,6 @@ namespace EdPF
                 {
                    someData[j] = m_myBuffer[scope.startIndex1 + i];
                 }
-                //copySomeData(someData, myBuffer + scope.startIndex1, scope.blockSize1);
             }
 
             if (scope.blockSize2 > 0)
@@ -75,8 +73,8 @@ namespace EdPF
                 {
                     someData[j] = m_myBuffer[scope.startIndex2 + i];
                 }
-                //copySomeData(someData + scope.blockSize1, myBuffer + scope.startIndex2, scope.blockSize2); scope.blockSize2);
             }
+            return j;
         };
 
     private:

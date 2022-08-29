@@ -20,6 +20,7 @@ FGDSP::Grain::~Grain()
 
 void FGDSP::Grain::Activate(int duration, EdPF::Grains::Envelope::Essence* envEssence, EdPF::Grains::Source::Essence* srcEssence)
 {
+    ResetPhase();
     SetDuration(duration);
     InitialiseSource(srcEssence);
     InitialiseEnvelope(envEssence);
@@ -47,11 +48,6 @@ float FGDSP::Grain::ProcessSample()
 
     float nextSourceSample = GetNextSourceSample();
     float nextEnvelopeSample = GetNextEnvelopeSample();
-
-    if (nextEnvelopeSample < -1.0f)
-    {
-        DBG("BREAK");
-    }
 
     return nextEnvelopeSample * nextSourceSample;
 }

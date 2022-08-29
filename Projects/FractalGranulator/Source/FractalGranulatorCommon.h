@@ -61,6 +61,19 @@ namespace FGConst
     const float GUIElementPadding = 5.0f;
 
     const int MaxGrains = 1000;
+
+    const int NumGrainPlotPoints = MaxGrains;
+
+    const int GUITimerHz = 50;
+
+    const float MinimumGrainDuration = 200.0f;
+    const float MaximumGrainDuration = 2000.0f;
+
+    const float MinimumPitch = 0.5f;
+    const float MaximumPitch = 2.0f;
+
+    const float MinDistanceFromOriginScalar = 1.0f;
+    const float MaxDistanceFromOriginScalar = 2.0f;
 }
 
 #endif // !FRACTAL_GRANULATOR_COMMON_H

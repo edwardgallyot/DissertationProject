@@ -52,8 +52,6 @@ private:
     EdPF::AttachedRotarySlider m_pitch2Slider;
     EdPF::AttachedRotarySlider m_pitch3Slider;
 
-    // Custom Components
-    
     // Audio In Visualiser
     EdPF::AudioVisualiser m_audioInputVisualiser;
     

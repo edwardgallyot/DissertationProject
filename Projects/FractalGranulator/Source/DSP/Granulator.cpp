@@ -10,12 +10,12 @@
 
 #include "Granulator.h"
 
-FGDSP::Granulator::Granulator(LinearDelayLine& delayLine, std::vector<juce::AudioBuffer<float>>& smoothedValues) :
-    m_scheduler(m_grainPool, smoothedValues),
+FGDSP::Granulator::Granulator(LinearDelayLine& delayLine, std::vector<juce::AudioBuffer<float>>& smoothedValues, juce::AudioPlayHead::CurrentPositionInfo& currentPositionInfo) :
+    m_scheduler(m_grainPool, smoothedValues, currentPositionInfo),
     m_grainPool(FGConst::MaxGrains)
 {
     // Set the sequence strategy for out scheduler
-    m_scheduler.SetSequenceStrategy(std::make_unique<StochasticSequenceStrategy>());
+    m_scheduler.SetSequenceStrategy(std::make_unique<FractalSequenceStrategy>());
     // Set the Envelope type and the source type for each of our grains
     for (auto& grain : m_grainPool.GetPool())
     {
@@ -31,6 +31,7 @@ FGDSP::Granulator::~Granulator()
 void FGDSP::Granulator::PrepareToPlay(double sampleRate, int /*numSamplesExpected*/)
 {  
     m_scheduler.SetSampleRate(sampleRate);
+    
 }
 
 void FGDSP::Granulator::ProcessSamples(juce::AudioBuffer<float>& buffer)

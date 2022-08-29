@@ -17,15 +17,19 @@ int FGDSP::StochasticSequenceStrategy::GetNextInterOnset()
 
 float FGDSP::StochasticSequenceStrategy::GetNextDuration()
 {
-    return 1000.0f + (m_random.getSystemRandom().nextFloat() * 10000.0f);   
+    return 
+        EdPF::DSP::Utils::MsToSamples(FGConst::MinimumGrainDuration, static_cast<float>(m_sampleRate))
+        + (m_random.getSystemRandom().nextFloat()
+        * EdPF::DSP::Utils::MsToSamples(FGConst::MaximumGrainDuration, static_cast<float>(m_sampleRate))
+        );
 }
 
 float FGDSP::StochasticSequenceStrategy::GetNextDistanceFromPlayheadScalar()
 {
-    return 1.0f + m_random.getSystemRandom().nextFloat();
+    return FGConst::MaxDistanceFromOriginScalar - (m_random.getSystemRandom().nextFloat());
 }
 
 float FGDSP::StochasticSequenceStrategy::GetNextPitch()
 {
-    return std::powf(2.0f, static_cast<float>(std::round(static_cast<double>(1.0f - (m_random.getSystemRandom().nextFloat()) * 2.0f)) * 12.0f) / 12.0f);
+    return std::powf(2.0f, static_cast<float>(std::round(static_cast<double>(1.0f - (m_random.getSystemRandom().nextFloat()) * FGConst::MaximumPitch)) * 12.0f) / 12.0f);
 }
