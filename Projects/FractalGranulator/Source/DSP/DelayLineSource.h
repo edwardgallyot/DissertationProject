@@ -25,17 +25,23 @@ namespace FGDSP
         void SetDelayTimeSamples(float delayTimeSamples);
 
         float GetNextSample() override;
+
+        // This esseence is how the delay line source will be intialised
         struct Essence : public EdPF::Grains::Source::Essence
         {
-            Essence(float grainDuration, float distanceFromPlayHead, int currentSample);
+            Essence(float duration, float distanceFromPlayHead, int currentSample, float pitch);
             void Configure() override;
             float GetDistanceFromPlayheadScalar() { return distanceFromPlayHeadScalar; };
-            float GetGrainDuration() { return grainDuration; }
             int GetCurrentSampleInBlock() { return currentSampleInBlock; }
+            float GetGrainPitch() { return grainPitch; }
+            float GetDelayTime() { return delayTime; }
+            float GetGrainDuration() { return grainDuration; }
         private:
             float distanceFromPlayHeadScalar;
-            float grainDuration;
             int currentSampleInBlock;
+            float grainPitch;
+            float delayTime;
+            float grainDuration;
         };
         void Init(EdPF::Grains::Source::Essence* essence) override;     
     private:
@@ -44,11 +50,10 @@ namespace FGDSP
         float m_distanceFromPlayheadScalar;
         float m_delayTimeSamples;
         float m_readIndex;
-        float m_currentPhase;
         int m_samplesLeftToProcess;
-        float m_grainDuration;
-
-        float m_previousReadIndex;
+        float m_pitch;
+        float m_phase;
+        float m_durationInSamples;
     };
 }
 #endif //!DELAY_LINE_SOURCE_H_INCLUDED

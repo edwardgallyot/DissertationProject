@@ -24,6 +24,7 @@ namespace EdPF
         {
         public:
             Scheduler();
+            virtual ~Scheduler() = default;
             // Provides an interface to synthesise a sample using a scheduler.
             virtual float SythesiseNextSample(int i) = 0;
 
@@ -33,6 +34,7 @@ namespace EdPF
 
             float GetNextDuration() { return m_nextDuration; }
 
+            // You'll want to cast this to your derived sequence strategy
             SequenceStrategy* GetUnderlyingSequenceStrategy() { return m_sequenceStrategy.get(); }
 
             void SetSequenceStrategy(std::unique_ptr<SequenceStrategy> sequenceStrategy) { m_sequenceStrategy = std::move(sequenceStrategy); };

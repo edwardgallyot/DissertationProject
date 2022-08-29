@@ -34,6 +34,8 @@ static const unsigned char temp_binary_data_0[] =
 "        class SequenceStrategy\r\n"
 "        {\r\n"
 "        public:\r\n"
+"            virtual ~SequenceStrategy() = default;\r\n"
+"\r\n"
 "            virtual float GetNextDuration() = 0;\r\n"
 "            virtual int GetNextInterOnset() = 0;\r\n"
 "        private:\r\n"
@@ -57,7 +59,7 @@ const char* getNamedResource (const char* resourceNameUTF8, int& numBytes)
 
     switch (hash)
     {
-        case 0x219f82e7:  numBytes = 701; return EdPF_SequenceStrategy_h;
+        case 0x219f82e7:  numBytes = 755; return EdPF_SequenceStrategy_h;
         default: break;
     }
 
