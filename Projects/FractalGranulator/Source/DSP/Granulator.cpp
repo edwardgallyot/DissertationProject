@@ -28,17 +28,17 @@ FGDSP::Granulator::~Granulator()
 {
 }
 
-void FGDSP::Granulator::PrepareToPlay(double sampleRate, int numSamplesExpected)
+void FGDSP::Granulator::PrepareToPlay(double sampleRate, int /*numSamplesExpected*/)
 {  
     m_scheduler.SetSampleRate(sampleRate);
 }
 
 void FGDSP::Granulator::ProcessSamples(juce::AudioBuffer<float>& buffer)
 {
-    
     for (int i = 0; i < buffer.getNumSamples(); ++i)
     {
         float sample = m_scheduler.SythesiseNextSample(i);
+        sample = tanh(sample);
         for (int channel = 0; channel < buffer.getNumChannels(); ++channel)
         {
             buffer.setSample(channel, i, sample);

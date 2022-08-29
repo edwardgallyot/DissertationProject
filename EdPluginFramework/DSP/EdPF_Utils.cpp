@@ -9,3 +9,10 @@
 */
 
 #include "EdPF_Utils.h"
+
+float EdPF::DSP::Utils::MsToSamples(float ms, float sampleRate)
+{
+    float multiplier = sampleRate / 1000.0f;
+    ms *= multiplier;
+    return ms;
+}

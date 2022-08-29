@@ -21,6 +21,8 @@ namespace EdPF
         class SequenceStrategy
         {
         public:
+            virtual ~SequenceStrategy() = default;
+
             virtual float GetNextDuration() = 0;
             virtual int GetNextInterOnset() = 0;
         private:
