@@ -20,7 +20,7 @@ namespace FGConst
         Param_InGain,
         Param_OutGain,
         Param_DelayTime,
-        Param_Spread,
+        Param_Feedback,
         Param_Complexity,
         Param_Saturation,
         Param_Shape1,
@@ -54,7 +54,7 @@ namespace FGConst
     juce::StringRef GetParameterID(Params param);
 
     const float DelayTimeMax = 4000.0f;
-    const float DelayTimeMin = 100.0f;
+    const float DelayTimeMin = 5.0f;
 
     const float MiniSliderReduction = 15.0f;
 
@@ -74,6 +74,9 @@ namespace FGConst
 
     const float MinDistanceFromOriginScalar = 1.0f;
     const float MaxDistanceFromOriginScalar = 2.0f;
+
+    const float MinimumInteronsetSamples = 150.0f;
+    const float MaximumInteronset = 4000.0f;
 }
 
 #endif // !FRACTAL_GRANULATOR_COMMON_H

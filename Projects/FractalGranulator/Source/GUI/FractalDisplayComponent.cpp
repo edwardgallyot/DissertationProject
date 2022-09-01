@@ -14,11 +14,11 @@ FGGUI::FractalDisplay::FractalDisplay(FractalGranulatorAudioProcessor& p) :
     m_processor(p),
     m_fifo(p.GetGranulator().GetSchedulerFifo()),
     m_plotData(FGConst::NumGrainPlotPoints),
-    m_writeIndex(0)
+    m_writeIndex(0),
+    m_outputMeter(p.GetCurrentOutputMeter())
 {
     m_processor.GetGranulator().RegisterFifoReader(this);
     startTimerHz(FGConst::GUITimerHz);
-    m_outputMeter.referTo(p.GetCurrentOutputMeterValueObject());
 }
 
 FGGUI::FractalDisplay::~FractalDisplay()
@@ -28,12 +28,17 @@ FGGUI::FractalDisplay::~FractalDisplay()
 
 void FGGUI::FractalDisplay::paint(juce::Graphics& g)
 {
-    g.setColour(juce::Colours::aquamarine.withAlpha(0.2f + (0.8f * static_cast<float>(m_outputMeter.getValue()))));
+    auto alpha = 0.2f + (0.8f * static_cast<float>(m_outputMeter->load()));
+    if (alpha >= 1.0f)
+    {
+        alpha = 1.0f;
+    }
+    g.setColour(juce::Colours::aquamarine.withAlpha(alpha));
 
 
     for (int i = 0; i < FGConst::NumGrainPlotPoints; ++i)
     {
-        // PLOT THE GRAIN DATA AS IT COMES FROM THE GUI
+        // PLOT THE GRAIN DATA AS IT COMES TO THE GUI
         // The plot data can mange it's own lifetime within the GUI
         // This way it doesn't need a constant stream of data from the DSP
         m_plotData[i].IncrementDisplayLifeTime();
@@ -44,7 +49,7 @@ void FGGUI::FractalDisplay::paint(juce::Graphics& g)
             float xPos = static_cast<float>(getWidth()) * ((m_plotData[i].GetDistanceFromOriginScalar()
                 - FGConst::MinDistanceFromOriginScalar));
             float yPos = static_cast<float>(getHeight()) -
-                (m_plotData[i].GetPitch() / FGConst::MaximumPitch) * static_cast<float>(getHeight());
+                (((m_plotData[i].GetPitch() - FGConst::MinimumPitch) / (FGConst::MaximumPitch - FGConst::MinimumPitch))) * static_cast<float>(getHeight());
             float thickness = 1.0f + (10.0f * m_plotData[i].GetCurrentLifeTimePosition0to1());
             g.drawEllipse
             (
@@ -55,7 +60,6 @@ void FGGUI::FractalDisplay::paint(juce::Graphics& g)
                 thickness
             );
         }
-       
     }
 }
 

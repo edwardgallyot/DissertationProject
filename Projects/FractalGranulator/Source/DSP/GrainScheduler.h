@@ -53,6 +53,7 @@ namespace FGDSP
         GrainPlotData m_newFifoData;
 
         juce::AudioPlayHead::CurrentPositionInfo& m_currentPositionInfo;
+        
     };
     
 }

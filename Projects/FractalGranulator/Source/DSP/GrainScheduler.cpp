@@ -33,8 +33,19 @@ float FGDSP::Scheduler::SythesiseNextSample(int i)
     EdPF::Grains::Scheduler::IncrementSample();
     // Call this if we can get a grain from the pool. It allows us to access our custom sequence strategy
     auto* strategyPtr = dynamic_cast<FractalSequenceStrategy*>(GetUnderlyingSequenceStrategy());
+
+    // We want to set the complexity scalar from the smoothed params
+    float complexityScalar = m_smoothedValues[FGConst::Params::Param_Complexity].getSample(0, i);
+    strategyPtr->SetComplexityScalar(complexityScalar);
+
+    // We also want to set the shape controls for our sequence strategy
+    strategyPtr->SetShapeOne(m_smoothedValues[FGConst::Param_Shape1].getSample(0, i));
+    strategyPtr->SetShapeTwo(m_smoothedValues[FGConst::Param_Shape2].getSample(0, i));
+    strategyPtr->SetShapeThree(m_smoothedValues[FGConst::Param_Shape3].getSample(0, i));
+    strategyPtr->SetShapeFour(m_smoothedValues[FGConst::Param_Shape4].getSample(0, i));
+
     // We should activate a grain if the Scheduler tells us to
-    if (ShouldActivateGrain() /*&& m_currentPositionInfo.isPlaying*/)
+    if (ShouldActivateGrain())
     {
         Grain* grain = m_pooledGrains.FindNextFreeGrain();
         if (grain != nullptr)
@@ -71,11 +82,10 @@ float FGDSP::Scheduler::SythesiseNextSample(int i)
             // Activate a grain with it's durations and it's essences
             grain->Activate(static_cast<int>(scaledDur), &tmpEnvEssence, &tmpSrcEssence);
 
-            float nextDurMs = EdPF::DSP::Utils::SamplesToMs(nextDur, static_cast<float>(m_sampleRate));
-          
-            m_newFifoData.Configure(nextDurMs, nextPitch, distanceFromOriginScalar);
-                
 
+            // Then configure the FIFO data
+            float nextDurMs = EdPF::DSP::Utils::SamplesToMs(nextDur, static_cast<float>(m_sampleRate));
+            m_newFifoData.Configure(nextDurMs, nextPitch, distanceFromOriginScalar);
             // If we don't have a reader we won't need to plot any grain data
             if (m_fifoReader != nullptr)
             {
@@ -88,14 +98,13 @@ float FGDSP::Scheduler::SythesiseNextSample(int i)
 }
 
 
-float FGDSP::Scheduler::AccumulateGrainOuput(int i)
+float FGDSP::Scheduler::AccumulateGrainOuput(int /*i*/)
 {
     float grainOutput{ 0.0f };
     for (auto& grain : m_pooledGrains.GetPool())
     {
         if (grain.GetIsActive())
         {
-            
             // Process the sample for the grain
             grainOutput += grain.ProcessSample();
         }

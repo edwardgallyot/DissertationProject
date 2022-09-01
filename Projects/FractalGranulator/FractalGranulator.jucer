@@ -6,10 +6,16 @@
   <MAINGROUP id="OyfG7f" name="FractalGranulator">
     <GROUP id="{A39C51D4-BD9A-BAA3-8CAA-5ECCC922159D}" name="EdPluginFramework">
       <GROUP id="{CCF0B061-03D8-E7E7-CD17-A0999A741988}" name="DSP">
+        <FILE id="lUGfZ9" name="EdPF_CubicClipModule.cpp" compile="1" resource="0"
+              file="../../EdPluginFramework/DSP/EdPF_CubicClipModule.cpp"/>
+        <FILE id="Fp08Eu" name="EdPF_CubicClipModule.h" compile="0" resource="0"
+              file="../../EdPluginFramework/DSP/EdPF_CubicClipModule.h"/>
         <FILE id="WYvcri" name="EdPF_DelayLine.cpp" compile="1" resource="0"
               file="../../EdPluginFramework/DSP/EdPF_DelayLine.cpp"/>
         <FILE id="j8k7U1" name="EdPF_DelayLine.h" compile="0" resource="0"
               file="../../EdPluginFramework/DSP/EdPF_DelayLine.h"/>
+        <FILE id="lLXPwx" name="EdPF_DistortionAlgorithms.h" compile="0" resource="0"
+              file="../../EdPluginFramework/DSP/EdPF_DistortionAlgorithms.h"/>
         <FILE id="XqGHdW" name="EdPF_Grain.cpp" compile="1" resource="0" file="../../EdPluginFramework/DSP/EdPF_Grain.cpp"/>
         <FILE id="Yg64jM" name="EdPF_Grain.h" compile="0" resource="0" file="../../EdPluginFramework/DSP/EdPF_Grain.h"/>
         <FILE id="QEw9iu" name="EdPF_GrainEnvelope.cpp" compile="1" resource="0"
@@ -32,6 +38,10 @@
               file="../../EdPluginFramework/DSP/EdPF_SequenceStrategy.cpp"/>
         <FILE id="J41VgT" name="EdPF_SequenceStrategy.h" compile="0" resource="1"
               file="../../EdPluginFramework/DSP/EdPF_SequenceStrategy.h"/>
+        <FILE id="eERgfh" name="EdPF_ToneModule.cpp" compile="1" resource="0"
+              file="../../EdPluginFramework/DSP/EdPF_ToneModule.cpp"/>
+        <FILE id="iUnGdx" name="EdPF_ToneModule.h" compile="0" resource="0"
+              file="../../EdPluginFramework/DSP/EdPF_ToneModule.h"/>
         <FILE id="xlYllM" name="EdPF_Utils.cpp" compile="1" resource="0" file="../../EdPluginFramework/DSP/EdPF_Utils.cpp"/>
         <FILE id="vD74Yh" name="EdPF_Utils.h" compile="0" resource="0" file="../../EdPluginFramework/DSP/EdPF_Utils.h"/>
         <FILE id="D6BngR" name="EdPF_WaveTableInterpolation.cpp" compile="1"
@@ -140,6 +150,7 @@
         <MODULEPATH id="juce_graphics" path="../../JUCE/modules"/>
         <MODULEPATH id="juce_gui_basics" path="../../JUCE/modules"/>
         <MODULEPATH id="juce_gui_extra" path="../../JUCE/modules"/>
+        <MODULEPATH id="juce_dsp" path="../../JUCE/modules"/>
       </MODULEPATHS>
     </VS2022>
   </EXPORTFORMATS>
@@ -153,6 +164,7 @@
     <MODULE id="juce_audio_utils" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
     <MODULE id="juce_core" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
     <MODULE id="juce_data_structures" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="juce_dsp" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
     <MODULE id="juce_events" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
     <MODULE id="juce_graphics" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
     <MODULE id="juce_gui_basics" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>

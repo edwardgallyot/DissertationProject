@@ -11,7 +11,7 @@
 #ifndef PITCH_QUANTISER_H_INCLUDED
 #define PITCH_QUANTISER_H_INCLUDED
 
-//int closest(std::vector<int> const& vec, int value) {
+//float closest(std::vector<float> const& vec, float value) {
 //    auto const it = std::lower_bound(vec.begin(), vec.end(), value);
 //    if (it == vec.end()) { return -1; }
 //

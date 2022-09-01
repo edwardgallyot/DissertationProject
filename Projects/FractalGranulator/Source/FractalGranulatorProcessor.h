@@ -14,6 +14,8 @@
 #include "../../EdPluginFramework/DSP/EdPF_DelayLine.h"
 #include "../../EdPluginFramework/DSP/EdPF_Utils.h"
 #include "../../EdPluginFramework/Utils/EdPF_Fifo.h"
+#include "../../EdPluginFramework/DSP/EdPF_ToneModule.h"
+#include "../../EdPluginFramework/DSP/EdPF_CubicClipModule.h"
 #include "DSP/Granulator.h"
 
 
@@ -35,21 +37,44 @@ public:
 
     FGDSP::Granulator& GetGranulator() { return m_granulator; }
 
-    juce::Value GetCurrentOutputMeterValueObject() { return m_currentOutputMeter; }
+    std::atomic<float>* GetCurrentOutputMeter() { return &m_currentOutputMeter; }
 
 private:
+    // ATOMIC UI METER
+    //==============================================
     void UpdateOutputValueMeter(juce::AudioBuffer<float>& buffer);
-    juce::AudioBuffer<float> m_copyBuffer1;
+    // We will keep track of the current max output per block so the UI can update pretty colours
+    std::atomic<float> m_currentOutputMeter;
 
+    // COPY BUFFERS FOR DELAY
+    //=============================================
+    juce::AudioBuffer<float> m_feedbackOutputBuffer;
+    juce::AudioBuffer<float> m_delayInputBuffer;
+    
+    // LINEARLY INTERPOLATED DELAY LINE
+    //=============================================
     LinearDelayLine m_delayLine;
+
+    // GRANULATOR
+    //=============================================
     FGDSP::Granulator m_granulator;
 
-    // We want to keep track of the play head info so the scheduler knows whether to activate grains
+    // JUCE COMPRESSOR FOR THE FINAL OUT
+    //=============================================
+    juce::dsp::Compressor<float> m_compressor;
+    
+    // PLAY HEAD INFO
+    // ============================================
     juce::AudioPlayHead::CurrentPositionInfo m_currentPositionInfo;
 
-    // We will keep track of the current output meter
-    juce::Value m_currentOutputMeter;
-
+    // FILTERS
+    // ============================================
+    EdPF::DSP::ToneModule m_lowPass;
+    EdPF::DSP::ToneModule m_highPass;
+    
+    // DISTORTION
+    // ============================================
+    EdPF::DSP::Distortion::CubicModule m_distortion;
 
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (FractalGranulatorAudioProcessor)
 };
