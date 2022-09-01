@@ -10,12 +10,12 @@
 
 #include "EdPF_CubicClipModule.h"
 
-void EdPF::DSP::Distortion::CubicModule::prepare(double sampleRate, int maximumExpectedSamplesPerBlock)
+void EdPF::DSP::Distortion::CubicModule::prepare(double sampleRate, int /*maximumExpectedSamplesPerBlock*/)
 {
     smoothedValue.reset(sampleRate, 0.0005);
 }
 
-void EdPF::DSP::Distortion::CubicModule::process(juce::AudioBuffer<float>& buffer, juce::MidiBuffer& midiMessages, float& drive)
+void EdPF::DSP::Distortion::CubicModule::process(juce::AudioBuffer<float>& buffer, juce::MidiBuffer& /*midiMessages*/, float& drive)
 {
     smoothedValue.setTargetValue(drive);
     for (auto sample = 0; sample < buffer.getNumSamples(); ++sample)

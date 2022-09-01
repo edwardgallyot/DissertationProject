@@ -80,21 +80,21 @@ int EdPF::AudioProcessor::getCurrentProgram()
     return 0;
 }
 
-void EdPF::AudioProcessor::setCurrentProgram(int index)
+void EdPF::AudioProcessor::setCurrentProgram(int /*index*/)
 {
 }
 
-const juce::String EdPF::AudioProcessor::getProgramName(int index)
+const juce::String EdPF::AudioProcessor::getProgramName(int /*index*/)
 {
     return {};
 }
 
-void EdPF::AudioProcessor::changeProgramName(int index, const juce::String& newName)
+void EdPF::AudioProcessor::changeProgramName(int /*index*/, const juce::String& /*newName*/)
 {
 }
 
 //==============================================================================
-void EdPF::AudioProcessor::prepareToPlay(double sampleRate, int samplesPerBlock)
+void EdPF::AudioProcessor::prepareToPlay(double /*sampleRate*/, int /*samplesPerBlock*/)
 {
     // Use this method as the place to do any pre-playback
     // initialisation that you need..
@@ -132,7 +132,7 @@ bool EdPF::AudioProcessor::isBusesLayoutSupported(const BusesLayout& layouts) co
 }
 #endif
 
-void EdPF::AudioProcessor::processBlock(juce::AudioBuffer<float>& buffer, juce::MidiBuffer& midiMessages)
+void EdPF::AudioProcessor::processBlock(juce::AudioBuffer<float>& buffer, juce::MidiBuffer& /*midiMessages*/)
 {
     juce::ScopedNoDenormals noDenormals;
     auto totalNumInputChannels = getTotalNumInputChannels();
@@ -155,7 +155,7 @@ void EdPF::AudioProcessor::processBlock(juce::AudioBuffer<float>& buffer, juce::
     // interleaved by keeping the same state.
     for (int channel = 0; channel < totalNumInputChannels; ++channel)
     {
-        auto* channelData = buffer.getWritePointer(channel);
+        /*auto* channelData = buffer.getWritePointer(channel);*/
 
         // ..do something to the data...
     }
@@ -173,14 +173,14 @@ juce::AudioProcessorEditor* EdPF::AudioProcessor::createEditor()
 }
 
 //==============================================================================
-void EdPF::AudioProcessor::getStateInformation(juce::MemoryBlock& destData)
+void EdPF::AudioProcessor::getStateInformation(juce::MemoryBlock& /*destData*/)
 {
     // You should use this method to store your parameters in the memory block.
     // You could do that either as raw data, or use the XML or ValueTree classes
     // as intermediaries to make it easy to save and load complex data.
 }
 
-void EdPF::AudioProcessor::setStateInformation(const void* data, int sizeInBytes)
+void EdPF::AudioProcessor::setStateInformation(const void* /*data*/, int /*sizeInBytes*/)
 {
     // You should use this method to restore your parameters from this memory block,
     // whose contents will have been created by the getStateInformation() call.

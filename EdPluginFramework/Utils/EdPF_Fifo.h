@@ -22,7 +22,7 @@ namespace EdPF
     public:
         Fifo(size_t size) :
             m_size(size),
-            m_abstractFifo(size),
+            m_abstractFifo(static_cast<int>(size)),
             m_myBuffer()
         {
             m_myBuffer.resize(static_cast<int>(size));

@@ -89,7 +89,8 @@ float FGDSP::Scheduler::SythesiseNextSample(int i)
             // If we don't have a reader we won't need to plot any grain data
             if (m_fifoReader != nullptr)
             {
-                int x = m_fifo.AddToFifo(&m_newFifoData, 1);
+                // Use assignment for debugging.
+                /*int x =*/ m_fifo.AddToFifo(&m_newFifoData, 1);
             }
         }
     }

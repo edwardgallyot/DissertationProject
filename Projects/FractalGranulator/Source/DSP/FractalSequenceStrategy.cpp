@@ -24,7 +24,7 @@ FGDSP::FractalSequenceStrategy::FractalSequenceStrategy()
 
 int FGDSP::FractalSequenceStrategy::GetNextInterOnset()
 {
-    return FGConst::MinimumInteronsetSamples + static_cast<int>(m_random.getSystemRandom().nextFloat() * m_complexityScalar * (FGConst::MaximumInteronset - FGConst::MaximumInteronset));
+    return static_cast<int>(FGConst::MinimumInteronsetSamples) + static_cast<int>(m_random.getSystemRandom().nextFloat() * m_complexityScalar * (FGConst::MaximumInteronset - FGConst::MaximumInteronset));
 }
 
 float FGDSP::FractalSequenceStrategy::GetNextDuration()

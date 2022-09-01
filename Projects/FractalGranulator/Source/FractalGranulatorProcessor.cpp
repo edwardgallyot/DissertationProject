@@ -77,8 +77,8 @@ void FractalGranulatorAudioProcessor::processBlock(juce::AudioBuffer<float>& buf
     // UPDATE PLAYHEAD INFO
     //==============================================================
     // The scheduler will use this to determine whether to schedule more grains
-    getPlayHead()->getCurrentPosition(m_currentPositionInfo);
-    
+    m_currentPositionInfo.isPlaying = getPlayHead()->getPosition()->getIsPlaying();
+
     // UPDATE SMOOTHED SAMPLES
     //================================================================
     for (int i = 0; i < FGConst::NumOfParams; ++i)
@@ -208,12 +208,15 @@ juce::AudioProcessorValueTreeState::ParameterLayout FractalGranulatorAudioProces
             0.0f
             )
     );
+
+    auto feedbackRange = juce::NormalisableRange<float>(0, juce::Decibels::decibelsToGain(2.0f) - 1.0f, 0.0000001f);
+    feedbackRange.setSkewForCentre(0.1f);
     params.push_back
     (std::make_unique<juce::AudioParameterFloat>
         (
             FGConst::GetParameterID(FGConst::Param_Feedback),
             "Feedback",
-            juce::NormalisableRange<float>(0, juce::Decibels::decibelsToGain(1.2f) - 1.0f, 0.0000001f),
+            feedbackRange,
             0.0f
             )
     );

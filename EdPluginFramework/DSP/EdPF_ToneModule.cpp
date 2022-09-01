@@ -16,16 +16,16 @@ void EdPF::DSP::ToneModule::prepare (double sampleRate, unsigned int samplesPerB
     processSpec.sampleRate = sampleRate;
     processSpec.maximumBlockSize = samplesPerBlock;
     processSpec.numChannels = numChannels;
-    this->sampleRate = sampleRate;
+    m_sampleRate = sampleRate;
 
     stateVariableFilter.reset();
     stateVariableFilter.prepare (processSpec);
     stateVariableFilter.state->type = filterType;
 }
-void EdPF::DSP::ToneModule::process (juce::AudioBuffer<float>& buffer, juce::MidiBuffer& midiMessages, float cutoff)
+void EdPF::DSP::ToneModule::process (juce::AudioBuffer<float>& buffer, juce::MidiBuffer& /*midiMessages*/, float cutoff)
 {
     AudioBlock<float> audioBlock(buffer);
-    stateVariableFilter.state->setCutOffFrequency (sampleRate, cutoff, 0.5f);
+    stateVariableFilter.state->setCutOffFrequency (m_sampleRate, cutoff, 0.5f);
     stateVariableFilter.process (ProcessContextReplacing<float> (audioBlock));
 }
 
