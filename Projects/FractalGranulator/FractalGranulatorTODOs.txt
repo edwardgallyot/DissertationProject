@@ -17,11 +17,14 @@ DSP:
 	* This will also abstract away the Value State Tree and the create parameters function. ✓
 	* That way we can get parameters based on the common IDs without affecting the main processor. ✓
 
+
+*** DONE ***
 * Create the FractalGranulatorAudioProcessor class ✓
 	* This is going to look after the delay line and the granulator that holds a reference to said delay line. ✓
 	* It will also look after what the granulator does at the start of each block. ✓
 	* This processor will set the parameters and then process the block. ✓
 
+*** DONE ***
 * Create a Generic Delay Line class:
 	* Circular Buffer ✓ 
 	* This will be the source data that the granulator reads from ✓ 
@@ -29,12 +32,14 @@ DSP:
 	* It doesn't concern its self with reading. ✓ 
 	* Try and copy the buffer with the FloatVectorOperations Library. ✓ 
 	
+*** DONE ***
 * Create and Add to the EdPF::DSP namespace: ✓ 
 	* Interpolation Algorithm - needs to know the size to wrap around from. ✓ 
 	* There are definitely algorithms from UNI that can exist here. ✓ 
 	* Maybe think about making smoothed values as a part of this. ✓ 
 	* We will add more here as generic DSP algorithms come about. ✓ 
 
+*** DONE ***
 * Create a Top Level Granulator Class: ✓ 
 	* This should be able to take some values in prepare to play. ✓
 	* It should also hold a reference to the FIFO object that it's going to push to the GUI.
@@ -43,16 +48,19 @@ DSP:
 	* When the Granulator uses process block this is probably the best time to push the current.
       grain pool to the GUI. 
 	
+*** DONE ***
 * Create a Generic Sequency Strategy Interface: ✓
 	* We can create a generic interface for the Granulator.Scheduler to interact with. ✓
 	* This way we can test simpler stochastic methods before we implement the fractal functionality. ✓
 	* This can then be a SequencyStrategyType in the Scheduler to avoid rewriting code. ✓
 	
+*** DONE ***
 * Create a Scheduler: ✓
 	* The Scheduler is going to hold a reference to a pool of grains owned by the granulator. ✓
 	* We can experiment with the efficiency of this pool but it'll probs start as a vector. ✓
 	* The scheduler can then use the SequencyStrategyType without knowing the specifics in a template. ✓
 
+*** DONE ***
 * Create a Grain class: ✓
 	* All the grain will do is know it's activation and phase.
 	* We want the grain to be pretty modular so it can use it's phase to determine
@@ -60,6 +68,7 @@ DSP:
 	* Each Grain is going to hold an essence and the essence will be copied across to the
       newly activated grain. ✓
 
+*** DONE ***
 * Create the Essence Classes: ✓
 	* Ultimately the Essence will be an abstract type. ✓
 	* This way we can create diffent Essences if we want to expand the granulator in the

@@ -16,7 +16,7 @@ FractalGranulatorAudioProcessorEditor::FractalGranulatorAudioProcessorEditor (Fr
     m_inGainSlider(p, FGConst::GetParameterID(FGConst::Param_InGain), nullptr),
     m_outGainSlider(p, FGConst::GetParameterID(FGConst::Param_OutGain), nullptr),
     m_delayTimeSlider(p, FGConst::GetParameterID(FGConst::Param_DelayTime), nullptr),
-    m_spreadSlider(p, FGConst::GetParameterID(FGConst::Param_Spread), nullptr),
+    m_spreadSlider(p, FGConst::GetParameterID(FGConst::Param_Feedback), nullptr),
     m_complexitySlider(p, FGConst::GetParameterID(FGConst::Param_Complexity), nullptr),
     m_saturationSlider(p, FGConst::GetParameterID(FGConst::Param_Saturation), nullptr),
     m_shape1Slider(p, FGConst::GetParameterID(FGConst::Param_Shape1), nullptr),
@@ -25,7 +25,8 @@ FractalGranulatorAudioProcessorEditor::FractalGranulatorAudioProcessorEditor (Fr
     m_shape4Slider(p, FGConst::GetParameterID(FGConst::Param_Shape4), nullptr),
     m_pitch1Slider(p, FGConst::GetParameterID(FGConst::Param_Pitch1), nullptr),
     m_pitch2Slider(p, FGConst::GetParameterID(FGConst::Param_Pitch2), nullptr),
-    m_pitch3Slider(p, FGConst::GetParameterID(FGConst::Param_Pitch3), nullptr)
+    m_pitch3Slider(p, FGConst::GetParameterID(FGConst::Param_Pitch3), nullptr),
+    m_fractalDisplay(p)
 {
     setSize (1200, 640);
 

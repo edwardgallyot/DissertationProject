@@ -32,7 +32,7 @@ namespace EdPF
             
             bool ShouldActivateGrain() { return m_shouldActivateGrain; };
 
-            float GetNextDuration() { return m_nextDuration; }
+            float GetNextDuration() { return m_sequenceStrategy->GetNextDuration(); }
 
             // You'll want to cast this to your derived sequence strategy
             SequenceStrategy* GetUnderlyingSequenceStrategy() { return m_sequenceStrategy.get(); }

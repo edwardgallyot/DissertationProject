@@ -13,6 +13,9 @@
 #include "../../EdPluginFramework/Utils/EdPF_AudioProcessorEditor.h"
 #include "../../EdPluginFramework/DSP/EdPF_DelayLine.h"
 #include "../../EdPluginFramework/DSP/EdPF_Utils.h"
+#include "../../EdPluginFramework/Utils/EdPF_Fifo.h"
+#include "../../EdPluginFramework/DSP/EdPF_ToneModule.h"
+#include "../../EdPluginFramework/DSP/EdPF_CubicClipModule.h"
 #include "DSP/Granulator.h"
 
 
@@ -32,11 +35,46 @@ public:
 
     LinearDelayLine& GetDelayLine() { return m_delayLine; };
 
-private:
-    juce::AudioBuffer<float> m_copyBuffer1;
+    FGDSP::Granulator& GetGranulator() { return m_granulator; }
 
+    std::atomic<float>* GetCurrentOutputMeter() { return &m_currentOutputMeter; }
+
+private:
+    // ATOMIC UI METER
+    //==============================================
+    void UpdateOutputValueMeter(juce::AudioBuffer<float>& buffer);
+    // We will keep track of the current max output per block so the UI can update pretty colours
+    std::atomic<float> m_currentOutputMeter;
+
+    // COPY BUFFERS FOR DELAY
+    //=============================================
+    juce::AudioBuffer<float> m_feedbackOutputBuffer;
+    juce::AudioBuffer<float> m_delayInputBuffer;
+    
+    // LINEARLY INTERPOLATED DELAY LINE
+    //=============================================
     LinearDelayLine m_delayLine;
+
+    // GRANULATOR
+    //=============================================
     FGDSP::Granulator m_granulator;
+
+    // JUCE COMPRESSOR FOR THE FINAL OUT
+    //=============================================
+    juce::dsp::Compressor<float> m_compressor;
+    
+    // PLAY HEAD INFO
+    // ============================================
+    juce::AudioPlayHead::CurrentPositionInfo m_currentPositionInfo;
+
+    // FILTERS
+    // ============================================
+    EdPF::DSP::ToneModule m_lowPass;
+    EdPF::DSP::ToneModule m_highPass;
+    
+    // DISTORTION
+    // ============================================
+    EdPF::DSP::Distortion::CubicModule m_distortion;
 
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (FractalGranulatorAudioProcessor)
 };

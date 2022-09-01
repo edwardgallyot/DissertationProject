@@ -16,3 +16,10 @@ float EdPF::DSP::Utils::MsToSamples(float ms, float sampleRate)
     ms *= multiplier;
     return ms;
 }
+
+float EdPF::DSP::Utils::SamplesToMs(float samples, float sampleRate)
+{
+    return samples * (1000.0f / sampleRate);
+}
+
+

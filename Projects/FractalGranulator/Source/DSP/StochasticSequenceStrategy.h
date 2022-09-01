@@ -12,6 +12,8 @@
 #define STOCHASTIC_SEUQUENCE_STRATEGY_H_INCLUDED
 
 #include "../../EdPluginFramework/DSP/EdPF_SequenceStrategy.h"
+#include "../../EdPluginFramework/DSP/EdPF_Utils.h"
+#include "../FractalGranulatorCommon.h"
 #include "JuceHeader.h"
 
 namespace FGDSP
@@ -23,8 +25,10 @@ namespace FGDSP
         float GetNextDuration() override;
         float GetNextDistanceFromPlayheadScalar();
         float GetNextPitch();
+        void SetSampleRate(double sampleRate) { m_sampleRate = sampleRate; }
     private:
         juce::Random m_random;
+        double m_sampleRate;
     };
 }
 

@@ -53,10 +53,10 @@ void FGDSP::DelayLineSource::Init(EdPF::Grains::Source::Essence* essence)
     m_durationInSamples = tmpEssence->GetGrainDuration();
 
     m_readIndex = static_cast<float>(m_delayLine.GetWriteIndex()) - (static_cast<float>(m_samplesLeftToProcess));
-    m_readIndex += m_delayLine.GetSize();
-    //m_readIndex += (m_delayTimeSamples) * m_distanceFromPlayheadScalar;
     m_readIndex -= m_durationInSamples;
     m_readIndex -= (m_delayTimeSamples * m_distanceFromPlayheadScalar);
+    m_readIndex += m_delayLine.GetSize();
+    
 }
 
 void FGDSP::DelayLineSource::Essence::Configure()
