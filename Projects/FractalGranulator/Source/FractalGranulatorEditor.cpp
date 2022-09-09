@@ -26,9 +26,12 @@ FractalGranulatorAudioProcessorEditor::FractalGranulatorAudioProcessorEditor (Fr
     m_pitch1Slider(p, FGConst::GetParameterID(FGConst::Param_Pitch1), nullptr),
     m_pitch2Slider(p, FGConst::GetParameterID(FGConst::Param_Pitch2), nullptr),
     m_pitch3Slider(p, FGConst::GetParameterID(FGConst::Param_Pitch3), nullptr),
-    m_fractalDisplay(p)
+    m_mixSlider(p, FGConst::GetParameterID(FGConst::Param_Mix), nullptr),
+    m_fractalDisplay(p),
+    m_audioInputVisualiser(p.GetInputWavePlotGenerator(), 50, 390, p.GetCurrentInputMeter()),
+    m_audioOutputVisualiser(p.GetOuputWavePlotGenerator(), 50, 390, p.GetCurrentOutputMeter())
 {
-    setSize (1200, 640);
+    setSize (1200, 400);
 
     addAndMakeVisible(m_inGainSlider);
     addAndMakeVisible(m_outGainSlider);
@@ -47,6 +50,7 @@ FractalGranulatorAudioProcessorEditor::FractalGranulatorAudioProcessorEditor (Fr
     addAndMakeVisible(m_audioOutputVisualiser);
     addAndMakeVisible(m_fractalInput);
     addAndMakeVisible(m_fractalDisplay);
+    addAndMakeVisible(m_mixSlider);
 }
 
 FractalGranulatorAudioProcessorEditor::~FractalGranulatorAudioProcessorEditor()
@@ -142,9 +146,9 @@ void FractalGranulatorAudioProcessorEditor::resized()
         juce::Rectangle<float>
         (
             /*X*/widthOverThree * 2,
-            /*Y*/(twoThirdsHeightOfLeftThird.getHeight() / 3.0f) * 2.0f,
+            /*Y*/(twoThirdsHeightOfLeftThird.getHeight() / 3.0f),
             /*WIDTH*/widthOverThree / 3.0f,
-            /*HEIGHT*/twoThirdsHeightOfLeftThird.getHeight() / 3.0f
+            /*HEIGHT*/twoThirdsHeightOfLeftThird.getHeight() / 3.0f * 2.0f
         );
 
     auto pitch1Area = centreRightAreaTemplate;
@@ -184,11 +188,25 @@ void FractalGranulatorAudioProcessorEditor::resized()
     auto fractalInputBounds = twoThirdsHeightOfLeftThird;
     fractalInputBounds.removeFromTop(currentSectionOverThree);
     fractalInputBounds.reduce(FGConst::GUIElementPadding, FGConst::GUIElementPadding);
+    fractalInputBounds.removeFromRight(static_cast<float>(fractalInputBounds.getWidth()) / 3.0f);
     m_fractalInput.setBounds(fractalInputBounds.toNearestInt());
+
+    // Mix Slider
+    auto mixSliderBounds = twoThirdsHeightOfLeftThird;
+    mixSliderBounds.removeFromTop(currentSectionOverThree);
+    mixSliderBounds.removeFromLeft(2.0f * static_cast<float>(mixSliderBounds.getWidth()) / 3.0f);
+    mixSliderBounds.reduce(FGConst::GUIElementPadding, FGConst::GUIElementPadding);
+    mixSliderBounds.reduce(FGConst::MiniSliderReduction, FGConst::MiniSliderReduction);
+    m_mixSlider.setBounds(mixSliderBounds.toNearestInt());
 
     // Fractal Display Bounds
     auto twoThirdsHeightOfMiddleThird = twoThirdsHeightOfLeftThird;
     twoThirdsHeightOfMiddleThird.setX(widthOverThree); 
     twoThirdsHeightOfMiddleThird.reduce(FGConst::GUIElementPadding, FGConst::GUIElementPadding);
     m_fractalDisplay.setBounds(twoThirdsHeightOfMiddleThird.toNearestInt());
+}
+
+void FractalGranulatorAudioProcessorEditor::paint(juce::Graphics& g)
+{
+    g.fillAll(FGConst::BackgroundColour);
 }

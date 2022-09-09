@@ -17,6 +17,7 @@ namespace FGConst
 {
     const enum Params
     {
+        Param_Mix,
         Param_InGain,
         Param_OutGain,
         Param_DelayTime,
@@ -36,6 +37,7 @@ namespace FGConst
 
     const juce::String ParamIds[NumOfParams] =
     {
+        "Mix",
         "InGain",
         "OutGain",
         "DelayTime",
@@ -53,7 +55,7 @@ namespace FGConst
 
     juce::StringRef GetParameterID(Params param);
 
-    const float DelayTimeMax = 4000.0f;
+    const float DelayTimeMax = 2000.0f;
     const float DelayTimeMin = 5.0f;
 
     const float MiniSliderReduction = 15.0f;
@@ -77,6 +79,10 @@ namespace FGConst
 
     const float MinimumInteronsetSamples = 150.0f;
     const float MaximumInteronset = 4000.0f;
+
+    const juce::Colour BackgroundColour = juce::Colour(109, 56, 46);
+    const juce::Colour GrainColour = juce::Colour(232, 118, 125);
+    const juce::Colour WaveFormColour = juce::Colour(220, 218, 99);
 }
 
 #endif // !FRACTAL_GRANULATOR_COMMON_H

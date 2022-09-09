@@ -15,7 +15,7 @@ FGGUI::FractalDisplay::FractalDisplay(FractalGranulatorAudioProcessor& p) :
     m_fifo(p.GetGranulator().GetSchedulerFifo()),
     m_plotData(FGConst::NumGrainPlotPoints),
     m_writeIndex(0),
-    m_outputMeter(p.GetCurrentOutputMeter())
+    m_meter(p.GetCurrentGranulatorMeter())
 {
     m_processor.GetGranulator().RegisterFifoReader(this);
     startTimerHz(FGConst::GUITimerHz);
@@ -28,12 +28,12 @@ FGGUI::FractalDisplay::~FractalDisplay()
 
 void FGGUI::FractalDisplay::paint(juce::Graphics& g)
 {
-    auto alpha = 0.2f + (0.8f * static_cast<float>(m_outputMeter->load()));
+    auto alpha = 0.2f + (0.8f * static_cast<float>(m_meter->load()));
     if (alpha >= 1.0f)
     {
         alpha = 1.0f;
     }
-    g.setColour(juce::Colours::aquamarine.withAlpha(alpha));
+    g.setColour(FGConst::GrainColour.withAlpha(alpha));
 
 
     for (int i = 0; i < FGConst::NumGrainPlotPoints; ++i)
@@ -50,7 +50,7 @@ void FGGUI::FractalDisplay::paint(juce::Graphics& g)
                 - FGConst::MinDistanceFromOriginScalar));
             float yPos = static_cast<float>(getHeight()) -
                 (((m_plotData[i].GetPitch() - FGConst::MinimumPitch) / (FGConst::MaximumPitch - FGConst::MinimumPitch))) * static_cast<float>(getHeight());
-            float thickness = 1.0f + (10.0f * m_plotData[i].GetCurrentLifeTimePosition0to1());
+            float thickness = 1.0f + (8.0f * m_plotData[i].GetCurrentLifeTimePosition0to1());
             g.drawEllipse
             (
                 xPos,

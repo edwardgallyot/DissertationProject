@@ -70,6 +70,14 @@
               file="../../EdPluginFramework/Utils/EdPF_AudioProcessorEditor.h"/>
         <FILE id="OdhOqW" name="EdPF_Fifo.cpp" compile="1" resource="0" file="../../EdPluginFramework/Utils/EdPF_Fifo.cpp"/>
         <FILE id="hak6CI" name="EdPF_Fifo.h" compile="0" resource="0" file="../../EdPluginFramework/Utils/EdPF_Fifo.h"/>
+        <FILE id="kPfCbo" name="EdPF_WavePlotData.cpp" compile="1" resource="0"
+              file="../../EdPluginFramework/Utils/EdPF_WavePlotData.cpp"/>
+        <FILE id="BeuTHd" name="EdPF_WavePlotData.h" compile="0" resource="0"
+              file="../../EdPluginFramework/Utils/EdPF_WavePlotData.h"/>
+        <FILE id="sPJhKd" name="EdPF_WavePlotGenerator.cpp" compile="1" resource="0"
+              file="../../EdPluginFramework/Utils/EdPF_WavePlotGenerator.cpp"/>
+        <FILE id="Kv8eEF" name="EdPF_WavePlotGenerator.h" compile="0" resource="0"
+              file="../../EdPluginFramework/Utils/EdPF_WavePlotGenerator.h"/>
       </GROUP>
     </GROUP>
     <GROUP id="{E2AAD40D-B786-8910-406C-222C3582AA4E}" name="Source">

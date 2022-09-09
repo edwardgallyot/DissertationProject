@@ -27,6 +27,7 @@ public:
     ~FractalGranulatorAudioProcessorEditor() override;
 
     void resized() override;
+    void paint(juce::Graphics& g) override;
 private:
     // Sliders
     // In and Out Sliders
@@ -51,6 +52,9 @@ private:
     EdPF::AttachedRotarySlider m_pitch1Slider;
     EdPF::AttachedRotarySlider m_pitch2Slider;
     EdPF::AttachedRotarySlider m_pitch3Slider;
+
+    // Mix Slider
+    EdPF::AttachedRotarySlider m_mixSlider;
 
     // Audio In Visualiser
     EdPF::AudioVisualiser m_audioInputVisualiser;

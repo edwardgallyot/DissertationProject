@@ -39,3 +39,4 @@
 **/.vs/*
 **/Debug/*
 **/Release/*
+/Projects/FractalGranulator/Export

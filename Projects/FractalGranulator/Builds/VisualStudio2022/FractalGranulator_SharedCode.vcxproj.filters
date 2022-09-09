@@ -667,6 +667,12 @@
     <ClCompile Include="..\..\..\..\EdPluginFramework\Utils\EdPF_Fifo.cpp">
       <Filter>FractalGranulator\EdPluginFramework\Utils</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\..\..\EdPluginFramework\Utils\EdPF_WavePlotData.cpp">
+      <Filter>FractalGranulator\EdPluginFramework\Utils</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\EdPluginFramework\Utils\EdPF_WavePlotGenerator.cpp">
+      <Filter>FractalGranulator\EdPluginFramework\Utils</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\Source\DSP\DelayLineSource.cpp">
       <Filter>FractalGranulator\Source\DSP</Filter>
     </ClCompile>
@@ -3178,6 +3184,12 @@
       <Filter>FractalGranulator\EdPluginFramework\Utils</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\..\EdPluginFramework\Utils\EdPF_Fifo.h">
+      <Filter>FractalGranulator\EdPluginFramework\Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\EdPluginFramework\Utils\EdPF_WavePlotData.h">
+      <Filter>FractalGranulator\EdPluginFramework\Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\EdPluginFramework\Utils\EdPF_WavePlotGenerator.h">
       <Filter>FractalGranulator\EdPluginFramework\Utils</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\DSP\DelayLineSource.h">

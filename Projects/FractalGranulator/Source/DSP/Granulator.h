@@ -27,7 +27,7 @@ namespace FGDSP
     class Granulator
     {
     public:
-        Granulator(LinearDelayLine& delayLine, std::vector<juce::AudioBuffer<float>>& smoothedValues, juce::AudioPlayHead::CurrentPositionInfo&);
+        Granulator(LinearDelayLine& delayLine, std::vector<juce::AudioBuffer<float>>& smoothedValue);
         ~Granulator();
 
         void PrepareToPlay(double sampleRate, int numSamplesExpected);
@@ -37,12 +37,9 @@ namespace FGDSP
         EdPF::Fifo<GrainPlotData>* GetSchedulerFifo() { return m_scheduler.GetFifo(); }
         void RegisterFifoReader(juce::Component* reader) { m_scheduler.RegisterFifoReader(reader); }
         void DeregisterFifoReader() { m_scheduler.DeregisterFifoReader(); }
-
     private:
         Scheduler m_scheduler;
         EdPF::Grains::GrainPool<Grain> m_grainPool;
-
-        
     };
 }
 

@@ -76,26 +76,31 @@ void FGDSP::FractalSequenceStrategy::DoChaosGame()
     // Move them back from whence they came...
     m_currentPoint = m_currentPoint + juce::Point<float>(0.5f, 0.75f);
     m_currentPoint = m_currentPoint + juce::Point<float>(FGConst::MinDistanceFromOriginScalar, FGConst::MinimumPitch);
+}
 
+bool FGDSP::FractalSequenceStrategy::CheckPointsBounds()
+{
     // CHECK X BOUNDS
     if (m_currentPoint.getX() < FGConst::MinDistanceFromOriginScalar)
     {
-        m_currentPoint.setX(FGConst::MinDistanceFromOriginScalar);
+        return false;
     }
     if (m_currentPoint.getX() > FGConst::MaxDistanceFromOriginScalar)
     {
-        m_currentPoint.setX(FGConst::MaxDistanceFromOriginScalar);
+        return false;
     }
-
 
     // CHECK Y BOUNDS
     if (m_currentPoint.getY() < FGConst::MinimumPitch)
     {
-        m_currentPoint.setY(FGConst::MinimumPitch);
+        return false;
     }
     if (m_currentPoint.getY() > FGConst::MaximumPitch)
     {
-        m_currentPoint.setY(FGConst::MaximumPitch);
+        return false;
     }
+
+    // WERE IN BOUNDS!!
+    return true;
 }
 

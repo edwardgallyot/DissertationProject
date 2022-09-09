@@ -35,6 +35,8 @@ namespace FGDSP
         void SetShapeTwo(float shape) { m_shape2 = shape; };
         void SetShapeThree(float shape) { m_shape3 = shape; };
         void SetShapeFour(float shape) { m_shape4 = shape; };
+
+        bool CheckPointsBounds();
     private:
         juce::Random m_random;
         double m_sampleRate;

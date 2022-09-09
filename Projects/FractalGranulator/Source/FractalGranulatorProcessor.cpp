@@ -14,8 +14,10 @@ FractalGranulatorAudioProcessor::FractalGranulatorAudioProcessor()
     :
     EdPF::AudioProcessor(CreateParameterLayout(), FGConst::NumOfParams),
     m_delayLine(0),
-    m_granulator(m_delayLine, GetSmoothedValuesBuffer(), m_currentPositionInfo),
-    m_currentOutputMeter(0.0f)
+    m_granulator(m_delayLine, GetSmoothedValuesBuffer()),
+    m_currentOutputMeter(0.0f),
+    m_inputWaveGenerator(1000.0f, 390),
+    m_outputWaveGenerator(1000.0f, 390)
 {
 }
 
@@ -30,6 +32,7 @@ void FractalGranulatorAudioProcessor::prepareToPlay(double sampleRate, int expec
     m_feedbackOutputBuffer.setSize(1, expectedNumSamples);
     m_feedbackOutputBuffer.clear();
     m_delayInputBuffer.setSize(1, expectedNumSamples);
+    m_dryBuffer.setSize(2, expectedNumSamples);
 
     // SET VALUE SMOOTHING
     //=====================================================
@@ -58,7 +61,7 @@ void FractalGranulatorAudioProcessor::prepareToPlay(double sampleRate, int expec
     m_compressor.setAttack(5.0f);
     m_compressor.setRelease(100.0f);
     m_compressor.setRatio(4.0f);
-    m_compressor.setThreshold(-6.0f);
+    m_compressor.setThreshold(0.0f);
     m_compressor.prepare(spec);
 
 
@@ -70,15 +73,17 @@ void FractalGranulatorAudioProcessor::prepareToPlay(double sampleRate, int expec
     // PREPARE THE DISTORTION
     // =========================================================
     m_distortion.prepare(sampleRate, expectedNumSamples);
+
+    // PREPARE THE PLOT GENERATORS
+    // =========================================================
+    m_inputWaveGenerator.SetSampleRate(sampleRate);
+    m_outputWaveGenerator.SetSampleRate(sampleRate);
 }
 
 void FractalGranulatorAudioProcessor::processBlock(juce::AudioBuffer<float>& buffer, juce::MidiBuffer& midi)
 {
-    // UPDATE PLAYHEAD INFO
-    //==============================================================
-    // The scheduler will use this to determine whether to schedule more grains
-    m_currentPositionInfo.isPlaying = getPlayHead()->getPosition()->getIsPlaying();
-
+    // TODO: Support Stereo Configurations
+    
     // UPDATE SMOOTHED SAMPLES
     //================================================================
     for (int i = 0; i < FGConst::NumOfParams; ++i)
@@ -96,7 +101,7 @@ void FractalGranulatorAudioProcessor::processBlock(juce::AudioBuffer<float>& buf
     // ===============================================================
     for (int channel = 0; channel < buffer.getNumChannels(); ++channel)
     {
-        juce::FloatVectorOperations::multiply(buffer.getWritePointer(channel, 0), juce::Decibels::decibelsToGain(-12.0f), buffer.getNumSamples());
+        juce::FloatVectorOperations::multiply(buffer.getWritePointer(channel, 0), juce::Decibels::decibelsToGain(-3.0f), buffer.getNumSamples());
     }
     
     // APPLY INPUT GAIN
@@ -107,6 +112,24 @@ void FractalGranulatorAudioProcessor::processBlock(juce::AudioBuffer<float>& buf
     {
         juce::FloatVectorOperations::multiply(buffer.getWritePointer(channel, 0), inputGainBuffer, buffer.getNumSamples());
     }
+
+    // COPY DRY INPUT TO BUFFER
+    // ================================================================
+    for (int channel = 0; channel < buffer.getNumChannels(); ++channel)
+    {
+        juce::FloatVectorOperations::copy(m_dryBuffer.getWritePointer(channel, 0), buffer.getReadPointer(channel, 0), buffer.getNumSamples());
+    }
+
+    // PROCESS INPUT FIFO
+    // ================================================================
+    for (int i = 0; i < buffer.getNumSamples(); ++i)
+    {
+        m_inputWaveGenerator.ProcessSample(buffer.getSample(0, i));
+    }
+
+    // UPDATE INPUT METER
+    // ===================================================================
+    UpdateSimpleMeter(&m_currentInputMeter, buffer);
 
     // CREATE FEEDBACK
     //================================================================== 
@@ -125,9 +148,9 @@ void FractalGranulatorAudioProcessor::processBlock(juce::AudioBuffer<float>& buf
     // ================================================================
     m_granulator.ProcessSamples(buffer);
 
-    // UPDATE OUTPUT METER FOR GUI
+    // UPDATE GRANULATOR METER FOR GUI
     // ================================================================
-    UpdateOutputValueMeter(buffer);
+    UpdateSimpleMeter(&m_granulationMeter,buffer);
 
     // COMPRESS THE OUTPUT
     // ==============================================================
@@ -159,15 +182,40 @@ void FractalGranulatorAudioProcessor::processBlock(juce::AudioBuffer<float>& buf
     auto drive = GetSmoothedValuesBuffer()[FGConst::Param_Saturation].getSample(0, 0);
     m_distortion.process(buffer, midi, drive);
     
+
+    // ADD IN THE DRY SIGNAL
+    // ============================================================================
+    auto mixbuffer = GetSmoothedValuesBuffer()[FGConst::Param_Mix].getReadPointer(0, 0);
+    for (int channel = 0; channel < buffer.getNumChannels(); ++channel)
+    {
+        juce::FloatVectorOperations::multiply(buffer.getWritePointer(channel, 0), mixbuffer, buffer.getNumSamples());
+        for (int i = 0; i < buffer.getNumSamples(); ++i)
+        {
+            m_dryBuffer.setSample(channel, i, m_dryBuffer.getSample(channel, i) * (1.0f - mixbuffer[i]));
+        }
+    }
+    for (int channel = 0; channel < buffer.getNumChannels(); ++channel)
+    {
+        juce::FloatVectorOperations::add(buffer.getWritePointer(channel, 0), m_dryBuffer.getReadPointer(channel, 0), buffer.getNumSamples());
+    }
+    
     // APPLY OUTPUT GAIN
     //================================================================
     auto outputGainBuffer = GetSmoothedValuesBuffer()[FGConst::Param_OutGain].getReadPointer(0, 0);
-
     for (int channel = 0; channel < buffer.getNumChannels(); ++channel)
     {
         juce::FloatVectorOperations::multiply(buffer.getWritePointer(channel, 0), outputGainBuffer, buffer.getNumSamples());
     }
 
+    // UPDATE OUTPUT METER
+    UpdateSimpleMeter(&m_currentOutputMeter, buffer);
+
+    // PROCESS OUTPUT FIFO
+    // ================================================================
+    for (int i = 0; i < buffer.getNumSamples(); ++i)
+    {
+        m_outputWaveGenerator.ProcessSample(buffer.getSample(0, i));
+    }
 }
 
 juce::AudioProcessorValueTreeState::ParameterLayout FractalGranulatorAudioProcessor::CreateParameterLayout()
@@ -175,6 +223,17 @@ juce::AudioProcessorValueTreeState::ParameterLayout FractalGranulatorAudioProces
     std::vector<std::unique_ptr<juce::RangedAudioParameter>> params;
 
     // Automated Parameters
+    params.push_back
+    (std::make_unique<juce::AudioParameterFloat>
+        (
+            FGConst::GetParameterID(FGConst::Param_Mix),
+            "Mix",
+            0.0f,
+            1.0f,
+            0.0f
+            )
+    );
+
     params.push_back
     (std::make_unique<juce::AudioParameterFloat>
         (
@@ -197,7 +256,7 @@ juce::AudioProcessorValueTreeState::ParameterLayout FractalGranulatorAudioProces
     );
 
     auto delayRange = juce::NormalisableRange<float>(FGConst::DelayTimeMin, FGConst::DelayTimeMax);
-    delayRange.setSkewForCentre(1000.0f);
+    delayRange.setSkewForCentre(500.0f);
 
     params.push_back
     (std::make_unique<juce::AudioParameterFloat>
@@ -325,7 +384,7 @@ juce::AudioProcessorEditor* FractalGranulatorAudioProcessor::createEditor()
     return new FractalGranulatorAudioProcessorEditor(*this);
 }
 
-void FractalGranulatorAudioProcessor::UpdateOutputValueMeter(juce::AudioBuffer<float>& buffer)
+void FractalGranulatorAudioProcessor::UpdateSimpleMeter(std::atomic<float>* meter, juce::AudioBuffer<float>& buffer)
 {
     float max = 0.0f;
     for (int channel = 0; channel < buffer.getNumChannels(); ++channel)
@@ -337,8 +396,10 @@ void FractalGranulatorAudioProcessor::UpdateOutputValueMeter(juce::AudioBuffer<f
             max = std::max(max, currentSample);
         }
     }
-    m_currentOutputMeter.store(max);
+    meter->store(max);
 }
+
+
 
 //==============================================================================
 // This creates new instances of the plugin..

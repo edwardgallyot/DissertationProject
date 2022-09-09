@@ -12,6 +12,6 @@
 
 void FGGUI::FractalInput::paint(juce::Graphics& g)
 {
-    g.fillAll(juce::Colours::aqua);
+    g.setColour(juce::Colours::blueviolet);
     g.drawText("LOGO!", getLocalBounds(), juce::Justification::centred); 
 }

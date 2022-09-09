@@ -155,6 +155,8 @@
     <ClCompile Include="..\..\..\..\EdPluginFramework\Utils\EdPF_AudioProcessor.cpp"/>
     <ClCompile Include="..\..\..\..\EdPluginFramework\Utils\EdPF_AudioProcessorEditor.cpp"/>
     <ClCompile Include="..\..\..\..\EdPluginFramework\Utils\EdPF_Fifo.cpp"/>
+    <ClCompile Include="..\..\..\..\EdPluginFramework\Utils\EdPF_WavePlotData.cpp"/>
+    <ClCompile Include="..\..\..\..\EdPluginFramework\Utils\EdPF_WavePlotGenerator.cpp"/>
     <ClCompile Include="..\..\Source\DSP\DelayLineSource.cpp"/>
     <ClCompile Include="..\..\Source\DSP\FractalSequenceStrategy.cpp"/>
     <ClCompile Include="..\..\Source\DSP\Grain.cpp"/>
@@ -2447,6 +2449,8 @@
     <ClInclude Include="..\..\..\..\EdPluginFramework\Utils\EdPF_AudioProcessor.h"/>
     <ClInclude Include="..\..\..\..\EdPluginFramework\Utils\EdPF_AudioProcessorEditor.h"/>
     <ClInclude Include="..\..\..\..\EdPluginFramework\Utils\EdPF_Fifo.h"/>
+    <ClInclude Include="..\..\..\..\EdPluginFramework\Utils\EdPF_WavePlotData.h"/>
+    <ClInclude Include="..\..\..\..\EdPluginFramework\Utils\EdPF_WavePlotGenerator.h"/>
     <ClInclude Include="..\..\Source\DSP\DelayLineSource.h"/>
     <ClInclude Include="..\..\Source\DSP\FractalSequenceStrategy.h"/>
     <ClInclude Include="..\..\Source\DSP\Grain.h"/>

@@ -35,7 +35,7 @@ namespace FGGUI
         std::vector<FGDSP::GrainPlotData> m_plotData;
         int m_writeIndex;
 
-        std::atomic<float>* m_outputMeter;
+        std::atomic<float>* m_meter;
     };
 } 
 

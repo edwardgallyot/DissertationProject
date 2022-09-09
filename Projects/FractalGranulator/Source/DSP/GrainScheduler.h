@@ -27,7 +27,7 @@ namespace FGDSP
     class Scheduler : public EdPF::Grains::Scheduler
     {
     public:
-        Scheduler(EdPF::Grains::GrainPool<FGDSP::Grain>& pool, std::vector<juce::AudioBuffer<float>>& smoothedValues, juce::AudioPlayHead::CurrentPositionInfo&);
+        Scheduler(EdPF::Grains::GrainPool<FGDSP::Grain>& pool, std::vector<juce::AudioBuffer<float>>& smoothedValues);
         // Set the sample rate so we can make some conversions to time
         void SetSampleRate(double sampleRate);
         // This is what the granulator will call
@@ -52,8 +52,6 @@ namespace FGDSP
         juce::Component* m_fifoReader;
         GrainPlotData m_newFifoData;
 
-        juce::AudioPlayHead::CurrentPositionInfo& m_currentPositionInfo;
-        
     };
     
 }

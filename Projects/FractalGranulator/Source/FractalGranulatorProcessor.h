@@ -16,6 +16,7 @@
 #include "../../EdPluginFramework/Utils/EdPF_Fifo.h"
 #include "../../EdPluginFramework/DSP/EdPF_ToneModule.h"
 #include "../../EdPluginFramework/DSP/EdPF_CubicClipModule.h"
+#include "../../EdPluginFramework/Utils/EdPF_WavePlotGenerator.h"
 #include "DSP/Granulator.h"
 
 
@@ -38,13 +39,24 @@ public:
     FGDSP::Granulator& GetGranulator() { return m_granulator; }
 
     std::atomic<float>* GetCurrentOutputMeter() { return &m_currentOutputMeter; }
+    std::atomic<float>* GetCurrentInputMeter() { return &m_currentInputMeter; }
+    std::atomic<float>* GetCurrentGranulatorMeter() { return &m_granulationMeter; }
+
+    EdPF::WavePlotDataGenerator& GetInputWavePlotGenerator() { return m_inputWaveGenerator; }
+    EdPF::WavePlotDataGenerator& GetOuputWavePlotGenerator() { return m_outputWaveGenerator; }
 
 private:
     // ATOMIC UI METER
     //==============================================
-    void UpdateOutputValueMeter(juce::AudioBuffer<float>& buffer);
+    void UpdateSimpleMeter(std::atomic<float>* meter, juce::AudioBuffer<float>& buffer);
     // We will keep track of the current max output per block so the UI can update pretty colours
     std::atomic<float> m_currentOutputMeter;
+    std::atomic<float> m_currentInputMeter;
+    std::atomic<float> m_granulationMeter;
+
+    // DRY INPUT COPY BUFFER
+    // ============================================
+    juce::AudioBuffer<float> m_dryBuffer;
 
     // COPY BUFFERS FOR DELAY
     //=============================================
@@ -75,6 +87,11 @@ private:
     // DISTORTION
     // ============================================
     EdPF::DSP::Distortion::CubicModule m_distortion;
+
+    // INPUT/OUTPUT FIFO
+    // ============================================
+    EdPF::WavePlotDataGenerator m_inputWaveGenerator;
+    EdPF::WavePlotDataGenerator m_outputWaveGenerator;
 
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (FractalGranulatorAudioProcessor)
 };
