@@ -150,6 +150,7 @@
     <ClCompile Include="..\..\..\..\EdPluginFramework\DSP\EdPF_ToneModule.cpp"/>
     <ClCompile Include="..\..\..\..\EdPluginFramework\DSP\EdPF_Utils.cpp"/>
     <ClCompile Include="..\..\..\..\EdPluginFramework\DSP\EdPF_WaveTableInterpolation.cpp"/>
+    <ClCompile Include="..\..\..\..\EdPluginFramework\GUI\EdPF_AttachedButton.cpp"/>
     <ClCompile Include="..\..\..\..\EdPluginFramework\GUI\EdPF_AttatchedRotarySlider.cpp"/>
     <ClCompile Include="..\..\..\..\EdPluginFramework\GUI\EdPF_AudioVisualiser.cpp"/>
     <ClCompile Include="..\..\..\..\EdPluginFramework\Utils\EdPF_AudioProcessor.cpp"/>
@@ -2444,6 +2445,7 @@
     <ClInclude Include="..\..\..\..\EdPluginFramework\DSP\EdPF_ToneModule.h"/>
     <ClInclude Include="..\..\..\..\EdPluginFramework\DSP\EdPF_Utils.h"/>
     <ClInclude Include="..\..\..\..\EdPluginFramework\DSP\EdPF_WaveTableInterpolation.h"/>
+    <ClInclude Include="..\..\..\..\EdPluginFramework\GUI\EdPF_AttachedButton.h"/>
     <ClInclude Include="..\..\..\..\EdPluginFramework\GUI\EdPF_AttatchedRotarySlider.h"/>
     <ClInclude Include="..\..\..\..\EdPluginFramework\GUI\EdPF_AudioVisualiser.h"/>
     <ClInclude Include="..\..\..\..\EdPluginFramework\Utils\EdPF_AudioProcessor.h"/>

@@ -652,6 +652,9 @@
     <ClCompile Include="..\..\..\..\EdPluginFramework\DSP\EdPF_WaveTableInterpolation.cpp">
       <Filter>FractalGranulator\EdPluginFramework\DSP</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\..\..\EdPluginFramework\GUI\EdPF_AttachedButton.cpp">
+      <Filter>FractalGranulator\EdPluginFramework\GUI</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\..\..\EdPluginFramework\GUI\EdPF_AttatchedRotarySlider.cpp">
       <Filter>FractalGranulator\EdPluginFramework\GUI</Filter>
     </ClCompile>
@@ -3170,6 +3173,9 @@
     </ClInclude>
     <ClInclude Include="..\..\..\..\EdPluginFramework\DSP\EdPF_WaveTableInterpolation.h">
       <Filter>FractalGranulator\EdPluginFramework\DSP</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\EdPluginFramework\GUI\EdPF_AttachedButton.h">
+      <Filter>FractalGranulator\EdPluginFramework\GUI</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\..\EdPluginFramework\GUI\EdPF_AttatchedRotarySlider.h">
       <Filter>FractalGranulator\EdPluginFramework\GUI</Filter>

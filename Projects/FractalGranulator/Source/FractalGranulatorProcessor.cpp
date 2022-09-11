@@ -14,7 +14,7 @@ FractalGranulatorAudioProcessor::FractalGranulatorAudioProcessor()
     :
     EdPF::AudioProcessor(CreateParameterLayout(), FGConst::NumOfParams),
     m_delayLine(0),
-    m_granulator(m_delayLine, GetSmoothedValuesBuffer()),
+    m_granulator(*this, m_delayLine, GetSmoothedValuesBuffer()),
     m_currentOutputMeter(0.0f),
     m_inputWaveGenerator(1000.0f, 390),
     m_outputWaveGenerator(1000.0f, 390)
@@ -106,7 +106,7 @@ void FractalGranulatorAudioProcessor::processBlock(juce::AudioBuffer<float>& buf
     
     // APPLY INPUT GAIN
     //=================================================================
-    auto inputGainBuffer = GetSmoothedValuesBuffer()[FGConst::Param_InGain].getReadPointer(0, 0);
+    const auto inputGainBuffer = GetSmoothedValuesBuffer()[FGConst::Param_InGain].getReadPointer(0, 0);
 
     for (int channel = 0; channel < buffer.getNumChannels(); ++channel)
     {
@@ -133,10 +133,10 @@ void FractalGranulatorAudioProcessor::processBlock(juce::AudioBuffer<float>& buf
 
     // CREATE FEEDBACK
     //================================================================== 
-    auto inputRead = buffer.getReadPointer(0, 0);
-    auto delayLineInput = m_delayInputBuffer.getWritePointer(0, 0);
+    const auto inputRead = buffer.getReadPointer(0, 0);
+    const auto delayLineInput = m_delayInputBuffer.getWritePointer(0, 0);
     juce::FloatVectorOperations::copy(delayLineInput, inputRead, buffer.getNumSamples());
-    auto feedbackOutputRead = m_feedbackOutputBuffer.getReadPointer(0, 0);
+    const auto feedbackOutputRead = m_feedbackOutputBuffer.getReadPointer(0, 0);
     juce::FloatVectorOperations::add(delayLineInput, feedbackOutputRead, buffer.getNumSamples());
 
 
@@ -343,33 +343,31 @@ juce::AudioProcessorValueTreeState::ParameterLayout FractalGranulatorAudioProces
             )
     );
     params.push_back
-    (std::make_unique<juce::AudioParameterFloat>
+    (std::make_unique<juce::AudioParameterBool>
         (
-            FGConst::GetParameterID(FGConst::Param_Pitch1),
-            "Pitch 1",
-            0.0f,
-            1.0f,
-            0.0f
+            FGConst::GetParameterID(FGConst::Param_PitchQuantize),
+            "Pitch Quantize",
+            false
             )
     );
     params.push_back
-    (std::make_unique<juce::AudioParameterFloat>
+    (std::make_unique<juce::AudioParameterInt>
         (
-            FGConst::GetParameterID(FGConst::Param_Pitch2),
-            "Pitch 2",
-            0.0f,
-            1.0f,
-            0.0f
+            FGConst::GetParameterID(FGConst::Param_PitchShift),
+            "Pitch Shift",
+            -12,
+            12,
+            0
             )
     );
     params.push_back
-    (std::make_unique<juce::AudioParameterFloat>
+    (std::make_unique<juce::AudioParameterInt>
         (
-            FGConst::GetParameterID(FGConst::Param_Pitch3),
-            "Pitch 3",
-            0.0f,
-            1.0f,
-            0.0f
+            FGConst::GetParameterID(FGConst::Param_Harmony),
+            "Pitch Harmony",
+            FGConst::Harmony::First,
+            FGConst::Harmony::NumKeys - 1,
+            0
             // Attributes
         )
     );

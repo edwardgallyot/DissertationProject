@@ -28,9 +28,9 @@ namespace FGConst
         Param_Shape2,
         Param_Shape3,
         Param_Shape4,
-        Param_Pitch1,
-        Param_Pitch2,
-        Param_Pitch3,
+        Param_PitchQuantize,
+        Param_PitchShift,
+        Param_Harmony,
         NumOfParams
     };
 
@@ -48,9 +48,9 @@ namespace FGConst
         "Shape2",
         "Shape3",
         "Shape4",
-        "Pitch1",
-        "Pitch2",
-        "Pitch3"
+        "PitchQuantize",
+        "PitchShift",
+        "PitchHarmony"
     };
 
     juce::StringRef GetParameterID(Params param);
@@ -62,7 +62,7 @@ namespace FGConst
 
     const float GUIElementPadding = 5.0f;
 
-    const int MaxGrains = 1000;
+    const int MaxGrains = 500;
 
     const int NumGrainPlotPoints = MaxGrains;
 
@@ -83,6 +83,44 @@ namespace FGConst
     const juce::Colour BackgroundColour = juce::Colour(109, 56, 46);
     const juce::Colour GrainColour = juce::Colour(232, 118, 125);
     const juce::Colour WaveFormColour = juce::Colour(220, 218, 99);
+
+    const enum Harmony
+    {
+        First,
+        Octave,
+        PowerChord,
+        Major,
+        Minor,
+        Major7,
+        Minor7,
+        Major9,
+        Minor9,
+        NumKeys
+    };
+
+    const std::vector<float> FirstHarmony{ 0.0f };
+    const std::vector<float> OctaveHarmony{ -12.0f, 0.0f, 12.0f };
+    const std::vector<float> PowerChordHarmony{ -12.0f, - 5.0f, 0.0f, 7.0f, 12.0f };
+    const std::vector<float> MajorHarmony{ -12.0f, -5.0f, 0.0f, 4.0f, 7.0f, 12.0f };
+    const std::vector<float> MinorHarmony{ -12.0f, -5.0f, 0.0f, 3.0f, 7.0f, 12.0f };
+    const std::vector<float> Major7Harmony{ -12.0f, -5.0f, 0.0f, 4.0f, 7.0f, 11.0f };
+    const std::vector<float> Minor7Harmony{ -12.0f, -5.0f, 0.0f, 3.0f, 7.0f, 11.0f };
+    const std::vector<float> Major9Harmony{ -12.0f, -5.0f, -1.0f, 2.0f, 4.0f, 7.0f, 12.0f };
+    const std::vector<float> Minor9Harmony{ -12.0f, -5.0f, -1.0f, 2.0f, 3.0f, 7.0f, 12.0f };
+   
+
+    const std::array<const std::vector<float>*, NumKeys> Harmonies
+	{
+        &FirstHarmony,
+        &OctaveHarmony,
+        &PowerChordHarmony,
+        &MajorHarmony,
+        &MinorHarmony,
+        &Major7Harmony,
+        &Minor7Harmony,
+        &Major9Harmony,
+        &Minor9Harmony,
+	};
 }
 
 #endif // !FRACTAL_GRANULATOR_COMMON_H

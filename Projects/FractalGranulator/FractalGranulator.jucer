@@ -50,6 +50,10 @@
               resource="0" file="../../EdPluginFramework/DSP/EdPF_WaveTableInterpolation.h"/>
       </GROUP>
       <GROUP id="{74A2110F-F7B7-66DD-269F-0AB74AF26F1A}" name="GUI">
+        <FILE id="KbBwGV" name="EdPF_AttachedButton.cpp" compile="1" resource="0"
+              file="../../EdPluginFramework/GUI/EdPF_AttachedButton.cpp"/>
+        <FILE id="TERCUn" name="EdPF_AttachedButton.h" compile="0" resource="0"
+              file="../../EdPluginFramework/GUI/EdPF_AttachedButton.h"/>
         <FILE id="ncJST9" name="EdPF_AttatchedRotarySlider.cpp" compile="1"
               resource="0" file="../../EdPluginFramework/GUI/EdPF_AttatchedRotarySlider.cpp"/>
         <FILE id="YTXWfL" name="EdPF_AttatchedRotarySlider.h" compile="0" resource="0"

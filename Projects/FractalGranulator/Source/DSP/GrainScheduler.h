@@ -15,10 +15,12 @@
 #include "../../EdPluginFramework/DSP/EdPF_GrainPool.h"
 #include "../../EdPluginFramework/DSP/EdPF_Utils.h"
 #include "../../EdPluginFramework/Utils/EdPF_Fifo.h"
+#include "../../EdPluginFramework/Utils/EdPF_AudioProcessor.h"
 #include "../GUI/GrainPlotData.h"
 #include "StochasticSequenceStrategy.h"
 #include "FractalSequenceStrategy.h"
 #include "../FractalGranulatorCommon.h"
+#include "PitchQuantiser.h"
 #include "Grain.h"
 #include <JuceHeader.h>
 
@@ -27,7 +29,7 @@ namespace FGDSP
     class Scheduler : public EdPF::Grains::Scheduler
     {
     public:
-        Scheduler(EdPF::Grains::GrainPool<FGDSP::Grain>& pool, std::vector<juce::AudioBuffer<float>>& smoothedValues);
+        Scheduler(EdPF::AudioProcessor& p, EdPF::Grains::GrainPool<FGDSP::Grain>& pool, std::vector<juce::AudioBuffer<float>>& smoothedValues);
         // Set the sample rate so we can make some conversions to time
         void SetSampleRate(double sampleRate);
         // This is what the granulator will call
@@ -38,6 +40,7 @@ namespace FGDSP
         EdPF::Fifo<GrainPlotData>* GetFifo() { return &m_fifo; };
 
     private:
+        EdPF::AudioProcessor& m_processor;
         // This is a function used to accumulate the sample of all the active grains
         float AccumulateGrainOuput(int i);
         // This is where we hold a reference to the pooled grains
@@ -52,6 +55,8 @@ namespace FGDSP
         juce::Component* m_fifoReader;
         GrainPlotData m_newFifoData;
 
+        // Pitch Quantizer
+        PitchQuantizer m_pitchQuantizer;
     };
     
 }

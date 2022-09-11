@@ -27,6 +27,7 @@ namespace EdPF
     private:
         float m_negativeSample;
         float m_positiveSample;
+        bool m_isNewTimeSeries;
     };
 }
 

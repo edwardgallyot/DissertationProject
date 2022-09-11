@@ -17,9 +17,17 @@ float EdPF::DSP::Utils::MsToSamples(float ms, float sampleRate)
     return ms;
 }
 
-float EdPF::DSP::Utils::SamplesToMs(float samples, float sampleRate)
+float EdPF::DSP::Utils::SamplesToMs(const float samples, const float sampleRate)
 {
     return samples * (1000.0f / sampleRate);
 }
 
+float EdPF::DSP::Utils::GetSpeedFromPitch(const float noteValue)
+{
+    return pow(2.0f, noteValue / 12.0f);
+}
 
+float EdPF::DSP::Utils::GetPitchFromSpeed(const float speed)
+{
+    return 12.0f * log2f(speed);
+}

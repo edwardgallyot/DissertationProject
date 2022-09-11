@@ -23,9 +23,9 @@ FractalGranulatorAudioProcessorEditor::FractalGranulatorAudioProcessorEditor (Fr
     m_shape2Slider(p, FGConst::GetParameterID(FGConst::Param_Shape2), nullptr),
     m_shape3Slider(p, FGConst::GetParameterID(FGConst::Param_Shape3), nullptr),
     m_shape4Slider(p, FGConst::GetParameterID(FGConst::Param_Shape4), nullptr),
-    m_pitch1Slider(p, FGConst::GetParameterID(FGConst::Param_Pitch1), nullptr),
-    m_pitch2Slider(p, FGConst::GetParameterID(FGConst::Param_Pitch2), nullptr),
-    m_pitch3Slider(p, FGConst::GetParameterID(FGConst::Param_Pitch3), nullptr),
+    m_pitchQuantiseButton(p, FGConst::GetParameterID(FGConst::Param_PitchQuantize), nullptr),
+    m_pitchShiftSlider(p, FGConst::GetParameterID(FGConst::Param_PitchShift), nullptr),
+    m_harmonySlider(p, FGConst::GetParameterID(FGConst::Param_Harmony), nullptr),
     m_mixSlider(p, FGConst::GetParameterID(FGConst::Param_Mix), nullptr),
     m_fractalDisplay(p),
     m_audioInputVisualiser(p.GetInputWavePlotGenerator(), 50, 390, p.GetCurrentInputMeter()),
@@ -43,9 +43,9 @@ FractalGranulatorAudioProcessorEditor::FractalGranulatorAudioProcessorEditor (Fr
     addAndMakeVisible(m_shape2Slider);
     addAndMakeVisible(m_shape3Slider);
     addAndMakeVisible(m_shape4Slider);
-    addAndMakeVisible(m_pitch1Slider);
-    addAndMakeVisible(m_pitch2Slider);
-    addAndMakeVisible(m_pitch3Slider);
+    addAndMakeVisible(m_pitchQuantiseButton);
+    addAndMakeVisible(m_pitchShiftSlider);
+    addAndMakeVisible(m_harmonySlider);
     addAndMakeVisible(m_audioInputVisualiser);
     addAndMakeVisible(m_audioOutputVisualiser);
     addAndMakeVisible(m_fractalInput);
@@ -154,19 +154,19 @@ void FractalGranulatorAudioProcessorEditor::resized()
     auto pitch1Area = centreRightAreaTemplate;
     pitch1Area.reduce(FGConst::MiniSliderReduction, FGConst::MiniSliderReduction);
     pitch1Area.reduce(FGConst::GUIElementPadding, FGConst::GUIElementPadding);
-    m_pitch1Slider.setBounds(pitch1Area.toNearestInt());
+    m_pitchQuantiseButton.setBounds(pitch1Area.toNearestInt());
 
     auto pitch2Area = centreRightAreaTemplate;
     pitch2Area.setX((widthOverThree * 2.0f) + (widthOverThree / 3.0f));
     pitch2Area.reduce(FGConst::MiniSliderReduction, FGConst::MiniSliderReduction);
     pitch2Area.reduce(FGConst::GUIElementPadding, FGConst::GUIElementPadding);
-    m_pitch2Slider.setBounds(pitch2Area.toNearestInt());
+    m_pitchShiftSlider.setBounds(pitch2Area.toNearestInt());
 
     auto pitch3Area = centreRightAreaTemplate;
     pitch3Area.setX((widthOverThree * 2.0f) + (2.0f * (widthOverThree / 3.0f)));
     pitch3Area.reduce(FGConst::MiniSliderReduction, FGConst::MiniSliderReduction);
     pitch3Area.reduce(FGConst::GUIElementPadding, FGConst::GUIElementPadding);
-    m_pitch3Slider.setBounds(pitch3Area.toNearestInt());
+    m_harmonySlider.setBounds(pitch3Area.toNearestInt());
 
     
     // Audio Output Component

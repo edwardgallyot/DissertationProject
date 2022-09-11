@@ -11,6 +11,7 @@
 #ifndef EDPF_UTILS_H_INCLUDED
 #define EDPF_UTILS_H_INCLUDED
 
+#include <cmath>
 
 namespace EdPF
 {
@@ -20,6 +21,8 @@ namespace EdPF
         {
             float MsToSamples(float ms, float sampleRate);
             float SamplesToMs(float ms, float sampleRate);
+        	float GetSpeedFromPitch(float noteValue);
+            float GetPitchFromSpeed(float speed);
         }
     }
 }

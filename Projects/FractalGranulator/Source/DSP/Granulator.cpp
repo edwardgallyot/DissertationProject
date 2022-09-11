@@ -10,8 +10,9 @@
 
 #include "Granulator.h"
 
-FGDSP::Granulator::Granulator(LinearDelayLine& delayLine, std::vector<juce::AudioBuffer<float>>& smoothedValues) :
-    m_scheduler(m_grainPool, smoothedValues),
+FGDSP::Granulator::Granulator(EdPF::AudioProcessor& p, LinearDelayLine& delayLine, std::vector<juce::AudioBuffer<float>>& smoothedValues) :
+	m_processor(p),
+	m_scheduler(p, m_grainPool, smoothedValues),
     m_grainPool(FGConst::MaxGrains)
 {
     // Set the sequence strategy for out scheduler

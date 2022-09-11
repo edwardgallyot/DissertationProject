@@ -104,3 +104,8 @@ bool FGDSP::FractalSequenceStrategy::CheckPointsBounds()
     return true;
 }
 
+
+
+
+
+

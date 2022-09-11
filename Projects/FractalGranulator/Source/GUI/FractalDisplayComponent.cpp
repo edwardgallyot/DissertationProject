@@ -28,6 +28,7 @@ FGGUI::FractalDisplay::~FractalDisplay()
 
 void FGGUI::FractalDisplay::paint(juce::Graphics& g)
 {
+    int padding = 8;
     auto alpha = 0.2f + (0.8f * static_cast<float>(m_meter->load()));
     if (alpha >= 1.0f)
     {
@@ -46,10 +47,15 @@ void FGGUI::FractalDisplay::paint(juce::Graphics& g)
         // We will only plot alive grains
         if (m_plotData[i].GetIsAlive())
         {
-            float xPos = static_cast<float>(getWidth()) * ((m_plotData[i].GetDistanceFromOriginScalar()
+            float xPos = static_cast<float>(getWidth() - padding) * ((m_plotData[i].GetDistanceFromOriginScalar()
                 - FGConst::MinDistanceFromOriginScalar));
-            float yPos = static_cast<float>(getHeight()) -
-                (((m_plotData[i].GetPitch() - FGConst::MinimumPitch) / (FGConst::MaximumPitch - FGConst::MinimumPitch))) * static_cast<float>(getHeight());
+            xPos += padding / 2;
+
+            float yPos = static_cast<float>(getHeight() - padding) -
+                (((m_plotData[i].GetPitch() - FGConst::MinimumPitch) / (FGConst::MaximumPitch - FGConst::MinimumPitch))) * static_cast<float>(getHeight() - padding);
+
+            yPos += padding / 2;
+
             float thickness = 1.0f + (8.0f * m_plotData[i].GetCurrentLifeTimePosition0to1());
             g.drawEllipse
             (

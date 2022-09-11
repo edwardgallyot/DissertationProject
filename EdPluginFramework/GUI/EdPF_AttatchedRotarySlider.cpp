@@ -17,13 +17,10 @@ EdPF::AttachedRotarySlider::AttachedRotarySlider
         juce::LookAndFeel* lookAndFeel
     ) 
     :
-    m_attachment(std::make_unique<juce::SliderParameterAttachment>(*p.GetParameter(sliderID), *this, nullptr))   
+    m_attachment(*p.GetParameter(sliderID), *this, nullptr)   
 {
     setTextBoxStyle(NoTextBox, false, 1, 1);
     setSliderStyle(SliderStyle::RotaryHorizontalVerticalDrag);
     setLookAndFeel(lookAndFeel);
 }
 
-EdPF::AttachedRotarySlider::~AttachedRotarySlider()
-{
-}

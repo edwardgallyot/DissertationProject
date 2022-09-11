@@ -13,6 +13,7 @@
 #include "../../EdPluginFramework/Utils/EdPF_AudioProcessorEditor.h"
 #include "../../EdPluginFramework/GUI/EdPF_AttatchedRotarySlider.h"
 #include "../../EdPluginFramework/GUI/EdPF_AudioVisualiser.h"
+#include "../../EdPluginFramework/GUI/EdPF_AttachedButton.h"
 #include "GUI/FractalInputComponent.h"
 #include "GUI/FractalDisplayComponent.h"
 #include "FractalGranulatorCommon.h"
@@ -49,9 +50,9 @@ private:
     EdPF::AttachedRotarySlider m_shape4Slider;
 
     // Right hand pitch sliders
-    EdPF::AttachedRotarySlider m_pitch1Slider;
-    EdPF::AttachedRotarySlider m_pitch2Slider;
-    EdPF::AttachedRotarySlider m_pitch3Slider;
+    EdPF::AttachedButton m_pitchQuantiseButton;
+    EdPF::AttachedRotarySlider m_pitchShiftSlider;
+    EdPF::AttachedRotarySlider m_harmonySlider;
 
     // Mix Slider
     EdPF::AttachedRotarySlider m_mixSlider;

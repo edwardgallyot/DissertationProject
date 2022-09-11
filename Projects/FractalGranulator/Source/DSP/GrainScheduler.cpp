@@ -10,7 +10,8 @@
 
 #include "GrainScheduler.h"
 
-FGDSP::Scheduler::Scheduler(EdPF::Grains::GrainPool<FGDSP::Grain>& pool, std::vector<juce::AudioBuffer<float>>& smoothedValues) :
+FGDSP::Scheduler::Scheduler(EdPF::AudioProcessor& p, EdPF::Grains::GrainPool<FGDSP::Grain>& pool, std::vector<juce::AudioBuffer<float>>& smoothedValues) :
+    m_processor(p),
     m_pooledGrains(pool),
     m_smoothedValues(smoothedValues),
     m_sampleRate(0.0),
@@ -68,29 +69,57 @@ float FGDSP::Scheduler::SythesiseNextSample(int i)
 
                 // We will also cache the next pitch
                 float nextPitch = strategyPtr->GetNextPitch();
-
-                // Scale the duration so we only make the calculation once
-                float scaledDur = nextDur / nextPitch;
-
+                
                 float distanceFromOriginScalar = strategyPtr->GetNextDistanceFromPlayheadScalar();
 
-                // Activate the grain with the source essence or how it's gonna read from the delay line
-                DelayLineSource::Essence tmpSrcEssence(scaledDur, distanceFromOriginScalar, i, nextPitch);
-
-                // Also give it an envelope relevant to the duration
-                ParabolicEnvelope::Essence tmpEnvEssence(scaledDur, 0.5f);
-                // Activate a grain with it's durations and it's essences
-                grain->Activate(static_cast<int>(scaledDur), &tmpEnvEssence, &tmpSrcEssence);
-
-                // Then configure the FIFO data
-                float nextDurMs = EdPF::DSP::Utils::SamplesToMs(nextDur, static_cast<float>(m_sampleRate));
-                m_newFifoData.Configure(nextDurMs, nextPitch, distanceFromOriginScalar);
-                // If we don't have a reader we won't need to plot any grain data
-                if (m_fifoReader != nullptr)
+                if (static_cast<bool>(m_processor.GetParameterAsValue(FGConst::GetParameterID(FGConst::Param_PitchQuantize)).getValue()))
                 {
-                    // Use assignment for debugging.
-                    /*int x =*/ m_fifo.AddToFifo(&m_newFifoData, 1);
+                    m_pitchQuantizer.SetHarmony(
+                        static_cast<FGConst::Harmony>(
+                        static_cast<int>(
+                        m_processor.GetParameterAsValue(
+                        GetParameterID(FGConst::Params::Param_Harmony))
+                        .getValue())));
+
+
+                    
+                    auto nextRealPitch = EdPF::DSP::Utils::GetPitchFromSpeed(nextPitch);
+
+                	nextRealPitch = m_pitchQuantizer.GetQuantizedPitch(nextRealPitch);
+                    DBG(nextRealPitch);
+                    auto pitchShift = static_cast<float>(m_processor.GetParameterAsValue(FGConst::GetParameterID(FGConst::Param_PitchShift)).getValue());
+
+
+                    nextPitch = EdPF::DSP::Utils::GetSpeedFromPitch(nextRealPitch + pitchShift);
                 }
+
+                auto pitchCheckValue = EdPF::DSP::Utils::GetPitchFromSpeed(nextPitch);
+
+                if (pitchCheckValue >= -12.0f && pitchCheckValue <= 12.0f)
+                {
+                    //DBG(pitchCheckValue);
+                    // Scale the duration so we only make the calculation once
+                    float scaledDur = nextDur / nextPitch;
+
+                    // Activate the grain with the source essence or how it's gonna read from the delay line
+                    DelayLineSource::Essence tmpSrcEssence(scaledDur, distanceFromOriginScalar, i, nextPitch);
+
+                    // Also give it an envelope relevant to the duration
+                    ParabolicEnvelope::Essence tmpEnvEssence(scaledDur, 0.5f);
+                    // Activate a grain with it's durations and it's essences
+                    grain->Activate(static_cast<int>(scaledDur), &tmpEnvEssence, &tmpSrcEssence);
+
+                    // Then configure the FIFO data
+                    float nextDurMs = EdPF::DSP::Utils::SamplesToMs(nextDur, static_cast<float>(m_sampleRate));
+                    m_newFifoData.Configure(nextDurMs, nextPitch, distanceFromOriginScalar);
+                    // If we don't have a reader we won't need to plot any grain data
+                    if (m_fifoReader != nullptr)
+                    {
+                        // Use assignment for debugging.
+                        /*int x =*/ m_fifo.AddToFifo(&m_newFifoData, 1);
+                    }
+                }
+                
             }
 
         }

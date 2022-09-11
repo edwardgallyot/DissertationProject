@@ -1,35 +1,36 @@
 /*
   ==============================================================================
 
-    EdPF_AttatchedRotarySlider.h
-    Created: 3 Aug 2022 2:46:08pm
+    EdPF_AttachedButton.h
+    Created: 11 Sep 2022 12:40:15pm
     Author:  Edward Gallyot
 
   ==============================================================================
 */
 
-#ifndef EDPF_ATTACHED_ROTARY_SLIDER
-#define EDPF_ATTACHED_ROTARY_SLIDER
+#ifndef EDPF_ATTACHED_BUTTON_H_INCLUDED
+#define EDPF_ATTACHED_BUTTON_H_INCLUDED
 
 #include <JuceHeader.h>
 #include "../Utils/EdPF_AudioProcessor.h"
 
 namespace EdPF
 {
-    class AttachedRotarySlider : public juce::Slider
+    class AttachedButton : public juce::ToggleButton
     {
     public:
-        AttachedRotarySlider
-        (
+        AttachedButton
+    	(
             EdPF::AudioProcessor& p,
-            juce::StringRef sliderID,
+            juce::StringRef buttonID,
             juce::LookAndFeel* lookAndFeel
         );
-        ~AttachedRotarySlider() = default;
-    
-    private:
-        juce::SliderParameterAttachment m_attachment;
-    };
-}
+        ~AttachedButton() = default;
 
-#endif //! EDPF_ATTATCHED_ROTARY_SLIDER
+    private:
+        juce::ButtonParameterAttachment m_attachment;
+
+    };
+} //!EdPF
+
+#endif  //!EDPF_ATTACHED_BUTTON_H_INCLUDED
