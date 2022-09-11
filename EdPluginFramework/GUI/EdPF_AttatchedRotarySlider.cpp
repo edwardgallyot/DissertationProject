@@ -14,12 +14,12 @@ EdPF::AttachedRotarySlider::AttachedRotarySlider
     (
         EdPF::AudioProcessor& p,
         juce::StringRef sliderID,
-        juce::LookAndFeel* lookAndFeel
+        juce::LookAndFeel_V4* lookAndFeel
     ) 
     :
     m_attachment(*p.GetParameter(sliderID), *this, nullptr)   
 {
-    setTextBoxStyle(NoTextBox, false, 1, 1);
+    setTextBoxStyle(NoTextBox, true, 0, 0);
     setSliderStyle(SliderStyle::RotaryHorizontalVerticalDrag);
     setLookAndFeel(lookAndFeel);
 }

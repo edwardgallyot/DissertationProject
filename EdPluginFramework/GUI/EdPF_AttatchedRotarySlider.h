@@ -23,7 +23,7 @@ namespace EdPF
         (
             EdPF::AudioProcessor& p,
             juce::StringRef sliderID,
-            juce::LookAndFeel* lookAndFeel
+            juce::LookAndFeel_V4* lookAndFeel
         );
         ~AttachedRotarySlider() = default;
     

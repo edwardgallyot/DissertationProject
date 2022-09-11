@@ -31,5 +31,4 @@ float FGDSP::PitchQuantizer::ClosestValueInVector(std::vector<float> const& vec,
         attempt : attempt - 1; // somewhere in the middle, then the previous element could be closer
 
     return *found;
-
 }

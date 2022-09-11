@@ -86,18 +86,15 @@ float FGDSP::Scheduler::SythesiseNextSample(int i)
                     auto nextRealPitch = EdPF::DSP::Utils::GetPitchFromSpeed(nextPitch);
 
                 	nextRealPitch = m_pitchQuantizer.GetQuantizedPitch(nextRealPitch);
-                    DBG(nextRealPitch);
                     auto pitchShift = static_cast<float>(m_processor.GetParameterAsValue(FGConst::GetParameterID(FGConst::Param_PitchShift)).getValue());
-
-
+                    
                     nextPitch = EdPF::DSP::Utils::GetSpeedFromPitch(nextRealPitch + pitchShift);
                 }
 
+                // We will do a pitch check here to make sure that we're still on the 
                 auto pitchCheckValue = EdPF::DSP::Utils::GetPitchFromSpeed(nextPitch);
-
                 if (pitchCheckValue >= -12.0f && pitchCheckValue <= 12.0f)
                 {
-                    //DBG(pitchCheckValue);
                     // Scale the duration so we only make the calculation once
                     float scaledDur = nextDur / nextPitch;
 

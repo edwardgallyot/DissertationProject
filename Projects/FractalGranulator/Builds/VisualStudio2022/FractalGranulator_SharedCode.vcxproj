@@ -166,9 +166,11 @@
     <ClCompile Include="..\..\Source\DSP\ParabolicEnvelope.cpp"/>
     <ClCompile Include="..\..\Source\DSP\PitchQuantiser.cpp"/>
     <ClCompile Include="..\..\Source\DSP\StochasticSequenceStrategy.cpp"/>
+    <ClCompile Include="..\..\Source\GUI\ButtonLookAndFeel.cpp"/>
     <ClCompile Include="..\..\Source\GUI\FractalDisplayComponent.cpp"/>
     <ClCompile Include="..\..\Source\GUI\FractalInputComponent.cpp"/>
     <ClCompile Include="..\..\Source\GUI\GrainPlotData.cpp"/>
+    <ClCompile Include="..\..\Source\GUI\SliderLookAndFeel.cpp"/>
     <ClCompile Include="..\..\Source\FractalGranulatorCommon.cpp"/>
     <ClCompile Include="..\..\Source\FractalGranulatorProcessor.cpp"/>
     <ClCompile Include="..\..\Source\FractalGranulatorEditor.cpp"/>
@@ -2461,9 +2463,11 @@
     <ClInclude Include="..\..\Source\DSP\ParabolicEnvelope.h"/>
     <ClInclude Include="..\..\Source\DSP\PitchQuantiser.h"/>
     <ClInclude Include="..\..\Source\DSP\StochasticSequenceStrategy.h"/>
+    <ClInclude Include="..\..\Source\GUI\ButtonLookAndFeel.h"/>
     <ClInclude Include="..\..\Source\GUI\FractalDisplayComponent.h"/>
     <ClInclude Include="..\..\Source\GUI\FractalInputComponent.h"/>
     <ClInclude Include="..\..\Source\GUI\GrainPlotData.h"/>
+    <ClInclude Include="..\..\Source\GUI\SliderLookAndFeel.h"/>
     <ClInclude Include="..\..\Source\FractalGranulatorCommon.h"/>
     <ClInclude Include="..\..\Source\FractalGranulatorProcessor.h"/>
     <ClInclude Include="..\..\Source\FractalGranulatorEditor.h"/>

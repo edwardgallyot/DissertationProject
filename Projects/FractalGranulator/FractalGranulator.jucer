@@ -116,6 +116,10 @@
               file="Source/DSP/StochasticSequenceStrategy.h"/>
       </GROUP>
       <GROUP id="{3DB2CAAB-3CAC-C2D9-1997-593577B264CB}" name="GUI">
+        <FILE id="wusFkN" name="ButtonLookAndFeel.cpp" compile="1" resource="0"
+              file="Source/GUI/ButtonLookAndFeel.cpp"/>
+        <FILE id="QtBCyB" name="ButtonLookAndFeel.h" compile="0" resource="0"
+              file="Source/GUI/ButtonLookAndFeel.h"/>
         <FILE id="Dg5pW7" name="FractalDisplayComponent.cpp" compile="1" resource="0"
               file="Source/GUI/FractalDisplayComponent.cpp"/>
         <FILE id="oQxVE6" name="FractalDisplayComponent.h" compile="0" resource="0"
@@ -127,6 +131,10 @@
         <FILE id="PD1XrF" name="GrainPlotData.cpp" compile="1" resource="0"
               file="Source/GUI/GrainPlotData.cpp"/>
         <FILE id="YiFkC4" name="GrainPlotData.h" compile="0" resource="0" file="Source/GUI/GrainPlotData.h"/>
+        <FILE id="AMhNZZ" name="SliderLookAndFeel.cpp" compile="1" resource="0"
+              file="Source/GUI/SliderLookAndFeel.cpp"/>
+        <FILE id="Cdk6hJ" name="SliderLookAndFeel.h" compile="0" resource="0"
+              file="Source/GUI/SliderLookAndFeel.h"/>
       </GROUP>
       <FILE id="QZ3ILm" name="FractalGranulatorCommon.h" compile="0" resource="0"
             file="Source/FractalGranulatorCommon.h"/>

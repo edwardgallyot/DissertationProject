@@ -80,9 +80,13 @@ namespace FGConst
     const float MinimumInteronsetSamples = 150.0f;
     const float MaximumInteronset = 4000.0f;
 
-    const juce::Colour BackgroundColour = juce::Colour(109, 56, 46);
-    const juce::Colour GrainColour = juce::Colour(232, 118, 125);
-    const juce::Colour WaveFormColour = juce::Colour(220, 218, 99);
+    const juce::Colour BackgroundColour = juce::Colour(0xFF0D0F0F);
+    const juce::Colour GrainColour = juce::Colour(0xFF97B9D2);
+    const juce::Colour WaveFormColour = juce::Colour(0xFFECC2C8);
+    const juce::Colour ControlColour1 = juce::Colour(0xFFC62C41);
+    const juce::Colour ControlColour2 = juce::Colour(0xFFAB644F);
+    const juce::Colour OffWhiteColour = juce::Colour(0xFFEDE3DE);
+    
 
     const enum Harmony
     {

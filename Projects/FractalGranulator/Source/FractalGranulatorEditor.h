@@ -17,6 +17,7 @@
 #include "GUI/FractalInputComponent.h"
 #include "GUI/FractalDisplayComponent.h"
 #include "FractalGranulatorCommon.h"
+#include "GUI/SliderLookAndFeel.h"
 
 //==============================================================================
 /**
@@ -30,6 +31,10 @@ public:
     void resized() override;
     void paint(juce::Graphics& g) override;
 private:
+	// Look and feel has to be instatiated first to avoid bad access.
+    FGGUI::SliderLookAndFeel m_sliderLookAndFeel;
+
+
     // Sliders
     // In and Out Sliders
     EdPF::AttachedRotarySlider m_inGainSlider;
@@ -53,7 +58,7 @@ private:
     EdPF::AttachedButton m_pitchQuantiseButton;
     EdPF::AttachedRotarySlider m_pitchShiftSlider;
     EdPF::AttachedRotarySlider m_harmonySlider;
-
+     
     // Mix Slider
     EdPF::AttachedRotarySlider m_mixSlider;
 
@@ -61,17 +66,16 @@ private:
     EdPF::AudioVisualiser m_audioInputVisualiser;
     
     // Audio Out Visualiser
-    EdPF::AudioVisualiser m_audioOutputVisualiser;
-
-    // TODO: Potentially put in an FFT Display
+    EdPF::AudioVisualiser m_audioOutputVisualiser; 
 
     // Fractal Input Component
     FGGUI::FractalInput m_fractalInput;
 
     // Fractal Display Component
     FGGUI::FractalDisplay m_fractalDisplay;
+    
 
-    FractalGranulatorAudioProcessor& audioProcessor;
+    FractalGranulatorAudioProcessor& m_processor;
 
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (FractalGranulatorAudioProcessorEditor)
 };

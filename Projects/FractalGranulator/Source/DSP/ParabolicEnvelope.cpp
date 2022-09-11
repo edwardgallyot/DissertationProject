@@ -22,7 +22,6 @@ float FGDSP::ParabolicEnvelope::GetNextSample()
 {
     m_currentAmplitude += m_slope;
     m_slope += m_curve;
-    //DBG(m_currentAmplitude);
     if (m_currentAmplitude < 0.0f)
     {
         // Sometimes the parabolic envelope can trail a bit beyond the phase of the grain and end up dipping off pretty quick

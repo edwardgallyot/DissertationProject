@@ -19,5 +19,6 @@ EdPF::AttachedButton::AttachedButton
 	ToggleButton(buttonID),
 	m_attachment(*p.GetParameter(buttonID), *this, nullptr)
 {
+    setButtonText("");
     setLookAndFeel(lookAndFeel);
 }

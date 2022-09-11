@@ -700,6 +700,9 @@
     <ClCompile Include="..\..\Source\DSP\StochasticSequenceStrategy.cpp">
       <Filter>FractalGranulator\Source\DSP</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\Source\GUI\ButtonLookAndFeel.cpp">
+      <Filter>FractalGranulator\Source\GUI</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\Source\GUI\FractalDisplayComponent.cpp">
       <Filter>FractalGranulator\Source\GUI</Filter>
     </ClCompile>
@@ -707,6 +710,9 @@
       <Filter>FractalGranulator\Source\GUI</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Source\GUI\GrainPlotData.cpp">
+      <Filter>FractalGranulator\Source\GUI</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\GUI\SliderLookAndFeel.cpp">
       <Filter>FractalGranulator\Source\GUI</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Source\FractalGranulatorCommon.cpp">
@@ -3222,6 +3228,9 @@
     <ClInclude Include="..\..\Source\DSP\StochasticSequenceStrategy.h">
       <Filter>FractalGranulator\Source\DSP</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\Source\GUI\ButtonLookAndFeel.h">
+      <Filter>FractalGranulator\Source\GUI</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\Source\GUI\FractalDisplayComponent.h">
       <Filter>FractalGranulator\Source\GUI</Filter>
     </ClInclude>
@@ -3229,6 +3238,9 @@
       <Filter>FractalGranulator\Source\GUI</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\GUI\GrainPlotData.h">
+      <Filter>FractalGranulator\Source\GUI</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\GUI\SliderLookAndFeel.h">
       <Filter>FractalGranulator\Source\GUI</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\FractalGranulatorCommon.h">

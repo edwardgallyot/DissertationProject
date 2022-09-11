@@ -12,6 +12,7 @@
 #define FRACTAL_INPUT_COMPONENT_H
 
 #include <JuceHeader.h>
+#include "../FractalGranulatorCommon.h"
 
 namespace FGGUI
 {
