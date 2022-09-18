@@ -146,6 +146,7 @@
     <ClCompile Include="..\..\..\..\EdPluginFramework\DSP\EdPF_GrainPool.cpp"/>
     <ClCompile Include="..\..\..\..\EdPluginFramework\DSP\EdPF_GrainScheduler.cpp"/>
     <ClCompile Include="..\..\..\..\EdPluginFramework\DSP\EdPF_GrainSource.cpp"/>
+    <ClCompile Include="..\..\..\..\EdPluginFramework\DSP\EdPF_Granulator.cpp"/>
     <ClCompile Include="..\..\..\..\EdPluginFramework\DSP\EdPF_SequenceStrategy.cpp"/>
     <ClCompile Include="..\..\..\..\EdPluginFramework\DSP\EdPF_ToneModule.cpp"/>
     <ClCompile Include="..\..\..\..\EdPluginFramework\DSP\EdPF_Utils.cpp"/>
@@ -2443,6 +2444,7 @@
     <ClInclude Include="..\..\..\..\EdPluginFramework\DSP\EdPF_GrainPool.h"/>
     <ClInclude Include="..\..\..\..\EdPluginFramework\DSP\EdPF_GrainScheduler.h"/>
     <ClInclude Include="..\..\..\..\EdPluginFramework\DSP\EdPF_GrainSource.h"/>
+    <ClInclude Include="..\..\..\..\EdPluginFramework\DSP\EdPF_Granulator.h"/>
     <ClInclude Include="..\..\..\..\EdPluginFramework\DSP\EdPF_SequenceStrategy.h"/>
     <ClInclude Include="..\..\..\..\EdPluginFramework\DSP\EdPF_ToneModule.h"/>
     <ClInclude Include="..\..\..\..\EdPluginFramework\DSP\EdPF_Utils.h"/>

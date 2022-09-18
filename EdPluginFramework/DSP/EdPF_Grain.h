@@ -51,7 +51,7 @@ namespace EdPF
             float GetNextEnvelopeSample() { return m_envelope->GetNextSample(); }
             // Get the next sample from the grain source
             float GetNextSourceSample() { return m_source->GetNextSample(); }
-            // Get a reference to the source data so we can modify parameters in real time
+            // Get a pointer to the source data so we can modify parameters in real time
             Source* GetUnderlyingSource() { return m_source.get(); }
             // Set the duration
             void SetDuration(int duration) { m_duration = duration; }
@@ -73,4 +73,4 @@ namespace EdPF
     }
 }
 
-#endif EDPF_GRAIN_INCLUDED_H
+#endif //!EDPF_GRAIN_INCLUDED_H

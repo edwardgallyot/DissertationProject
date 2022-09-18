@@ -640,6 +640,9 @@
     <ClCompile Include="..\..\..\..\EdPluginFramework\DSP\EdPF_GrainSource.cpp">
       <Filter>FractalGranulator\EdPluginFramework\DSP</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\..\..\EdPluginFramework\DSP\EdPF_Granulator.cpp">
+      <Filter>FractalGranulator\EdPluginFramework\DSP</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\..\..\EdPluginFramework\DSP\EdPF_SequenceStrategy.cpp">
       <Filter>FractalGranulator\EdPluginFramework\DSP</Filter>
     </ClCompile>
@@ -3166,6 +3169,9 @@
       <Filter>FractalGranulator\EdPluginFramework\DSP</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\..\EdPluginFramework\DSP\EdPF_GrainSource.h">
+      <Filter>FractalGranulator\EdPluginFramework\DSP</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\EdPluginFramework\DSP\EdPF_Granulator.h">
       <Filter>FractalGranulator\EdPluginFramework\DSP</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\..\EdPluginFramework\DSP\EdPF_SequenceStrategy.h">

@@ -34,6 +34,10 @@
               file="../../EdPluginFramework/DSP/EdPF_GrainSource.cpp"/>
         <FILE id="lMjZra" name="EdPF_GrainSource.h" compile="0" resource="0"
               file="../../EdPluginFramework/DSP/EdPF_GrainSource.h"/>
+        <FILE id="SPRqou" name="EdPF_Granulator.cpp" compile="1" resource="0"
+              file="../../EdPluginFramework/DSP/EdPF_Granulator.cpp"/>
+        <FILE id="Eymzn5" name="EdPF_Granulator.h" compile="0" resource="0"
+              file="../../EdPluginFramework/DSP/EdPF_Granulator.h"/>
         <FILE id="HPg2Tx" name="EdPF_SequenceStrategy.cpp" compile="1" resource="0"
               file="../../EdPluginFramework/DSP/EdPF_SequenceStrategy.cpp"/>
         <FILE id="J41VgT" name="EdPF_SequenceStrategy.h" compile="0" resource="1"

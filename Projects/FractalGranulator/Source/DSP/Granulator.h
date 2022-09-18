@@ -13,26 +13,24 @@
 
 #include <JuceHeader.h>
 #include "../../EdPluginFramework/DSP/EdPF_DelayLine.h"
-#include "../DSP/DelayLineSource.h"
 #include "../../EdPluginFramework/DSP/EdPF_GrainPool.h"
-#include "../../EdPluginFramework/DSP/EdPF_Grain.h"
-#include "../DSP/ParabolicEnvelope.h"
 #include "GrainScheduler.h"
 #include "StochasticSequenceStrategy.h"
 #include "../../EdPluginFramework/Utils/EdPF_Fifo.h"
+#include "../../EdPluginFramework/DSP/EdPF_Granulator.h"
 
 
 namespace FGDSP
 {
-    class Granulator
+    class Granulator : public EdPF::Granulator
     {
     public:
         Granulator(EdPF::AudioProcessor& p, LinearDelayLine& delayLine, std::vector<juce::AudioBuffer<float>>& smoothedValue);
-        ~Granulator();
+        ~Granulator() override;
 
-        void PrepareToPlay(double sampleRate, int numSamplesExpected);
+        void PrepareToPlay(double sampleRate, int numSamplesExpected) override;
 
-        void ProcessSamples(juce::AudioBuffer<float>& buffer);
+        void ProcessSamples(juce::AudioBuffer<float>& buffer) override;
 
         EdPF::Fifo<GrainPlotData>* GetSchedulerFifo() { return m_scheduler.GetFifo(); }
         void RegisterFifoReader(juce::Component* reader) { m_scheduler.RegisterFifoReader(reader); }

@@ -4,4 +4,8 @@
     <LocalDebuggerCommand>C:\ProgramData\Ableton\Live 10 Suite\Program\Ableton Live 10 Suite.exe</LocalDebuggerCommand>
     <DebuggerFlavor>WindowsLocalDebugger</DebuggerFlavor>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <LocalDebuggerCommand>C:\ProgramData\Ableton\Live 10 Suite\Program\Ableton Live 10 Suite.exe</LocalDebuggerCommand>
+    <DebuggerFlavor>WindowsLocalDebugger</DebuggerFlavor>
+  </PropertyGroup>
 </Project>

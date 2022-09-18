@@ -53,8 +53,7 @@ void FGDSP::FractalSequenceStrategy::DoChaosGame()
     int randomInt = m_random.nextInt({ 0, 3 });
     m_currentPoint = 0.5f * (m_currentPoint + m_serpinskiBounds[randomInt]);
 
-    juce::AffineTransform transform;
-
+    juce::AffineTransform transform{};
     // Move Point to the centre of the origin
     m_currentPoint = m_currentPoint - juce::Point<float>(0.5f, 0.75f);
     m_currentPoint = m_currentPoint - juce::Point<float>(FGConst::MinDistanceFromOriginScalar, FGConst::MinimumPitch);
