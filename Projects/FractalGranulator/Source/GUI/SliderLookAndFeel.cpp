@@ -54,14 +54,14 @@ void FGGUI::SliderLookAndFeel::drawRotarySlider(juce::Graphics& g, int x, int y,
 	}
 }
 
-void FGGUI::SliderLookAndFeel::drawButtonBackground(juce::Graphics&, juce::Button&, const juce::Colour& backgroundColour, bool shouldDrawButtonAsHighlighted, bool shouldDrawButtonAsDown)
+void FGGUI::SliderLookAndFeel::drawButtonBackground(juce::Graphics&, juce::Button&, const juce::Colour& /*backgroundColour*/, bool /*shouldDrawButtonAsHighlighted*/, bool /*shouldDrawButtonAsDown*/)
 {
     
 }
 
 void FGGUI::SliderLookAndFeel::drawToggleButton(juce::Graphics& g, juce::ToggleButton& button,
-	bool shouldDrawButtonAsHighlighted, bool shouldDrawButtonAsDown)
-{ 
+	bool /*shouldDrawButtonAsHighlighted*/, bool /*shouldDrawButtonAsDown*/)
+{
     if (static_cast<bool>(button.getToggleStateValue().getValue()))
     {
         g.setColour(FGConst::GrainColour);

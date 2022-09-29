@@ -11,9 +11,6 @@
 #ifndef EDPF_SEQUENCE_STRATEGY_H_INCLUDED
 #define EDPF_SEQUENCE_STRATEGY_H_INCLUDED
 
-#include <vector>
-#include <JuceHeader.h>
-
 namespace EdPF
 {
     namespace Grains

@@ -167,23 +167,21 @@ bool EdPF::AudioProcessor::hasEditor() const
     return true; // (change this to false if you choose to not supply an editor)
 }
 
-juce::AudioProcessorEditor* EdPF::AudioProcessor::createEditor()
-{
-    return new juce::AudioProcessorEditor(*this);
-}
-
 //==============================================================================
-void EdPF::AudioProcessor::getStateInformation(juce::MemoryBlock& /*destData*/)
+void EdPF::AudioProcessor::getStateInformation(juce::MemoryBlock& destData)
 {
-    // You should use this method to store your parameters in the memory block.
-    // You could do that either as raw data, or use the XML or ValueTree classes
-    // as intermediaries to make it easy to save and load complex data.
+    auto state = m_apvts.copyState();
+    std::unique_ptr<juce::XmlElement> xml(state.createXml());
+    copyXmlToBinary(*xml, destData);
 }
 
-void EdPF::AudioProcessor::setStateInformation(const void* /*data*/, int /*sizeInBytes*/)
+void EdPF::AudioProcessor::setStateInformation(const void* data, int sizeInBytes)
 {
-    // You should use this method to restore your parameters from this memory block,
-    // whose contents will have been created by the getStateInformation() call.
+    std::unique_ptr<juce::XmlElement> xmlState(getXmlFromBinary(data, sizeInBytes));
+
+    if (xmlState.get() != nullptr)
+        if (xmlState->hasTagName(m_apvts.state.getType()))
+            m_apvts.replaceState(juce::ValueTree::fromXml(*xmlState));
 }
 
 juce::Value EdPF::AudioProcessor::GetParameterAsValue(juce::StringRef ID)

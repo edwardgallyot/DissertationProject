@@ -24,9 +24,6 @@ static const unsigned char temp_binary_data_0[] =
 "#ifndef EDPF_SEQUENCE_STRATEGY_H_INCLUDED\r\n"
 "#define EDPF_SEQUENCE_STRATEGY_H_INCLUDED\r\n"
 "\r\n"
-"#include <vector>\r\n"
-"#include <JuceHeader.h>\r\n"
-"\r\n"
 "namespace EdPF\r\n"
 "{\r\n"
 "    namespace Grains\r\n"
@@ -59,7 +56,7 @@ const char* getNamedResource (const char* resourceNameUTF8, int& numBytes)
 
     switch (hash)
     {
-        case 0x219f82e7:  numBytes = 755; return EdPF_SequenceStrategy_h;
+        case 0x219f82e7:  numBytes = 709; return EdPF_SequenceStrategy_h;
         default: break;
     }
 

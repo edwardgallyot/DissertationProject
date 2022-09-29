@@ -31,9 +31,7 @@ namespace EdPF
         #endif
 
         void processBlock(juce::AudioBuffer<float>&, juce::MidiBuffer&) override;
-
-        //==============================================================================
-        virtual juce::AudioProcessorEditor* createEditor() override;
+        
         bool hasEditor() const override;
 
         //==============================================================================

@@ -9,7 +9,7 @@
 namespace BinaryData
 {
     extern const char*   EdPF_SequenceStrategy_h;
-    const int            EdPF_SequenceStrategy_hSize = 755;
+    const int            EdPF_SequenceStrategy_hSize = 709;
 
     // Number of elements in the namedResourceList and originalFileNames arrays.
     const int namedResourceListSize = 1;

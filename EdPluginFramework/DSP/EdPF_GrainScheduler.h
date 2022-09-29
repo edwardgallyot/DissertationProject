@@ -30,14 +30,14 @@ namespace EdPF
 
             void IncrementSample();
             
-            bool ShouldActivateGrain() { return m_shouldActivateGrain; };
+            bool ShouldActivateGrain() { return m_shouldActivateGrain; }
 
-            float GetNextDuration() { return m_sequenceStrategy->GetNextDuration(); }
+            float GetNextDuration() { return m_nextDuration; }
 
             // You'll want to cast this to your derived sequence strategy
             SequenceStrategy* GetUnderlyingSequenceStrategy() { return m_sequenceStrategy.get(); }
 
-            void SetSequenceStrategy(std::unique_ptr<SequenceStrategy> sequenceStrategy) { m_sequenceStrategy = std::move(sequenceStrategy); };
+            void SetSequenceStrategy(std::unique_ptr<SequenceStrategy> sequenceStrategy) { m_sequenceStrategy = std::move(sequenceStrategy); }
         private:
             int m_nextOnset;
             float m_nextDuration;

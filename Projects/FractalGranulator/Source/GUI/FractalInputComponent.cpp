@@ -12,6 +12,6 @@
 
 void FGGUI::FractalInput::paint(juce::Graphics& g)
 {
-    g.setColour(FGConst::GrainColour);
+    g.setColour(FGConst::OffWhiteColour);
     g.drawText("Fractal Granulator :)", getLocalBounds(), juce::Justification::centred); 
 }

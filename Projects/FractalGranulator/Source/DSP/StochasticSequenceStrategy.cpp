@@ -31,5 +31,11 @@ float FGDSP::StochasticSequenceStrategy::GetNextDistanceFromPlayheadScalar()
 
 float FGDSP::StochasticSequenceStrategy::GetNextPitch()
 {
-    return std::powf(2.0f, static_cast<float>(std::round(static_cast<double>(1.0f - (m_random.getSystemRandom().nextFloat()) * FGConst::MaximumPitch)) * 12.0f) / 12.0f);
+    return std::powf(2.0f, 
+        static_cast<float>(
+        std::round(
+            static_cast<double>(1.0f - 
+                (m_random.getSystemRandom().nextFloat()) * FGConst::MaximumPitch)) * 12.0f) 
+        / 12.0f
+    );
 }

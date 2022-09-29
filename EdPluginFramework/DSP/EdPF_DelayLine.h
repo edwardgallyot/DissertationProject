@@ -69,14 +69,15 @@ namespace EdPF
                 m_writeIndex = (m_writeIndex + blockSize) % m_data.getNumSamples();
 
             };
+
             FloatType ReadSample(FloatType index)
             {
                 return m_interpolator.GetSample<FloatType>(index, m_data);
             }
 
-            inline int GetSize() { return m_size; };
-            inline int GetWriteIndex() { return m_writeIndex; };
-            inline int GetBlockSize() { return m_blockSize; }
+            inline int GetSize() const { return m_size; };
+            inline int GetWriteIndex() const { return m_writeIndex; };
+            inline int GetBlockSize() const { return m_blockSize; }
 
             void SetSize(int size)
             {

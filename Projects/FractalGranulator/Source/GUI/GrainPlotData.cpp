@@ -45,8 +45,5 @@ float FGDSP::GrainPlotData::GetCurrentLifeTimePosition0to1()
     {
         return m_displayCurrentLifeTimePosition / halfLifeTime;
     }
-    else
-    {
-        return (m_displayCurrentLifeTimePosition - m_displayLifetime) / halfLifeTime;
-    }
+    return (m_displayCurrentLifeTimePosition - m_displayLifetime) / halfLifeTime;
 }
