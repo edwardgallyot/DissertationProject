@@ -3972,9 +3972,6 @@
     <ClInclude Include="..\..\..\..\JUCE\modules\juce_audio_formats\juce_audio_formats.h">
       <Filter>JUCE Modules\juce_audio_formats</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\JUCE\modules\juce_audio_plugin_client\ARA\juce_ARA_Wrapper.h">
-      <Filter>JUCE Modules\juce_audio_plugin_client\ARA</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\..\..\JUCE\modules\juce_audio_plugin_client\utility\juce_CheckSettingMacros.h">
       <Filter>JUCE Modules\juce_audio_plugin_client\utility</Filter>
     </ClInclude>
@@ -4494,6 +4491,9 @@
     <ClInclude Include="..\..\..\..\JUCE\modules\juce_audio_processors\utilities\ARA\juce_ARA_utils.h">
       <Filter>JUCE Modules\juce_audio_processors\utilities\ARA</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\..\..\JUCE\modules\juce_audio_processors\utilities\ARA\juce_ARADebug.h">
+      <Filter>JUCE Modules\juce_audio_processors\utilities\ARA</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\..\..\JUCE\modules\juce_audio_processors\utilities\ARA\juce_ARADocumentController.h">
       <Filter>JUCE Modules\juce_audio_processors\utilities\ARA</Filter>
     </ClInclude>
@@ -4829,6 +4829,9 @@
     </ClInclude>
     <ClInclude Include="..\..\..\..\JUCE\modules\juce_core\network\juce_WebInputStream.h">
       <Filter>JUCE Modules\juce_core\network</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\JUCE\modules\juce_core\streams\juce_AndroidDocumentInputSource.h">
+      <Filter>JUCE Modules\juce_core\streams</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\..\JUCE\modules\juce_core\streams\juce_BufferedInputStream.h">
       <Filter>JUCE Modules\juce_core\streams</Filter>
