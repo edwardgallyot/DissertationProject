@@ -230,7 +230,7 @@ juce::AudioProcessorValueTreeState::ParameterLayout FractalGranulatorAudioProces
             "Mix",
             0.0f,
             1.0f,
-            0.0f
+            1.0f
             )
     );
 
@@ -241,7 +241,7 @@ juce::AudioProcessorValueTreeState::ParameterLayout FractalGranulatorAudioProces
             "Input Gain",
             0.0f,
             1.0f,
-            0.0f
+            0.5f
         )
     );
     params.push_back
@@ -251,7 +251,7 @@ juce::AudioProcessorValueTreeState::ParameterLayout FractalGranulatorAudioProces
             "Output Gain",
             0.0f,
             1.0f,
-            0.0f
+            0.5f
             )
     );
 
@@ -289,7 +289,7 @@ juce::AudioProcessorValueTreeState::ParameterLayout FractalGranulatorAudioProces
             FGConst::GetParameterID(FGConst::Param_Complexity),
             "Complexity",
             complexityRange,
-            0.8f
+            1.0f
             )
     );
     params.push_back
@@ -309,7 +309,7 @@ juce::AudioProcessorValueTreeState::ParameterLayout FractalGranulatorAudioProces
             "Shape 1",
             0.0f,
             1.0f,
-            0.0f
+            0.5f
             )
     );
     params.push_back
@@ -319,7 +319,7 @@ juce::AudioProcessorValueTreeState::ParameterLayout FractalGranulatorAudioProces
             "Shape 2",
             0.0f,
             1.0f,
-            0.0f
+            0.5f
             )
     );
     params.push_back
