@@ -72,7 +72,7 @@ namespace EdPF
 
             FloatType ReadSample(FloatType index)
             {
-                return m_interpolator.GetSample<FloatType>(index, m_data);
+                return m_interpolator.template GetSample<FloatType>(index, m_data);
             }
 
             inline int GetSize() const { return m_size; };

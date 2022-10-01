@@ -70,7 +70,7 @@ namespace EdPF
 
         std::vector<juce::AudioBuffer<float>>& GetSmoothedValuesBuffer() { return m_smoothedValuesBuffers; }
 
-        _NODISCARD void UpdateSmoothedValues(int index, float valueAtStartOfBlock);
+        void UpdateSmoothedValues(int index, float valueAtStartOfBlock);
 
 
 
